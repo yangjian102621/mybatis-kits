@@ -1,0 +1,47 @@
+package com.dayi.mybatis.spring.plus.constant;
+
+/**
+ *
+ * 用于注入的语句模板
+ *
+ * @author chenzhaoju
+ *
+ */
+public enum Template {
+	/** sql 语句 模板 */
+	ADD("add", "添加数据", "<script>INSERT INTO %s %s VALUES %s</script>"),
+	UPDATE("update", "更新数据", "<script>UPDATE %s %s WHERE %s=#{%s}</script>"),
+	DELETE("delete", "删除一条数据", "<script>DELETE FROM %s WHERE %s=#{%s}</script>"),
+
+	GET("get", "根据id查询", "<script>SELECT %s FROM %s WHERE %s=#{%s}</script>"),
+	GET_BY_MAP("getByMap", "根据map 查询数据一条数据", "<script>SELECT %s FROM %s %s</script>"),
+	GET_COUNT("getCount", "根据条件获取总记录数", "<script>SELECT COUNT(1) FROM %s %s</script>"),
+	SEARCH("search", "根据条件获取数据", "<script>SELECT %s FROM %s %s</script>"),
+	SEARCH_BY_MAP("searchByMap", "根据map 查询数据", "<script>SELECT %s FROM %s %s</script>");
+
+
+	/** 方法名称 */
+	private final String method;
+	/** 简单描述 */
+	private final String desc;
+	/** sql 语句模板 */
+	private final String sql;
+
+	Template(String method, String desc, String sql) {
+		this.method = method;
+		this.desc = desc;
+		this.sql = sql;
+	}
+
+	public String getMethod() {
+		return this.method;
+	}
+
+	public String getDesc() {
+		return this.desc;
+	}
+
+	public String getSql() {
+		return this.sql;
+	}
+}

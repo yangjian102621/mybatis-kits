@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%thread]%level- %logger{50}.%M: %msg%n</pattern>
+			<charset>UTF-8</charset> 
+		</encoder>
+	</appender>
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+	<logger level="DEBUG" name="com.fiidee" additivity="false">
+		<appender-ref ref="STDOUT"/>
+	</logger>
+
+</configuration>
