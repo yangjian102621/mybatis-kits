@@ -21,8 +21,8 @@
 		<property name="plugins">
 			<array>
 				<!-- 分页插件配置 -->
-				<bean id="paginationInterceptor" class="com.dayi.mybatis.spring.plus.plugins.page.PaginationInterceptor">
-				</bean>
+				<!--<bean id="conditionsInterceptor" class="com.dayi.mybatis.spring.plus.plugins.conditions.ConditionsInterceptor"/>-->
+				<bean id="paginationInterceptor" class="com.dayi.mybatis.spring.plus.plugins.page.PaginationInterceptor"/>
 			</array>
 		</property>
 	</bean>

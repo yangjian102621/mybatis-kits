@@ -36,6 +36,7 @@ public class MybatisMapperMethod extends MapperMethod {
         this.method = new MethodSignature(config, mapperInterface, method);
     }
 
+    @Override
     public Object execute(SqlSession sqlSession, Object[] args) {
         Object result;
         if (SqlCommandType.INSERT == command.getType()) {

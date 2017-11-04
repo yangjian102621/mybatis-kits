@@ -57,6 +57,8 @@ public class MybatisAutoMapperBuilder   {
             getByMap(builderAssistant, boundType, actualModelClass, table);
             searchAll(builderAssistant, boundType, actualModelClass, table);
             searchByMap(builderAssistant, boundType, actualModelClass, table);
+            searchByConditions(builderAssistant, boundType, actualModelClass, table);
+
             getCount(builderAssistant, boundType, actualModelClass, table);
             getCountByMap(builderAssistant, boundType, actualModelClass, table);
             //
@@ -187,6 +189,25 @@ public class MybatisAutoMapperBuilder   {
         sb.append("\n<foreach collection=\"_parameter\" index=\"key\" item=\"value\" separator=\"AND\">");
         sb.append("\n ${key} = #{value} ");
         sb.append("</foreach>");
+        sb.append("</where>");
+        sb.append("</if>");
+        return sb.toString();
+    }
+
+    /** 根据map 查询所有记录 */
+    private void searchByConditions(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, Class<?> modelClass, Table table) {
+        Template sqlMethod = Template.SEARCH_BY_CONDITIONS;
+        String sql = String.format(sqlMethod.getSql(), table.getColumnsSqlAs(), table.getWrapName(),genWhereSqlByCondition());
+
+        addSelectMappedStatement(builderAssistant, mapperClass, sqlMethod.getMethod(), sql, modelClass);
+    }
+
+    private String genWhereSqlByCondition(){
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("\n<if test=\"null != _parameter\">");
+        sb.append("\n<where>");
+        sb.append("${_parameter.sql}");
         sb.append("</where>");
         sb.append("</if>");
         return sb.toString();

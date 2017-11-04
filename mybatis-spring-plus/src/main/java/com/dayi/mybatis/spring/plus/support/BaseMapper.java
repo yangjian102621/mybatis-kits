@@ -105,4 +105,21 @@ public interface BaseMapper<M> {
      */
     public long getCount(Map<String, Object> map);
 
+    /**
+     *
+     * 根据指定条件 查询对应的列表数据
+     * @param conditions
+     * @return
+     */
+    public List<M> searchByConditions(Conditions conditions);
+
+    /**
+     *
+     * 根据指定条件 分页查询对应的列表数据
+     *
+     * @param conditions
+     * @return
+     */
+    public Page<M> searchByConditions(Page<M> page,Conditions conditions);
+
 }

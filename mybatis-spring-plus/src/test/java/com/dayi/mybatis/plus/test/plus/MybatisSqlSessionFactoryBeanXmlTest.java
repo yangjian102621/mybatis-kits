@@ -4,6 +4,8 @@ import com.dayi.mybatis.plus.test.AbstractMybatisTest;
 import com.dayi.mybatis.plus.test.support.mapper.UserMapper;
 import com.dayi.mybatis.plus.test.support.model.User;
 import com.dayi.mybatis.spring.plus.plugins.page.Page;
+import com.dayi.mybatis.spring.plus.support.Conditions;
+import com.dayi.mybatis.spring.plus.support.ext.Restrictions;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
@@ -158,6 +160,35 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 
 		Page<User> page = new Page<User>();
 		page = userMapper.searchByMap(page, map);
+		_Logger.info("分页结果：{}",page);
+		for (User user : page) {
+			_Logger.info("结果：{}",user);
+		}
+	}
+
+	@Test
+	public void testSearchByConditions() throws Exception {
+		UserMapper userMapper = getUserMapper();
+
+		Conditions conditions = new Conditions();
+		conditions.add(Restrictions.eq("name", "two name"));
+		conditions.add(Restrictions.eq("sex", 2));
+		List<User> users = userMapper.searchByConditions(conditions);
+		for (User u : users) {
+			_Logger.info("结果：{}",u);
+		}
+	}
+
+	@Test
+	public void testSearchByConditionsPage() throws Exception {
+		UserMapper userMapper = getUserMapper();
+
+		Page<User> page = new Page<User>();
+
+		Conditions conditions = new Conditions();
+		conditions.add(Restrictions.eq("name", "two name"));
+		conditions.add(Restrictions.eq("sex", 2));
+		page = userMapper.searchByConditions(page,conditions);
 		_Logger.info("分页结果：{}",page);
 		for (User user : page) {
 			_Logger.info("结果：{}",user);

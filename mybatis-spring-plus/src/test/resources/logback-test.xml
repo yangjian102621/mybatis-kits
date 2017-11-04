@@ -12,7 +12,7 @@
 		<appender-ref ref="STDOUT" />
 	</root>
 
-	<logger level="DEBUG" name="com.fiidee" additivity="false">
+	<logger level="DEBUG" name="com.dayi" additivity="false">
 		<appender-ref ref="STDOUT"/>
 	</logger>
 

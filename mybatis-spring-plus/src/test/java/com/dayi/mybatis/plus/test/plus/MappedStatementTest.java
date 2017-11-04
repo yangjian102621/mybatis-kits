@@ -5,6 +5,8 @@ import com.dayi.mybatis.plus.test.support.mapper.UserMapper;
 import com.dayi.mybatis.plus.test.support.model.User;
 import com.dayi.mybatis.spring.plus.MybatisConfiguration;
 import com.dayi.mybatis.spring.plus.MybatisSqlSessionFactoryBean;
+import com.dayi.mybatis.spring.plus.support.Conditions;
+import com.dayi.mybatis.spring.plus.support.ext.Restrictions;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -67,9 +69,22 @@ public class MappedStatementTest extends AbstractMybatisTest {
 	public void testGetMapperStatement() throws Exception {
 		Collection<MappedStatement> mappedStatements = configuration.getMappedStatements();
 		Collection<String> mappedStatementNames = configuration.getMappedStatementNames();
-		MappedStatement mappedStatement = configuration.getMappedStatement("com.fiidee.mybatis.support.mapper.UserMapper.get");
+		MappedStatement mappedStatement = configuration.getMappedStatement("com.dayi.mybatis.plus.test.support.mapper.UserMapper.get");
 		System.out.println(mappedStatement);
 		BoundSql boundSql = mappedStatement.getBoundSql("34234234");
+		String sql = boundSql.getSql();
+		System.out.println(sql);
+	}
+
+	@Test
+	public void testSearchByConditionsMapper() throws Exception {
+		Conditions conditions = new Conditions();
+		conditions.add(Restrictions.eq("count", 2));
+		conditions.add(Restrictions.eq("name", "名字"));
+
+		MappedStatement mappedStatement = configuration.getMappedStatement("com.dayi.mybatis.plus.test.support.mapper.UserMapper.searchByConditions");
+
+		BoundSql boundSql = mappedStatement.getBoundSql(conditions);
 		String sql = boundSql.getSql();
 		System.out.println(sql);
 	}
