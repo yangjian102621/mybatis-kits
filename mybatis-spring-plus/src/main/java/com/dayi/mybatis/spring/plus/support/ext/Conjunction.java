@@ -20,4 +20,5 @@ public class Conjunction extends Junction {
     public Conjunction(Collection<Criterion> criterions) {
         super(Nature.AND, criterions);
     }
+
 }

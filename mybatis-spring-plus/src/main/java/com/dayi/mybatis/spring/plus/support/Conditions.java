@@ -4,7 +4,9 @@ import com.dayi.mybatis.spring.plus.support.ext.Restrictions;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -15,9 +17,11 @@ import java.util.List;
 public class Conditions implements Criterion,Serializable {
 
     private List<Criterion> criterions;
+    private Map<String,Object> parameterValues;
 
     public Conditions() {
         this.criterions = new ArrayList<>();
+        this.parameterValues = new HashMap<>();
     }
 
     public List<Criterion> getCriterions() {
@@ -26,6 +30,7 @@ public class Conditions implements Criterion,Serializable {
 
     public Conditions add(Criterion criterion) {
         this.criterions.add(criterion);
+        this.parameterValues.putAll(criterion.getParameterValues());
         return this;
     }
 
@@ -34,6 +39,15 @@ public class Conditions implements Criterion,Serializable {
         StringBuilder sql = new StringBuilder();
         sql.append(Restrictions.and(this.criterions).toSqlString());
         return sql.toString();
+    }
+
+    @Override
+    public Map<String, Object> getParameterValues() {
+        return parameterValues;
+    }
+
+    public Object getParameterValue(String parameterName){
+        return this.parameterValues.get(parameterName);
     }
 
     public String getSql(){

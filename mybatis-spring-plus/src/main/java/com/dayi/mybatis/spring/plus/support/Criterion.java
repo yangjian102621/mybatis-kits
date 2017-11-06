@@ -1,6 +1,7 @@
 package com.dayi.mybatis.spring.plus.support;
 
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  * @author chenzhaoju
@@ -15,5 +16,11 @@ public interface Criterion extends Serializable {
      *
      */
     public String toSqlString();
+
+    /**
+     * 获取 参数列表
+     * @return
+     */
+    public Map<String,Object> getParameterValues();
 
 }

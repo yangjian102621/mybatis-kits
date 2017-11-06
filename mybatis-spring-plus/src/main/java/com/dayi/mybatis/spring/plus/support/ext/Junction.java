@@ -7,7 +7,7 @@ import java.util.*;
 /**
  * @author chenzhaoju
  */
-public class Junction implements Criterion {
+public class Junction extends AbstractCriterion implements Criterion {
     private final Nature nature;
     private final List<Criterion> conditions = new ArrayList<Criterion>();
 
@@ -61,6 +61,11 @@ public class Junction implements Criterion {
             buffer.append(')');
         }
         return buffer.toString();
+    }
+
+    @Override
+    public Map<String, Object> getParameterValues() {
+        return null;
     }
 
     /**

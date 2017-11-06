@@ -5,7 +5,7 @@ import com.dayi.mybatis.spring.plus.support.Criterion;
 /**
  * @author chenzhaoju
  */
-public class InExpression implements Criterion {
+public class InExpression  extends AbstractCriterion  implements Criterion {
 
     private final String propertyName;
     private final Object[] values;

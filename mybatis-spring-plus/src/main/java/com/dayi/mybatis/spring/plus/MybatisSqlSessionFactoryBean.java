@@ -1,5 +1,6 @@
 package com.dayi.mybatis.spring.plus;
 
+import com.dayi.mybatis.spring.plus.typehandler.ConditionsTypeHandler;
 import com.dayi.mybatis.spring.spring.SqlSessionFactoryBean;
 import org.apache.ibatis.builder.xml.XMLMapperBuilder;
 import org.apache.ibatis.executor.ErrorContext;
@@ -114,6 +115,8 @@ public class MybatisSqlSessionFactoryBean extends SqlSessionFactoryBean {
 				}
 			}
 		}
+		// 默认加一个 conditions 的 typehandler
+		configuration.getTypeHandlerRegistry().register(new ConditionsTypeHandler());
 
 		if (this.databaseIdProvider != null) {//fix #64 set databaseId before parse mapper xmls
 			try {

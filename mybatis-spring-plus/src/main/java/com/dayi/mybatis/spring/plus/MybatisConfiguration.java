@@ -1,5 +1,6 @@
 package com.dayi.mybatis.spring.plus;
 
+import com.dayi.mybatis.spring.plus.languagedriver.ConditionsLanguageDriver;
 import com.dayi.mybatis.spring.plus.mapper.MybatisAutoMapperBuilder;
 import org.apache.ibatis.session.Configuration;
 
@@ -12,11 +13,13 @@ import org.apache.ibatis.session.Configuration;
  */
 public class MybatisConfiguration extends Configuration{
     /** 自动注入工具 */
-    private MybatisAutoMapperBuilder mybatisAutoMapperBuilder = new MybatisAutoMapperBuilder(this);
+    private MybatisAutoMapperBuilder mybatisAutoMapperBuilder;
 
     public MybatisConfiguration() {
         super();
+        getLanguageRegistry().register(ConditionsLanguageDriver.class);
         this.mapperRegistry = new MybatisMapperRegistry(this);
+        this.mybatisAutoMapperBuilder = new MybatisAutoMapperBuilder(this);
     }
 
     public MybatisAutoMapperBuilder getMybatisAutoMapperBuilder() {

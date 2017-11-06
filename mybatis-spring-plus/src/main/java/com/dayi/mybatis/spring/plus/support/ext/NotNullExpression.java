@@ -5,7 +5,7 @@ import com.dayi.mybatis.spring.plus.support.Criterion;
 /**
  * @author chenzhaoju
  */
-public class NotNullExpression implements Criterion {
+public class NotNullExpression  extends AbstractCriterion  implements Criterion {
 
     private final String propertyName;
 

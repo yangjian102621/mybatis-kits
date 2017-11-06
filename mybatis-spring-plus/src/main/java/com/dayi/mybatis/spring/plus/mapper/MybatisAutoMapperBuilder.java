@@ -3,6 +3,7 @@ package com.dayi.mybatis.spring.plus.mapper;
 
 import com.dayi.mybatis.spring.plus.MybatisConfiguration;
 import com.dayi.mybatis.spring.plus.constant.Template;
+import com.dayi.mybatis.spring.plus.languagedriver.ConditionsLanguageDriver;
 import com.dayi.mybatis.spring.plus.support.BaseMapper;
 import org.apache.ibatis.builder.MapperBuilderAssistant;
 import org.apache.ibatis.executor.keygen.KeyGenerator;
@@ -30,10 +31,13 @@ public class MybatisAutoMapperBuilder   {
     /** mybatis configuration */
     private MybatisConfiguration mybatisConfiguration;
     private LanguageDriver languageDriver ;
+    /** 额外添加处理conditions 查询的 */
+    private LanguageDriver conditionsLanguageDriver;
 
     public MybatisAutoMapperBuilder(MybatisConfiguration mybatisConfiguration) {
         this.mybatisConfiguration = mybatisConfiguration;
         this.languageDriver = mybatisConfiguration.getDefaultScriptingLanuageInstance();
+        this.conditionsLanguageDriver = mybatisConfiguration.getLanguageRegistry().getDriver(ConditionsLanguageDriver.class);
     }
 
     /**
@@ -92,6 +96,13 @@ public class MybatisAutoMapperBuilder   {
     private MappedStatement addMappedStatement(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, String id, SqlSource sqlSource,
                                                SqlCommandType sqlCommandType, Class<?> parameterClass, String resultMap, Class<?> resultType,
                                                KeyGenerator keyGenerator, String keyProperty, String keyColumn) {
+        return addMappedStatement(builderAssistant,mapperClass,id,sqlSource,sqlCommandType, parameterClass,
+                resultMap,resultType,keyGenerator,keyProperty,keyColumn,this.languageDriver);
+    }
+
+    private MappedStatement addMappedStatement(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, String id, SqlSource sqlSource,
+                                               SqlCommandType sqlCommandType, Class<?> parameterClass, String resultMap, Class<?> resultType,
+                                               KeyGenerator keyGenerator, String keyProperty, String keyColumn,LanguageDriver languageDriver) {
         String statementName = mapperClass.getName() + "." + id;
         if (this.mybatisConfiguration.hasStatement(statementName)) {
             return null;// 已经有了，不再覆盖
@@ -109,6 +120,13 @@ public class MybatisAutoMapperBuilder   {
 		/* 普通查询 */
         return this.addMappedStatement(builderAssistant,mapperClass, id, sqlSource, SqlCommandType.SELECT, null, null, resultType,
                 new NoKeyGenerator(), null, null);
+    }
+
+    private MappedStatement addSelectConditionsMappedStatement(MapperBuilderAssistant builderAssistant,Class<?> mapperClass, String id, String sql, Class<?> resultType) {
+        SqlSource sqlSource = this.conditionsLanguageDriver.createSqlSource(this.mybatisConfiguration, sql, resultType);
+		/* 普通查询 */
+        return this.addMappedStatement(builderAssistant,mapperClass, id, sqlSource, SqlCommandType.SELECT, null, null, resultType,
+                new NoKeyGenerator(), null, null,this.conditionsLanguageDriver);
     }
 
     private MappedStatement addInsertMappedStatement(MapperBuilderAssistant builderAssistant,Class<?> mapperClass, String id, String sql, Class<?> resultType) {
@@ -199,7 +217,7 @@ public class MybatisAutoMapperBuilder   {
         Template sqlMethod = Template.SEARCH_BY_CONDITIONS;
         String sql = String.format(sqlMethod.getSql(), table.getColumnsSqlAs(), table.getWrapName(),genWhereSqlByCondition());
 
-        addSelectMappedStatement(builderAssistant, mapperClass, sqlMethod.getMethod(), sql, modelClass);
+        addSelectConditionsMappedStatement(builderAssistant, mapperClass, sqlMethod.getMethod(), sql, modelClass);
     }
 
     private String genWhereSqlByCondition(){
