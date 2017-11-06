@@ -10,19 +10,19 @@ import java.util.Map;
  */
 public abstract class AbstractCriterion implements Criterion {
 
-    private Map<String,Object> parameterValues = new HashMap<>();
+    protected Map<String,Object> parameterValues = new HashMap<>();
 
     @Override
     public Map<String, Object> getParameterValues() {
         return this.parameterValues;
     }
 
-    public AbstractCriterion addParameterValue(Criterion criterion, String parameterName, Object value){
-        this.parameterValues.put(getPararmeterName(criterion,parameterName), value);
+    public AbstractCriterion addParameterValue(String parameterName, Object value){
+        this.parameterValues.put(getPararmeterName(parameterName), value);
         return this;
     }
 
-    public String getPararmeterName(Criterion criterion,String parameterName){
-        return criterion.getClass().getSimpleName() + "_" + parameterName;
+    public String getPararmeterName(String parameterName){
+        return this.getClass().getSimpleName() + "_" + parameterName + "_" + hashCode();
     }
 }

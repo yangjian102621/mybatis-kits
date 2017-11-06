@@ -18,11 +18,17 @@ public class Junction extends AbstractCriterion implements Criterion {
     protected Junction(Nature nature, Criterion... criterion) {
         this(nature);
         Collections.addAll(conditions, criterion);
+        for (Criterion criterion1 : criterion) {
+            super.parameterValues.putAll(criterion1.getParameterValues());
+        }
     }
 
     protected Junction(Nature nature, Collection<Criterion> criterions) {
         this(nature);
         this.conditions.addAll(criterions);
+        for (Criterion criterion1 : criterions) {
+            super.parameterValues.putAll(criterion1.getParameterValues());
+        }
     }
 
     public Junction add(Criterion criterion) {
@@ -61,11 +67,6 @@ public class Junction extends AbstractCriterion implements Criterion {
             buffer.append(')');
         }
         return buffer.toString();
-    }
-
-    @Override
-    public Map<String, Object> getParameterValues() {
-        return null;
     }
 
     /**

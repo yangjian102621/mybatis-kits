@@ -16,7 +16,7 @@ public class NotNullExpression  extends AbstractCriterion  implements Criterion 
     @Override
     public String toSqlString() {
         StringBuilder fragment = new StringBuilder();
-        fragment.append( this.propertyName);
+        fragment.append(this.propertyName);
         fragment.append(" is not null ");
         return fragment.toString();
     }

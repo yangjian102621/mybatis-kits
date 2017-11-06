@@ -16,7 +16,7 @@ public class SimpleExpression extends AbstractCriterion implements Criterion {
         this.propertyName = propertyName;
         this.value = value;
         this.op = op;
-        addParameterValue(this,propertyName,value);
+        addParameterValue(propertyName,value);
     }
 
     protected final String getOp() {
@@ -35,7 +35,7 @@ public class SimpleExpression extends AbstractCriterion implements Criterion {
     public String toSqlString(){
         StringBuilder fragment = new StringBuilder();
         fragment.append( this.propertyName);
-        fragment.append( getOp() ).append( "#{" ).append(getPararmeterName(this,this.propertyName)).append("} ");
+        fragment.append( getOp() ).append( "#{" ).append(getPararmeterName(this.propertyName)).append("} ");
         return fragment.toString();
     }
 

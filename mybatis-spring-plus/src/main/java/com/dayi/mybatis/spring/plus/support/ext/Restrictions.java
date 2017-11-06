@@ -28,7 +28,7 @@ public class Restrictions {
         return value == null ? isNotNull( propertyName ) : ne( propertyName, value );
     }*/
 
-    public static SimpleExpression like(String propertyName, Object value) {
+    public static SimpleExpression like(String propertyName, String value) {
         return new SimpleExpression( propertyName, value, " like " );
     }
 

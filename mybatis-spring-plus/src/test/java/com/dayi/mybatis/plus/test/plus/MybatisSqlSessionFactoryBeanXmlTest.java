@@ -5,6 +5,7 @@ import com.dayi.mybatis.plus.test.support.mapper.UserMapper;
 import com.dayi.mybatis.plus.test.support.model.User;
 import com.dayi.mybatis.spring.plus.plugins.page.Page;
 import com.dayi.mybatis.spring.plus.support.Conditions;
+import com.dayi.mybatis.spring.plus.support.ext.MatchMode;
 import com.dayi.mybatis.spring.plus.support.ext.Restrictions;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -16,6 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -171,8 +173,51 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 		UserMapper userMapper = getUserMapper();
 
 		Conditions conditions = new Conditions();
-		conditions.add(Restrictions.eq("name", "two name"));
+		//conditions.add(Restrictions.eq("name", "two name"));
 		conditions.add(Restrictions.eq("sex", 2));
+		//conditions.add(Restrictions.gt("age", 15));
+		//conditions.add(Restrictions.lt("age", 25));
+		conditions.add(Restrictions.and(Restrictions.gt("age", 15),Restrictions.lt("age", 20)));
+		conditions.add(Restrictions.or(Restrictions.eq("name", "two name"),Restrictions.eq("name", "four name")));
+		List<User> users = userMapper.searchByConditions(conditions);
+		for (User u : users) {
+			_Logger.info("结果：{}",u);
+		}
+	}
+
+	@Test
+	public void testSearchByConditionsIn() throws Exception {
+		UserMapper userMapper = getUserMapper();
+
+		Conditions conditions = new Conditions();
+		conditions.add(Restrictions.eq("sex", 2));
+		conditions.add(Restrictions.in("age", Arrays.asList(15,25,17,19)));
+		List<User> users = userMapper.searchByConditions(conditions);
+		for (User u : users) {
+			_Logger.info("结果：{}",u);
+		}
+	}
+
+	@Test
+	public void testSearchByConditionsBetween() throws Exception {
+		UserMapper userMapper = getUserMapper();
+
+		Conditions conditions = new Conditions();
+		conditions.add(Restrictions.eq("sex", 2));
+		conditions.add(Restrictions.between("age", 15, 25));
+		List<User> users = userMapper.searchByConditions(conditions);
+		for (User u : users) {
+			_Logger.info("结果：{}",u);
+		}
+	}
+
+	@Test
+	public void testSearchByConditionsLike() throws Exception {
+		UserMapper userMapper = getUserMapper();
+
+		Conditions conditions = new Conditions();
+		conditions.add(Restrictions.eq("sex", 2));
+		conditions.add(Restrictions.like("name", "name", MatchMode.END));
 		List<User> users = userMapper.searchByConditions(conditions);
 		for (User u : users) {
 			_Logger.info("结果：{}",u);
@@ -186,8 +231,9 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 		Page<User> page = new Page<User>();
 
 		Conditions conditions = new Conditions();
-		conditions.add(Restrictions.eq("name", "two name"));
+		// conditions.add(Restrictions.eq("name", "two name"));
 		conditions.add(Restrictions.eq("sex", 2));
+		conditions.add(Restrictions.gt("age", 19));
 		page = userMapper.searchByConditions(page,conditions);
 		_Logger.info("分页结果：{}",page);
 		for (User user : page) {

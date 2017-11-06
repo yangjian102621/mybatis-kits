@@ -15,16 +15,16 @@ public class BetweenExpression extends AbstractCriterion implements Criterion {
         this.propertyName = propertyName;
         this.lo = lo;
         this.hi = hi;
-        addParameterValue(this,getPararmeterName(this,propertyName+"_lo") ,this.lo);
-        addParameterValue(this,getPararmeterName(this,propertyName+"_hi") ,this.hi);
+        addParameterValue(propertyName+"_lo" ,this.lo);
+        addParameterValue(propertyName+"_hi" ,this.hi);
     }
 
     @Override
     public String toSqlString() {
         StringBuilder fragment = new StringBuilder();
         fragment.append( this.propertyName);
-        fragment.append( " between #{").append(getPararmeterName(this,propertyName+"_lo")).append("} ");
-        fragment.append(" and #{").append(getPararmeterName(this,propertyName+"_hi")).append("} ");
+        fragment.append( " between #{").append(getPararmeterName(propertyName+"_lo")).append("} ");
+        fragment.append(" and #{").append(getPararmeterName(propertyName+"_hi")).append("} ");
         return fragment.toString();
     }
 
