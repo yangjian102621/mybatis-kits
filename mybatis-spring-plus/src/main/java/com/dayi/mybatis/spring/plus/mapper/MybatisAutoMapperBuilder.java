@@ -59,6 +59,7 @@ public class MybatisAutoMapperBuilder   {
                 _Logger.warn("{}没有定义id字段！！", actualModelClass.getSimpleName());
             }
             getByMap(builderAssistant, boundType, actualModelClass, table);
+            getByConditions(builderAssistant, boundType, actualModelClass, table);
             searchAll(builderAssistant, boundType, actualModelClass, table);
             searchByMap(builderAssistant, boundType, actualModelClass, table);
             searchByConditions(builderAssistant, boundType, actualModelClass, table);
@@ -188,7 +189,15 @@ public class MybatisAutoMapperBuilder   {
         Template sqlMethod = Template.GET_BY_MAP;
         String sql = String.format(sqlMethod.getSql(), table.getColumnsSqlAs(), table.getWrapName(),genWhereSqlByMap());
 
-        addSelectMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, modelClass);
+        addSelectConditionsMappedStatement(builderAssistant, mapperClass, sqlMethod.getMethod(), sql, modelClass);
+    }
+
+    /** 根据Conditions 查询所有记录 */
+    private void getByConditions(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, Class<?> modelClass, Table table) {
+        Template sqlMethod = Template.GET_BY_CONDITIONS;
+        String sql = String.format(sqlMethod.getSql(), table.getColumnsSqlAs(), table.getWrapName(),genWhereSqlByCondition());
+
+        addSelectConditionsMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, modelClass);
     }
 
     /** 根据map 查询所有记录 */

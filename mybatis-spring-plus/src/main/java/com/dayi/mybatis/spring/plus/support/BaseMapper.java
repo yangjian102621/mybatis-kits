@@ -63,6 +63,14 @@ public interface BaseMapper<M> {
 
     /**
      *
+     * 根据查询条件获取一个对象
+     * @param conditions
+     * @return
+     */
+    public M getByConditions(Conditions conditions);
+
+    /**
+     *
      * 取出全部数据
      *
      * @return

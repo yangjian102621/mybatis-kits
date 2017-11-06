@@ -90,6 +90,15 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
+	public void testGetByConditions() throws Exception {
+		UserMapper userMapper = getUserMapper();
+		Conditions conditions = new Conditions();
+		conditions.add(Restrictions.eq("id", "0123456-02"));
+		User user = userMapper.getByConditions(conditions);
+		_Logger.info("结果：{}",user);
+	}
+
+	@Test
 	public void testGetUserMuti() throws Exception {
 		UserMapper userMapper = getUserMapper();
 		User user = userMapper.get("0123456-01");
