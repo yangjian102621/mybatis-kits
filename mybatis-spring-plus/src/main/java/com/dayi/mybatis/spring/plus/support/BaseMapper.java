@@ -29,12 +29,20 @@ public interface BaseMapper<M> {
 
     /**
      *
-     * 根据 id 更新对应的model
+     * 根据 id 更新对应的model（更新非null 字段）
      *
      * @param model
      * @return int
      */
     public int update(M model);
+
+    /**
+     *
+     * 根据 id 更新对应的model（更新所有字段，包括null的）
+     * @param model
+     * @return
+     */
+    public int updateAll(M model);
 
     /**
      *

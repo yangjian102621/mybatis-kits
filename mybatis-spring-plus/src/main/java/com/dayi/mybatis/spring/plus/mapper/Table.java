@@ -95,12 +95,24 @@ public class Table {
         return this;
     }
 
-    public String getUpdateSetSql(){
+    public String getNotNullUpdateSetSql(){
         StringBuilder sb = new StringBuilder();
         sb.append("<set>");
         for (TableField field : getTableFields()) {
             if(!field.isId()){
                 sb.append("<if test=\"").append(field.getFieldName()).append(" != null\">").append(field.getColumnName()).append("=#{").append(field.getFieldName()).append("},</if>");
+            }
+        }
+        sb.append("</set>");
+        return sb.toString();
+    }
+
+    public String getUpdateSetSql(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("<set>");
+        for (TableField field : getTableFields()) {
+            if(!field.isId()){
+                sb.append(field.getColumnName()).append("=#{").append(field.getFieldName()).append("},");
             }
         }
         sb.append("</set>");

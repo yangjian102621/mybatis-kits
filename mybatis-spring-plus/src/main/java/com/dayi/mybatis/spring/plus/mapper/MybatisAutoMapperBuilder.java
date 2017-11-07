@@ -51,9 +51,11 @@ public class MybatisAutoMapperBuilder   {
         if(null != actualModelClass){
             Table table = Table.valueOf(builderAssistant,actualModelClass);
 
-            if(null != table.getIdTableField()){ // 防止没有id字段导致出错吧
+            if(null != table.getIdTableField()){
+                // 防止没有id字段导致出错吧
                 get(builderAssistant, boundType, actualModelClass, table);
                 update(builderAssistant, boundType, actualModelClass, table);
+                updateAll(builderAssistant, boundType, actualModelClass, table);
                 delete(builderAssistant, boundType, actualModelClass, table);
             }else {
                 _Logger.warn("{}没有定义id字段！！", actualModelClass.getSimpleName());
@@ -248,9 +250,17 @@ public class MybatisAutoMapperBuilder   {
         addInsertMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, modelClass);
     }
 
-    /** 更新数据 */
+    /** 增量更新数据 */
     private void update(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, Class<?> modelClass, Table table) {
         Template sqlMethod = Template.UPDATE;
+        String sql = String.format(sqlMethod.getSql(), table.getWrapName(),table.getNotNullUpdateSetSql(),table.getIdTableField().getColumnName(),table.getIdTableField().getFieldName());
+
+        addUpdateMappedStatement(builderAssistant, mapperClass, sqlMethod.getMethod(), sql, modelClass);
+    }
+
+    /** 全量更新数据 */
+    private void updateAll(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, Class<?> modelClass, Table table) {
+        Template sqlMethod = Template.UPDATE_ALL;
         String sql = String.format(sqlMethod.getSql(), table.getWrapName(),table.getUpdateSetSql(),table.getIdTableField().getColumnName(),table.getIdTableField().getFieldName());
 
         addUpdateMappedStatement(builderAssistant, mapperClass, sqlMethod.getMethod(), sql, modelClass);

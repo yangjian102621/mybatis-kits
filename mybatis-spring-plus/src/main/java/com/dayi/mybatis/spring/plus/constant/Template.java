@@ -10,7 +10,8 @@ package com.dayi.mybatis.spring.plus.constant;
 public enum Template {
 	/** sql 语句 模板 */
 	ADD("add", "添加数据", "<script>INSERT INTO %s %s VALUES %s</script>"),
-	UPDATE("update", "更新数据", "<script>UPDATE %s %s WHERE %s=#{%s}</script>"),
+	UPDATE("update", "增量更新数据", "<script>UPDATE %s %s WHERE %s=#{%s}</script>"),
+	UPDATE_ALL("updateAll", "全量更新数据", "<script>UPDATE %s %s WHERE %s=#{%s}</script>"),
 	DELETE("delete", "删除一条数据", "<script>DELETE FROM %s WHERE %s=#{%s}</script>"),
 
 	GET("get", "根据id查询", "<script>SELECT %s FROM %s WHERE %s=#{%s}</script>"),
