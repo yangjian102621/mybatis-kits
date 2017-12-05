@@ -12,6 +12,7 @@
 		<appender-ref ref="STDOUT" />
 	</root>
 
+	<!-- 开启调试模式，打印 SQL 语句 -->
 	<logger level="DEBUG" name="com.dayi" additivity="false">
 		<appender-ref ref="STDOUT"/>
 	</logger>

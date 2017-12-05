@@ -79,8 +79,8 @@ public class MappedStatementTest extends AbstractMybatisTest {
 	@Test
 	public void testSearchByConditionsMapper() throws Exception {
 		Conditions conditions = new Conditions();
-		conditions.add(Restrictions.eq("count", 2));
-		conditions.add(Restrictions.eq("name", "名字"));
+		//conditions.add(Restrictions.eq("name", "名字"));
+		conditions.add(Restrictions.or(Restrictions.like("name", "名字"),Restrictions.and(Restrictions.eq("count", 1),Restrictions.eq("count", 2))));
 
 		MappedStatement mappedStatement = configuration.getMappedStatement("com.dayi.mybatis.plus.test.support.mapper.UserMapper.searchByConditions");
 

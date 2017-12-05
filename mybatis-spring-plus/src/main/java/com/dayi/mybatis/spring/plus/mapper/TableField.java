@@ -3,6 +3,7 @@ package com.dayi.mybatis.spring.plus.mapper;
 
 import com.dayi.mybatis.spring.plus.util.Misc;
 
+import javax.persistence.Column;
 import java.lang.reflect.Field;
 
 /**
@@ -23,6 +24,11 @@ public class TableField {
     public TableField(Field field) {
         this.fieldName = field.getName();
         this.columnName = Misc.toCamelUnderline(fieldName);
+        //如果有添加了注解，则使用注解覆盖
+        Column column = field.getAnnotation(Column.class);
+        if (null != column) {
+            this.columnName = column.name();
+        }
         this.javaType = field.getType();
     }
 

@@ -8,7 +8,7 @@ import javax.persistence.Transient;
  * @author chenzhaoju
  */
 public class User {
-
+    //@Column(name = "userid")
     private String id;
     private String name;
     private int age;
