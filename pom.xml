@@ -67,6 +67,8 @@
                 <includes>
                     <include>**/*.xml</include>
                     <include>**/*.properties</include>
+                    <include>**/*.factories</include>
+                    <include>**/*.provides</include>
                 </includes>
                 <excludes>
                     <exclude>logback-test.xml</exclude>
