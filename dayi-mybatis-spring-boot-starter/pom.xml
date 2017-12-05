@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.dayi.mybatis</groupId>
-            <artifactId>mybatis-spring-boot-autoconfigure</artifactId>
+            <artifactId>dayi-mybatis-spring-boot-autoconfigure</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>

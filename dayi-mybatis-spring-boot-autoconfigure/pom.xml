@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.dayi.mybatis</groupId>
-            <artifactId>mybatis-spring-plus</artifactId>
+            <artifactId>dayi-mybatis-spring-plus</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
