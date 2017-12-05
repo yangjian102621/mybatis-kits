@@ -5,27 +5,35 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.dayi.mybatis</groupId>
-        <artifactId>mybatis-spring-boot-all</artifactId>
+        <artifactId>dayi-mybatis-all</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>mybatis-spring-boot-autoconfigure</artifactId>
+    <artifactId>dayi-mybatis-spring-boot-starter</artifactId>
     <name>${project.artifactId}</name>
 
     <dependencies>
         <dependency>
             <groupId>com.dayi.mybatis</groupId>
-            <artifactId>mybatis-spring-plus</artifactId>
+            <artifactId>mybatis-spring-boot-autoconfigure</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+        </dependency>
     </dependencies>
+
 
 </project>
