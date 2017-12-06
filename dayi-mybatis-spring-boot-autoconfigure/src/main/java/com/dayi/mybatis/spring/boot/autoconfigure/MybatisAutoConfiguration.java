@@ -44,6 +44,7 @@ public class MybatisAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+        logger.info("create sqlSessionFactory, dataSource :{}",dataSource);
         MybatisSqlSessionFactoryBean factory = new MybatisSqlSessionFactoryBean();
         factory.setDataSource(dataSource);
         Configuration configuration = this.properties.getConfiguration();
