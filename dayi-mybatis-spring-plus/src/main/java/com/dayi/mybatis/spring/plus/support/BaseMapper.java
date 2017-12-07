@@ -19,6 +19,13 @@ import java.util.Map;
 public interface BaseMapper<M> {
 
     /**
+     * 生成一个新的字符串id
+     *
+     * @return
+     */
+    public String getNewId() ;
+
+    /**
      *
      * 添加一条记录
      *

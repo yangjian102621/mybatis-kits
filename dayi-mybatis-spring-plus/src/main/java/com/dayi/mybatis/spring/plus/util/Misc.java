@@ -9,21 +9,14 @@ import java.util.regex.Pattern;
  * @author chenzhaoju
  */
 public class Misc {
-
-	/**
-	 * 空字符
-	 */
+	/**空字符*/
 	public static final String EMPTY = "";
-
-	/**
-	 * 下划线字符
-	 */
+	/**下划线字符*/
 	public static final char UNDERLINE = '_';
-
-	/**
-	 * 占位符
-	 */
+	/**占位符*/
 	public static final String PLACE_HOLDER = "{%s}";
+    /** 用来将字节转换成 16 进制表示的字符表 */
+    public static final char _hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
 	/**
 	 * <p>
@@ -193,5 +186,267 @@ public class Misc {
 		return concatCapitalize(null, str);
 	}
 
+
+	/**
+	 * 转换为16进制格式的字串
+	 *
+	 * @param val 32位数值
+	 * @return 16进制格式串（如：a1f）
+	 */
+	public static String toHex(int val) {
+		return toHex(val, new StringBuilder(8)).toString();
+	}
+
+	/**
+	 * 转为 HEX字串
+	 *
+	 * @param val 32位数值
+	 * @param sb 转换HEX后的追加字串缓冲区
+	 * @return 追加后的字串缓冲区
+	 */
+	public static StringBuilder toHex(int val, StringBuilder sb) {
+		if (val < 0 || val >= 0x10000000) {
+			sb.append(_hexDigits[(val >> 28) & 0xF]);
+			sb.append(_hexDigits[(val >> 24) & 0xF]);
+			sb.append(_hexDigits[(val >> 20) & 0xF]);
+			sb.append(_hexDigits[(val >> 16) & 0xF]);
+			sb.append(_hexDigits[(val >> 12) & 0xF]);
+			sb.append(_hexDigits[(val >> 8) & 0xF]);
+			sb.append(_hexDigits[(val >> 4) & 0xF]);
+			sb.append(_hexDigits[(val) & 0xF]);
+		} else if (val >= 0x01000000) {
+			sb.append(_hexDigits[(val >> 24) & 0xF]);
+			sb.append(_hexDigits[(val >> 20) & 0xF]);
+			sb.append(_hexDigits[(val >> 16) & 0xF]);
+			sb.append(_hexDigits[(val >> 12) & 0xF]);
+			sb.append(_hexDigits[(val >> 8) & 0xF]);
+			sb.append(_hexDigits[(val >> 4) & 0xF]);
+			sb.append(_hexDigits[(val) & 0xF]);
+		} else if (val >= 0x00100000) {
+			sb.append(_hexDigits[(val >> 20) & 0xF]);
+			sb.append(_hexDigits[(val >> 16) & 0xF]);
+			sb.append(_hexDigits[(val >> 12) & 0xF]);
+			sb.append(_hexDigits[(val >> 8) & 0xF]);
+			sb.append(_hexDigits[(val >> 4) & 0xF]);
+			sb.append(_hexDigits[(val) & 0xF]);
+		} else if (val >= 0x00010000) {
+			sb.append(_hexDigits[(val >> 16) & 0xF]);
+			sb.append(_hexDigits[(val >> 12) & 0xF]);
+			sb.append(_hexDigits[(val >> 8) & 0xF]);
+			sb.append(_hexDigits[(val >> 4) & 0xF]);
+			sb.append(_hexDigits[(val) & 0xF]);
+		} else if (val >= 0x00001000) {
+			sb.append(_hexDigits[(val >> 12) & 0xF]);
+			sb.append(_hexDigits[(val >> 8) & 0xF]);
+			sb.append(_hexDigits[(val >> 4) & 0xF]);
+			sb.append(_hexDigits[(val) & 0xF]);
+		} else if (val >= 0x00000100) {
+			sb.append(_hexDigits[(val >> 8) & 0xF]);
+			sb.append(_hexDigits[(val >> 4) & 0xF]);
+			sb.append(_hexDigits[(val) & 0xF]);
+		} else if (val >= 0x00000010) {
+			sb.append(_hexDigits[(val >> 4) & 0xF]);
+			sb.append(_hexDigits[(val) & 0xF]);
+		} else if (val >= 0x00000001) {
+			sb.append(_hexDigits[(val) & 0xF]);
+		} else {
+			sb.append("0");
+			return sb;
+		}
+		return sb;
+	}
+
+	/**
+	 * 64位整数HEX字串，不足16个字符前端补0
+	 *
+	 * @param val 整数
+	 * @return hex格式串
+	 */
+	public static String toHex64(long val) {
+		if (0 == val) {
+			return "0000000000000000";
+		}
+		return toHexFixed(val, new StringBuilder(16)).toString();
+	}
+
+	/**
+	 * 32位整数HEX字串，不足8个字符前端补0
+	 *
+	 * @param val 32位数字
+	 * @param sb 字串缓冲区，若为null自动创建新的
+	 * @return 8字符的HEX编码串
+	 */
+	public static StringBuilder toHexFixed(int val, StringBuilder sb) {
+		if (null == sb) {
+			sb = new StringBuilder(8);
+		}
+		if (val < 0 || val >= 0x10000000) {
+			sb.append(_hexDigits[(val >> 28) & 0xF]);
+			sb.append(_hexDigits[(val >> 24) & 0xF]);
+			sb.append(_hexDigits[(val >> 20) & 0xF]);
+			sb.append(_hexDigits[(val >> 16) & 0xF]);
+			sb.append(_hexDigits[(val >> 12) & 0xF]);
+			sb.append(_hexDigits[(val >> 8) & 0xF]);
+			sb.append(_hexDigits[(val >> 4) & 0xF]);
+			sb.append(_hexDigits[(val) & 0xF]);
+		} else if (val >= 0x01000000) {
+			sb.append('0');
+			sb.append(_hexDigits[(val >> 24) & 0xF]);
+			sb.append(_hexDigits[(val >> 20) & 0xF]);
+			sb.append(_hexDigits[(val >> 16) & 0xF]);
+			sb.append(_hexDigits[(val >> 12) & 0xF]);
+			sb.append(_hexDigits[(val >> 8) & 0xF]);
+			sb.append(_hexDigits[(val >> 4) & 0xF]);
+			sb.append(_hexDigits[(val) & 0xF]);
+		} else if (val >= 0x00100000) {
+			sb.append("00");
+			sb.append(_hexDigits[(val >> 20) & 0xF]);
+			sb.append(_hexDigits[(val >> 16) & 0xF]);
+			sb.append(_hexDigits[(val >> 12) & 0xF]);
+			sb.append(_hexDigits[(val >> 8) & 0xF]);
+			sb.append(_hexDigits[(val >> 4) & 0xF]);
+			sb.append(_hexDigits[(val) & 0xF]);
+		} else if (val >= 0x00010000) {
+			sb.append("000");
+			sb.append(_hexDigits[(val >> 16) & 0xF]);
+			sb.append(_hexDigits[(val >> 12) & 0xF]);
+			sb.append(_hexDigits[(val >> 8) & 0xF]);
+			sb.append(_hexDigits[(val >> 4) & 0xF]);
+			sb.append(_hexDigits[(val) & 0xF]);
+		} else if (val >= 0x00001000) {
+			sb.append("0000");
+			sb.append(_hexDigits[(val >> 12) & 0xF]);
+			sb.append(_hexDigits[(val >> 8) & 0xF]);
+			sb.append(_hexDigits[(val >> 4) & 0xF]);
+			sb.append(_hexDigits[(val) & 0xF]);
+		} else if (val >= 0x00000100) {
+			sb.append("00000");
+			sb.append(_hexDigits[(val >> 8) & 0xF]);
+			sb.append(_hexDigits[(val >> 4) & 0xF]);
+			sb.append(_hexDigits[(val) & 0xF]);
+		} else if (val >= 0x00000010) {
+			sb.append("000000");
+			sb.append(_hexDigits[(val >> 4) & 0xF]);
+			sb.append(_hexDigits[(val) & 0xF]);
+		} else if (val >= 0x00000001) {
+			sb.append("0000000");
+			sb.append(_hexDigits[(val) & 0xF]);
+		} else {
+			sb.append("00000000");
+			return sb;
+		}
+		return sb;
+	}
+
+	/**
+	 * 64位整数HEX字串，不足16个字符前端补0
+	 *
+	 * @param val 64位数值
+	 * @param sb 字串缓冲区，若为null自动创建新的
+	 * @return 16个字符的HEX编码串
+	 */
+	public static StringBuilder toHexFixed(long val, StringBuilder sb) {
+		if (null == sb) {
+			sb = new StringBuilder(16);
+		}
+		// 高32位
+		int i32 = (int) ((val >> 32) & 0xFFFFFFFF);
+		toHexFixed(i32, sb);
+		// 低32位
+		i32 = (int) (val & 0xFFFFFFFF);
+		toHexFixed(i32, sb);
+		return sb;
+	}
+
+	/**
+	 * 64位整数HEX字串，不足12个字符前端补0
+	 * @param val 64位数值
+	 * @param sb
+	 * @return 12个字符的HEX编码串
+	 */
+	public static StringBuilder toHexFixed12(long val,StringBuilder sb){
+		if (null == sb) {
+			sb = new StringBuilder(16);
+		}
+		// 高32位 只保留4位
+		short short4 = (short) ((val >> 32) & 0xFFFF);
+		toHexFixed(short4, sb);
+		// 低32位
+		int i32 = (int) (val & 0xFFFFFFFF);
+		toHexFixed(i32, sb);
+		return sb;
+	}
+
+	/**
+	 * 16位整数HEX字串，不足4个字符前端补0
+	 *
+	 * @param val
+	 * @param sb
+	 * @return
+	 */
+	public static StringBuilder toHexFixed(short val, StringBuilder sb) {
+		if (null == sb) sb = new StringBuilder(4);
+
+		if (val < 0 || val >= 0x1000) {
+			sb.append(_hexDigits[(val >> 12) & 0xF]);
+			sb.append(_hexDigits[(val >> 8) & 0xF]);
+			sb.append(_hexDigits[(val >> 4) & 0xF]);
+			sb.append(_hexDigits[val & 0x0F]);
+		} else if (val >= 0x0100) {
+			sb.append('0');
+			sb.append(_hexDigits[(val >> 8) & 0xF]);
+			sb.append(_hexDigits[(val >> 4) & 0xF]);
+			sb.append(_hexDigits[val & 0x0F]);
+		} else if (val >= 0x0010) {
+			sb.append("00");
+			sb.append(_hexDigits[(val >> 4) & 0xF]);
+			sb.append(_hexDigits[val & 0x0F]);
+		} else if (val >= 0x0001) {
+			sb.append("000");
+			sb.append(_hexDigits[val & 0x0F]);
+		} else {
+			sb.append("0000");
+			return sb;
+		}
+		return sb;
+	}
+
+	public static int toInt(String str) {
+		if (isEmpty(str)) {
+			return 0;
+		}
+		return Integer.parseInt(str);
+	}
+
+    /**
+     * 字符串转成数字
+     *
+     * @param str
+     * @param defaultInt 默认值
+     * @return
+     */
+    public static int toInt(String str, int defaultInt) {
+        // 如果字串为空时，返回defaultValue
+        if (null == str || 0 == str.length()) {
+            return defaultInt;
+        }
+
+        try {
+            char first = str.charAt(0);
+            if ('0' == first && str.length() > 2) {
+                // 如果是以0x开首表示是十六进制
+                first = str.charAt(1);
+                if ('x' == first || 'X' == first) {
+                    return Integer.parseInt(str.substring(2), 16);
+                }
+            } else if (str.length() > 1 && ('x' == first || 'X' == first)) {
+                // x开首以十六进制
+                return Integer.parseInt(str.substring(1), 16);
+            }
+            return Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+        }
+        return defaultInt;
+    }
 
 }

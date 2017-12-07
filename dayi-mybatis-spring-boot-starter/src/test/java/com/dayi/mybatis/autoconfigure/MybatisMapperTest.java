@@ -246,4 +246,13 @@ public class MybatisMapperTest {
 		user = userMapper.get("0123456-12");
 		_Logger.info("结果：{}",user);
 	}
+
+	@Test
+	public void testGetNewId() throws Exception {
+		for (int i = 0; i < 1000; i++) {
+			UserMapper userMapper = getUserMapper();
+			String id = userMapper.getNewId();
+			_Logger.info("结果：{},{}",userMapper,id);
+		}
+	}
 }

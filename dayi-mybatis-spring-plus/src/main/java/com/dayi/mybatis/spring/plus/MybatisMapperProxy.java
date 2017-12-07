@@ -1,5 +1,7 @@
 package com.dayi.mybatis.spring.plus;
 
+import com.dayi.mybatis.spring.plus.util.IdUtil;
+import com.dayi.mybatis.spring.plus.util.IdUtils;
 import org.apache.ibatis.binding.MapperMethod;
 import org.apache.ibatis.binding.MapperProxy;
 import org.apache.ibatis.reflection.ExceptionUtil;
@@ -32,6 +34,9 @@ public class MybatisMapperProxy<T> extends MapperProxy<T> {
             } catch (Throwable t) {
                 throw ExceptionUtil.unwrapThrowable(t);
             }
+        }
+        if("getNewId".equals(method.getName())){
+            return IdUtils.getNewId(mapperInterface);
         }
         final MapperMethod mapperMethod = cachedMapperMethod(method);
         return mapperMethod.execute(sqlSession, args);
