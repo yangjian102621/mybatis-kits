@@ -1,12 +1,14 @@
 package com.dayi.mybatis.plus.test.plus;
 
 import com.dayi.mybatis.plus.test.AbstractMybatisTest;
+import com.dayi.mybatis.plus.test.support.mapper.OrderMapper;
 import com.dayi.mybatis.plus.test.support.mapper.UserMapper;
 import com.dayi.mybatis.plus.test.support.model.User;
 import com.dayi.mybatis.spring.plus.plugins.page.Page;
 import com.dayi.mybatis.spring.plus.support.Conditions;
 import com.dayi.mybatis.spring.plus.support.ext.MatchMode;
 import com.dayi.mybatis.spring.plus.support.ext.Restrictions;
+import com.dayi.mybatis.spring.plus.util.IdUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
@@ -49,6 +51,12 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 		assertNotNull("sqlSession 不能为空",sqlSession);
 		return sqlSession.getMapper(UserMapper.class);
 	}
+
+    private OrderMapper getOrderMapper() {
+        SqlSession sqlSession = getSqlSession();
+        assertNotNull("sqlSession 不能为空",sqlSession);
+        return sqlSession.getMapper(OrderMapper.class);
+    }
 
 	@Test
 	public void testSessionFactory() throws Exception {
@@ -268,4 +276,17 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
             _Logger.info("结果：{},{}",userMapper,id);
         }
 	}
+
+    @Test
+    public void testGetNewIds() throws Exception {
+        for (int i = 0; i < 1000; i++) {
+            UserMapper userMapper = getUserMapper();
+            String id = userMapper.getNewId();
+            OrderMapper orderMapper = getOrderMapper();
+            String ido = orderMapper.getNewId();
+            _Logger.info("结果：{},{}",userMapper.hashCode(),id);
+            _Logger.info("结果：{},{}",orderMapper.hashCode(),ido);
+        }
+        IdUtils.printIdUtil();
+    }
 }

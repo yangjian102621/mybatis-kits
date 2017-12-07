@@ -2,6 +2,7 @@ package com.dayi.mybatis.spring.plus.util;
 
 
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -28,6 +29,16 @@ public final class IdUtils {
             }
         }
         return idUtil.getNewId();
+    }
+
+    /**
+     * 打印idutil
+     */
+    public static void printIdUtil(){
+        Set<Map.Entry<Class, IdUtil>> entries = ids.entrySet();
+        for (Map.Entry<Class, IdUtil> entry : entries) {
+            Misc.Logger.info("{} <--> {}",entry.getKey(),entry.getValue());
+        }
     }
 
 }

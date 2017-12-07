@@ -1,6 +1,9 @@
 package com.dayi.mybatis.spring.plus.util;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -9,6 +12,8 @@ import java.util.regex.Pattern;
  * @author chenzhaoju
  */
 public class Misc {
+    /** 日志记录器 */
+    public static final Logger Logger = LoggerFactory.getLogger(Misc.class);
 	/**空字符*/
 	public static final String EMPTY = "";
 	/**下划线字符*/
