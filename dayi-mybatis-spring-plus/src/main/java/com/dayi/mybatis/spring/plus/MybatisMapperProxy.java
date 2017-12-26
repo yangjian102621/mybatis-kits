@@ -1,6 +1,5 @@
 package com.dayi.mybatis.spring.plus;
 
-import com.dayi.mybatis.spring.plus.util.IdUtil;
 import com.dayi.mybatis.spring.plus.util.IdUtils;
 import org.apache.ibatis.binding.MapperMethod;
 import org.apache.ibatis.binding.MapperProxy;

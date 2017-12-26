@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
+ * 基础model
  *
  * @author chenzhaoju
  */

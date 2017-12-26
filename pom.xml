@@ -74,6 +74,12 @@
                     <exclude>logback-test.xml</exclude>
                 </excludes>
             </resource>
+            <resource>
+                <directory>src/test/java</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
         </resources>
 
         <plugins>

@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  */
 public final class IdUtils {
-    public final static Map<Class,IdUtil> ids = new ConcurrentHashMap<>();
+    private static Map<Class,IdUtil> IDS = new ConcurrentHashMap<>();
 
     /**
      * 获取一个id
@@ -20,10 +20,10 @@ public final class IdUtils {
      * @return
      */
     public static String getNewId(Class clazz){
-        IdUtil idUtil = ids.get(clazz);
+        IdUtil idUtil = IDS.get(clazz);
         if(null == idUtil){
             idUtil = IdUtil.getInstance();
-            IdUtil tempIdUtil = ids.putIfAbsent(clazz, idUtil);
+            IdUtil tempIdUtil = IDS.putIfAbsent(clazz, idUtil);
             if(null != tempIdUtil){
                 idUtil = tempIdUtil;
             }
@@ -35,7 +35,7 @@ public final class IdUtils {
      * 打印idutil
      */
     public static void printIdUtil(){
-        Set<Map.Entry<Class, IdUtil>> entries = ids.entrySet();
+        Set<Map.Entry<Class, IdUtil>> entries = IDS.entrySet();
         for (Map.Entry<Class, IdUtil> entry : entries) {
             Misc.Logger.info("{} <--> {}",entry.getKey(),entry.getValue());
         }

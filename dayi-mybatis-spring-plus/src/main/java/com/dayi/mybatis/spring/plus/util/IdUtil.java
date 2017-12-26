@@ -7,8 +7,8 @@ import java.util.Properties;
 /**
  * 全局唯一 id 工具(时间递增)  <br/>
  * <p>
- * 支持服务器id配置（0 ~ 0xFF） ： 参数名称 : serverid <br/>
- * 可以使用 -Dserverid=7 配置
+ * 支持服务器id配置（0 ~ 0xFF） ： 参数名称 : dayi.serverid <br/>
+ * 可以使用 -Ddayi.serverid=7 配置
  * </p>
  * @author chenzhaoju
  *
