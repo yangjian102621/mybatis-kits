@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<bean id="dataSource"
+		  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8" />
+		<property name="username" value="root" />
+		<property name="password" value="123456" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="com.aizone.mybatis.spring.plus.MybatisSqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<!-- 自动扫描Mapping.xml文件 -->
+		<property name="mapperLocations" value="classpath:com/aizone/mybatis/plus/test/support/mapper/*.xml"/>
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<property name="typeAliasesPackage" value="com.fiidee.mybatis.support.model"/>
+		<property name="plugins">
+			<array>
+				<!-- 分页插件配置 -->
+				<!--<bean id="conditionsInterceptor" class="com.aizone.mybatis.spring.plus.plugins.conditions.ConditionsInterceptor"/>-->
+				<bean id="paginationInterceptor" class="com.aizone.mybatis.spring.plus.plugins.page.PaginationInterceptor"/>
+			</array>
+		</property>
+	</bean>
+
+	<!-- MyBatis 动态扫描  -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.aizone.mybatis.plus.test.support.mapper"/>
+	</bean>
+
+</beans>
