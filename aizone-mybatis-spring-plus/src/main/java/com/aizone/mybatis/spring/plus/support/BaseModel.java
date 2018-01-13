@@ -8,9 +8,9 @@ import java.util.Date;
  *
  * @author yangjian
  */
-public abstract class BaseModel implements Serializable {
+public abstract class BaseModel<T> implements Serializable {
     /** id */
-    private String id ;
+    private T id ;
     /** 创建时间 */
     private Date createTime;
     /** 更新时间 */
@@ -18,13 +18,13 @@ public abstract class BaseModel implements Serializable {
 
     protected BaseModel() {}
 
-    protected BaseModel(String id) {
+    protected BaseModel(T id) {
         this.id = id;
         this.createTime = new Date();
         this.updateTime = createTime;
     }
 
-    public String getId() {
+    public T getId() {
         return id;
     }
 
@@ -46,7 +46,7 @@ public abstract class BaseModel implements Serializable {
         return this;
     }
 
-    public BaseModel setId(String id) {
+    public BaseModel setId(T id) {
         this.id = id;
         return this;
     }
