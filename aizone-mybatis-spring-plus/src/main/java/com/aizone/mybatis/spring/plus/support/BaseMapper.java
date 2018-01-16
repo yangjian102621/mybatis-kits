@@ -62,6 +62,15 @@ public interface BaseMapper<M> {
 
     /**
      *
+     * 根据 id 删除一条数据
+     *
+     * @param id
+     * @return
+     */
+    public int delete(Serializable id);
+
+    /**
+     *
      * 根据 id 查询
      *
      * @param id 主键
@@ -139,7 +148,7 @@ public interface BaseMapper<M> {
     /**
      *
      * 根据指定条件 分页查询对应的列表数据
-     *
+     * @param page
      * @param conditions
      * @return
      */

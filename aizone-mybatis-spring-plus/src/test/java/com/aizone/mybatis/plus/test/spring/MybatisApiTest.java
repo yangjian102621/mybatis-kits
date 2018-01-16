@@ -1,7 +1,7 @@
 package com.aizone.mybatis.plus.test.spring;
 
 import com.aizone.mybatis.plus.test.AbstractMybatisTest;
-import com.aizone.mybatis.plus.test.support.mapper.UserMapper;
+import com.aizone.mybatis.plus.test.support.dao.UserMapper;
 import com.aizone.mybatis.plus.test.support.model.User;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.*;

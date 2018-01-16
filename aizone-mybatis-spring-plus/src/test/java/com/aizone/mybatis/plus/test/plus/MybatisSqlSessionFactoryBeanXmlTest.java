@@ -1,8 +1,8 @@
 package com.aizone.mybatis.plus.test.plus;
 
 import com.aizone.mybatis.plus.test.AbstractMybatisTest;
-import com.aizone.mybatis.plus.test.support.mapper.OrderMapper;
-import com.aizone.mybatis.plus.test.support.mapper.UserMapper;
+import com.aizone.mybatis.plus.test.support.dao.OrderMapper;
+import com.aizone.mybatis.plus.test.support.dao.UserMapper;
 import com.aizone.mybatis.plus.test.support.model.User;
 import com.aizone.mybatis.spring.plus.plugins.page.Page;
 import com.aizone.mybatis.spring.plus.support.Conditions;

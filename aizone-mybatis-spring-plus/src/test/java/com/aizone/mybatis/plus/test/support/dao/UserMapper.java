@@ -1,4 +1,4 @@
-package com.aizone.mybatis.plus.test.support.mapper;
+package com.aizone.mybatis.plus.test.support.dao;
 
 
 import com.aizone.mybatis.plus.test.support.model.User;
