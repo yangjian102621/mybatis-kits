@@ -37,23 +37,24 @@
         <file_encoding>UTF-8</file_encoding>
         <maven_compiler_plugin_version>2.3.2</maven_compiler_plugin_version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <repo.host>192.168.1.138</repo.host>
     </properties>
-
-	<distributionManagement>
-		<!--
+    
+    <!-- configures for artifact deployment -->
+    <distributionManagement>
         <repository>
             <id>releases</id>
-            <name>Nexus Release Repository</name>
-            <url>http://172.28.1.4:8081/nexus/content/repositories/releases/</url>
+            <name>Release Repository</name>
+            <url>http://${repo.host}:8081/nexus/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
             <id>snapshots</id>
-            <name>Nexus Snapshot Repository</name>
-            <url>http://172.28.1.4:8081/nexus/content/repositories/snapshots/</url>
-		</snapshotRepository>
-		-->
+            <name>Snapshot Repository</name>
+            <url>http://${repo.host}:8081/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
     </distributionManagement>
-
+    
+    
     <build>
         <resources>
             <resource>
