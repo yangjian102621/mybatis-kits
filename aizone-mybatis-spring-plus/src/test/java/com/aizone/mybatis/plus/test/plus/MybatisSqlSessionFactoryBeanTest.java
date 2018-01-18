@@ -7,6 +7,9 @@ import com.aizone.mybatis.spring.plus.MybatisConfiguration;
 import com.aizone.mybatis.spring.plus.MybatisSqlSessionFactoryBean;
 import com.aizone.mybatis.spring.plus.plugins.page.Page;
 import com.aizone.mybatis.spring.plus.plugins.page.PaginationInterceptor;
+import com.aizone.mybatis.spring.plus.support.Conditions;
+import com.aizone.mybatis.spring.plus.support.Order;
+import com.aizone.mybatis.spring.plus.support.ext.Restrictions;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.Configuration;
@@ -136,8 +139,9 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 		UserMapper userMapper = getUserMapper();
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("name","two name");
+		//map.put("name","two name");
 		map.put("sex",2);
+		map.put("__order", "id desc");
 
 		List<User> users = userMapper.searchByMap(map);
 		for (User u : users) {
@@ -170,6 +174,46 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 
 		for (User user : list) {
 			_Logger.info("结果：{}",user);
+		}
+	}
+
+	@Test
+	public void testSearchOrderBy() throws Exception {
+		UserMapper userMapper = getUserMapper();
+		List<User> userList = userMapper.searchOrderBy("id DESC");
+		for (User user : userList) {
+			_Logger.info("结果：{}",user);
+		}
+	}
+
+	@Test
+	public void testUserOrderBy() throws Exception {
+		UserMapper userMapper = getUserMapper();
+
+		Conditions conditions = new Conditions();
+		conditions.add(Restrictions.gt("age", 15));
+		conditions.addOrder(Order.desc("age"));
+		conditions.addOrder(Order.asc("id"));
+		conditions.addOrder(Order.asc("name"));
+		List<User> users = userMapper.searchByConditions(conditions);
+		for (User u : users) {
+			_Logger.info("结果：{}",u);
+		}
+	}
+
+	@Test
+	public void testUserPageOrderBy() throws Exception {
+		Page<User> page = new Page<User>();
+		UserMapper userMapper = getUserMapper();
+
+		Conditions conditions = new Conditions();
+		conditions.add(Restrictions.gt("age", 15));
+		conditions.addOrder(Order.desc("age"));
+		conditions.addOrder(Order.asc("id"));
+		conditions.addOrder(Order.asc("name"));
+		page = userMapper.searchByConditions(page,conditions);
+		for (User u : page.getResults()) {
+			_Logger.info("结果：{}",u);
 		}
 	}
 

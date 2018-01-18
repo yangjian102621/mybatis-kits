@@ -63,6 +63,7 @@ public class MybatisAutoMapperBuilder   {
             getByMap(builderAssistant, boundType, actualModelClass, table);
             getByConditions(builderAssistant, boundType, actualModelClass, table);
             searchAll(builderAssistant, boundType, actualModelClass, table);
+            searchOrderBy(builderAssistant, boundType, actualModelClass, table);
             searchByMap(builderAssistant, boundType, actualModelClass, table);
             searchByConditions(builderAssistant, boundType, actualModelClass, table);
 
@@ -165,7 +166,21 @@ public class MybatisAutoMapperBuilder   {
     /** 查询所有数据 */
     private void searchAll(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, Class<?> modelClass, Table table) {
         Template sqlMethod = Template.SEARCH;
-        String sql = String.format(sqlMethod.getSql(), table.getColumnsSqlAs(), table.getWrapName(),"");
+        String sql = String.format(sqlMethod.getSql(), table.getColumnsSqlAs(), table.getWrapName());
+
+        addSelectMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, modelClass);
+    }
+
+    /**
+     * 查询所有数据,并排序
+     * @param builderAssistant
+     * @param mapperClass
+     * @param modelClass
+     * @param table
+     */
+    private void searchOrderBy(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, Class<?> modelClass, Table table) {
+        Template sqlMethod = Template.SEARCH_ORDER_BY;
+        String sql = String.format(sqlMethod.getSql(), table.getColumnsSqlAs(), table.getWrapName(),genOrderSql());
 
         addSelectMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, modelClass);
     }
@@ -205,23 +220,12 @@ public class MybatisAutoMapperBuilder   {
     /** 根据map 查询所有记录 */
     private void searchByMap(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, Class<?> modelClass, Table table) {
         Template sqlMethod = Template.SEARCH_BY_MAP;
-        String sql = String.format(sqlMethod.getSql(), table.getColumnsSqlAs(), table.getWrapName(),genWhereSqlByMap());
+        String sql = String.format(sqlMethod.getSql(), table.getColumnsSqlAs(), table.getWrapName(),genWhereSqlByMap(), genOrderSqlByMap());
 
         addSelectMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, modelClass);
     }
 
-    private String genWhereSqlByMap(){
-        StringBuilder sb = new StringBuilder();
 
-        sb.append("\n<if test=\"null != _parameter\">");
-        sb.append("\n<where>");
-        sb.append("\n<foreach collection=\"_parameter\" index=\"key\" item=\"value\" separator=\"AND\">");
-        sb.append("\n ${key} = #{value} ");
-        sb.append("</foreach>");
-        sb.append("</where>");
-        sb.append("</if>");
-        return sb.toString();
-    }
 
     /** 根据map 查询所有记录 */
     private void searchByConditions(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, Class<?> modelClass, Table table) {
@@ -229,17 +233,6 @@ public class MybatisAutoMapperBuilder   {
         String sql = String.format(sqlMethod.getSql(), table.getColumnsSqlAs(), table.getWrapName(),genWhereSqlByCondition());
 
         addSelectConditionsMappedStatement(builderAssistant, mapperClass, sqlMethod.getMethod(), sql, modelClass);
-    }
-
-    private String genWhereSqlByCondition(){
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("\n<if test=\"null != _parameter\">");
-        sb.append("\n<where>");
-        sb.append("${_parameter.sql}");
-        sb.append("</where>");
-        sb.append("</if>");
-        return sb.toString();
     }
 
     /** 添加数据 */
@@ -273,5 +266,63 @@ public class MybatisAutoMapperBuilder   {
         addDeleteMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, modelClass);
     }
 
+    /**
+     * 生成排序字段
+     * @return
+     */
+    private String genOrderSql(){
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("\n<if test=\"null != _parameter\">");
+        sb.append("ORDER BY ${_parameter}");
+        sb.append("</if>");
+        return sb.toString();
+    }
+
+    /**
+     * 根据 map 生成查询条件
+     * @return
+     */
+    private String genWhereSqlByMap(){
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("\n<if test=\"null != _parameter\">");
+        sb.append("\n<where>");
+        sb.append("\n<foreach collection=\"_parameter\" index=\"key\" item=\"value\" separator=\"AND\">");
+        sb.append("\n<if test=\"'__order' != key\">");
+        sb.append("\n ${key} = #{value} ");
+        sb.append("</if>");
+        sb.append("</foreach>");
+        sb.append("</where>");
+        sb.append("</if>");
+        return sb.toString();
+    }
+
+    /**
+     * 根据 map 生成 order 排序方式
+     * @return
+     */
+    private String genOrderSqlByMap(){
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("\n<if test=\"null != _parameter\">");
+        sb.append("\n<if test=\"null != _parameter.__order\">");
+        sb.append("ORDER BY ${_parameter.__order}");
+        sb.append("</if>");
+        sb.append("</if>");
+        return sb.toString();
+    }
+
+    private String genWhereSqlByCondition(){
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("\n<if test=\"null != _parameter\">");
+        sb.append("\n<where>");
+        sb.append("${_parameter.sql}");
+        sb.append("</where>");
+        sb.append(" ${_parameter.orderBySql} ");
+        sb.append("</if>");
+        return sb.toString();
+    }
 
 }

@@ -17,10 +17,12 @@ import java.util.Map;
 public class Conditions implements Criterion,Serializable {
 
     private List<Criterion> criterions;
+    private List<Order> orders;
     private Map<String,Object> parameterValues;
 
     public Conditions() {
         this.criterions = new ArrayList<>();
+        this.orders = new ArrayList<>(2);
         this.parameterValues = new HashMap<>();
     }
 
@@ -29,8 +31,17 @@ public class Conditions implements Criterion,Serializable {
     }
 
     public Conditions add(Criterion criterion) {
-        this.criterions.add(criterion);
-        this.parameterValues.putAll(criterion.getParameterValues());
+        if(null != criterion){
+            this.criterions.add(criterion);
+            this.parameterValues.putAll(criterion.getParameterValues());
+        }
+        return this;
+    }
+
+    public Conditions addOrder(Order order){
+        if(null != order){
+            this.orders.add(order);
+        }
         return this;
     }
 
@@ -52,5 +63,21 @@ public class Conditions implements Criterion,Serializable {
 
     public String getSql(){
         return toSqlString();
+    }
+
+    public String getOrderBySql(){
+        if(0 == this.orders.size()){
+            return "";
+        }
+        StringBuilder sql = new StringBuilder();
+        sql.append(" ORDER BY ");
+        int length = sql.length();
+        for (Order order : this.orders) {
+            if(length < sql.length()){
+                sql.append(" , ");
+            }
+            sql.append(order.toSqlString());
+        }
+        return sql.toString();
     }
 }
