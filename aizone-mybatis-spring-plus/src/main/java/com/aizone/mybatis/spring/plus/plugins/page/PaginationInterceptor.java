@@ -101,7 +101,7 @@ public class PaginationInterceptor implements Interceptor {
     private StringBuilder buildLimitSql(Page page, String sql) {
         StringBuilder limit = new StringBuilder();
         limit.append(sql);
-        limit.append(" LIMIT ").append(page.getStartRow()).append(" , ").append(page.getEndRow());
+        limit.append(" LIMIT ").append(page.getStartRow()).append(" , ").append(page.getPageSize());
         return limit;
     }
 

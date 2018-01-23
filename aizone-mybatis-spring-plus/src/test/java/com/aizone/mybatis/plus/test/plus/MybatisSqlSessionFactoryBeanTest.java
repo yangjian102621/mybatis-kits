@@ -114,6 +114,7 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 		UserMapper userMapper = getUserMapper();
 
 		User user = new User("0123456-11", "测试添加", 12, 1);
+
 		userMapper.add(user);
 
 		List<User> userList = userMapper.search();
@@ -125,12 +126,12 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 	@Test
 	public void testUpdate() throws Exception {
 		UserMapper userMapper = getUserMapper();
-		User user = userMapper.get("0123456-10");
+		User user = userMapper.get("0123456-01");
 		_Logger.info("结果：{}", user);
 		user.setName("更新名称");
 		userMapper.update(user);
 
-		user = userMapper.get("0123456-10");
+		user = userMapper.get("0123456-01");
 		_Logger.info("结果：{}", user);
 	}
 
@@ -215,6 +216,24 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 		for (User u : page.getResults()) {
 			_Logger.info("结果：{}",u);
 		}
+	}
+
+	/**
+	 *
+	 */
+	@Test
+	public void testDeleteByConditions() {
+		UserMapper userMapper = getUserMapper();
+		Conditions conditions = new Conditions();
+		conditions.add(Restrictions.eq("age", 21));
+		conditions.add(Restrictions.eq("name", "xxxx"));
+		userMapper.deleteByConditions(conditions);
+
+		List<User> list = userMapper.searchByConditions(conditions);
+		for (User u : list) {
+			_Logger.info("结果：{}",u);
+		}
+
 	}
 
 }

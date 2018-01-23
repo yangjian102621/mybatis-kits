@@ -1,14 +1,17 @@
 package com.aizone.mybatis.plus.test.support.model;
 
 
+import javax.persistence.Column;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 /**
  *
  * @author yangjian
  */
+@Table(name = "user")
 public class User {
-    //@Column(name = "userid")
+    @Column(name = "id")
     private String id;
     private String name;
     private int age;
@@ -16,7 +19,7 @@ public class User {
     @Transient
     private int phone;
 
-    protected User() {}
+    public User() {}
 
     public User(String id, String name, int age, int sex) {
         this.id = id;

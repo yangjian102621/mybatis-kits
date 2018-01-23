@@ -43,6 +43,7 @@ public interface BaseMapper<M> {
      */
     public int update(M model);
 
+
     /**
      *
      * 根据 id 更新对应的model（更新所有字段，包括null的）
@@ -68,6 +69,13 @@ public interface BaseMapper<M> {
      * @return
      */
     public int delete(Serializable id);
+
+    /**
+     * 根据条件批量删除
+     * @param conditions
+     * @return
+     */
+    public int deleteByConditions(Conditions conditions);
 
     /**
      *

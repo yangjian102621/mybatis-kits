@@ -57,6 +57,7 @@ public class MybatisAutoMapperBuilder   {
                 update(builderAssistant, boundType, actualModelClass, table);
                 updateAll(builderAssistant, boundType, actualModelClass, table);
                 delete(builderAssistant, boundType, actualModelClass, table);
+                deleteByConditions(builderAssistant, boundType, actualModelClass, table);
             }else {
                 _Logger.warn("{}没有定义id字段！！", actualModelClass.getSimpleName());
             }
@@ -259,6 +260,19 @@ public class MybatisAutoMapperBuilder   {
         addUpdateMappedStatement(builderAssistant, mapperClass, sqlMethod.getMethod(), sql, modelClass);
     }
 
+    /**
+     * 根据条件批量删除数据
+     * @param builderAssistant
+     * @param mapperClass
+     * @param modelClass
+     * @param table
+     */
+    private void deleteByConditions(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, Class<?> modelClass, Table table) {
+        Template sqlMethod = Template.DELETE_BY_CONDITIONS;
+        String sql = String.format(sqlMethod.getSql(), table.getWrapName(),genDeleteWhereSqlByCondition());
+        addDeleteMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, modelClass);
+    }
+
     /** 删除数据 */
     private void delete(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, Class<?> modelClass, Table table) {
         Template sqlMethod = Template.DELETE;
@@ -310,6 +324,19 @@ public class MybatisAutoMapperBuilder   {
         sb.append("ORDER BY ${_parameter.__order}");
         sb.append("</if>");
         sb.append("</if>");
+        return sb.toString();
+    }
+
+    /**
+     * 生成删除的条件语句，删除的时候必须添加条件，防止误删
+     * @return
+     */
+    private String genDeleteWhereSqlByCondition(){
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("\n<where>");
+        sb.append("${_parameter.sql}");
+        sb.append("</where>");
         return sb.toString();
     }
 

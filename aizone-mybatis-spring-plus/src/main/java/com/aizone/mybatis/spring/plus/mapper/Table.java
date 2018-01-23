@@ -35,7 +35,7 @@ public class Table {
         this.modelClass = modelClass;
         this.name = Misc.toCamelUnderline(modelClass.getSimpleName());
         this.currentNamespace = currentNamespace;
-        this.tableFields = new ArrayList<TableField>();
+        this.tableFields = new ArrayList<>();
         init();
     }
 
@@ -48,6 +48,12 @@ public class Table {
         if(Object.class != superclass){
             initTableField(superclass);
         }
+        //init Model class Annotations
+        javax.persistence.Table table = modelClazz.getAnnotation(javax.persistence.Table.class);
+        if (null != table) {
+            this.name = table.name();
+        }
+
         Field[] fields = modelClazz.getDeclaredFields();
         for (Field field : fields) {
             if(Modifier.isStatic(field.getModifiers()) || Modifier.isTransient(field.getModifiers())){

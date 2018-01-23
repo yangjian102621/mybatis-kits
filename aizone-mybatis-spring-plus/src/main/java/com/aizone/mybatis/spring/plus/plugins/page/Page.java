@@ -24,6 +24,13 @@ public class Page<T> extends AbstractList<T> implements Serializable {
     /** 对应的当前页记录 */
     private List<T> results;
 
+    public Page() {}
+
+    public Page(int pageNo, int pageSize) {
+        this.pageNo = pageNo;
+        this.pageSize = pageSize;
+    }
+
     public int getPageNo() {
         return pageNo;
     }
@@ -78,6 +85,22 @@ public class Page<T> extends AbstractList<T> implements Serializable {
     public Page setResults(List<T> results) {
         this.results = results;
         return this;
+    }
+
+    /**
+     * 获取下一页
+     * @return
+     */
+    public int getNextPage() {
+        return pageNo + 1;
+    }
+
+    /**
+     * 获取上一页
+     * @return
+     */
+    public int getPrevPage() {
+        return pageNo - 1;
     }
 
     @Override
