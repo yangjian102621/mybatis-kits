@@ -37,7 +37,7 @@
         <file_encoding>UTF-8</file_encoding>
         <maven_compiler_plugin_version>2.3.2</maven_compiler_plugin_version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <repo.host>192.168.1.138</repo.host>
+        <repo.host>192.168.0.138</repo.host>
     </properties>
     
     <!-- configures for artifact deployment -->

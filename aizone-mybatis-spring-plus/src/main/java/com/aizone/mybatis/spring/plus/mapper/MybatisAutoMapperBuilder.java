@@ -155,6 +155,13 @@ public class MybatisAutoMapperBuilder   {
                 new NoKeyGenerator(), null, null);
     }
 
+    private MappedStatement addDeleteConditionMappedStatement(MapperBuilderAssistant builderAssistant,Class<?> mapperClass, String id, String sql, Class<?> resultType) {
+        SqlSource sqlSource = this.conditionsLanguageDriver.createSqlSource(this.mybatisConfiguration, sql, resultType);
+		/* 普通查询 */
+        return this.addMappedStatement(builderAssistant,mapperClass, id, sqlSource, SqlCommandType.DELETE, null, null, resultType,
+                new NoKeyGenerator(), null, null,this.conditionsLanguageDriver);
+    }
+
     /** 根据id 查找数据 */
     private void get(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, Class<?> modelClass, Table table) {
         Template sqlMethod = Template.GET;
@@ -270,7 +277,7 @@ public class MybatisAutoMapperBuilder   {
     private void deleteByConditions(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, Class<?> modelClass, Table table) {
         Template sqlMethod = Template.DELETE_BY_CONDITIONS;
         String sql = String.format(sqlMethod.getSql(), table.getWrapName(),genDeleteWhereSqlByCondition());
-        addDeleteMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, modelClass);
+        addDeleteConditionMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, modelClass);
     }
 
     /** 删除数据 */

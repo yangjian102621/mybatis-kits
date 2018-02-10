@@ -225,8 +225,9 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 	public void testDeleteByConditions() {
 		UserMapper userMapper = getUserMapper();
 		Conditions conditions = new Conditions();
-		conditions.add(Restrictions.eq("age", 21));
-		conditions.add(Restrictions.eq("name", "xxxx"));
+		Integer[] age = {221,222};
+		conditions.add(Restrictions.in("age", age));
+		//conditions.add(Restrictions.eq("name", "xxxx"));
 		userMapper.deleteByConditions(conditions);
 
 		List<User> list = userMapper.searchByConditions(conditions);
