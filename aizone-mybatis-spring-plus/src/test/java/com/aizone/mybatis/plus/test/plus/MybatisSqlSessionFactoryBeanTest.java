@@ -219,7 +219,7 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 	}
 
 	/**
-	 *
+	 * test delete items by conditions
 	 */
 	@Test
 	public void testDeleteByConditions() {
@@ -234,6 +234,41 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 		for (User u : list) {
 			_Logger.info("结果：{}",u);
 		}
+
+	}
+
+	@Test
+	public void testGetCount() {
+		UserMapper userMapper = getUserMapper();
+		long count = userMapper.getCount();
+		System.out.println(count);
+
+	}
+
+	/**
+	 * test get count by map
+	 */
+	@Test
+	public void testGetCountByMap() {
+		UserMapper userMapper = getUserMapper();
+		HashMap<String, Object> map = new HashMap<>(16);
+		map.put("sex", 1);
+		long count = userMapper.getCountByMap(map);
+		System.out.println(count);
+
+	}
+
+	/**
+	 * test get count by conditions
+	 */
+	@Test
+	public void testGetCountByConditions() {
+		UserMapper userMapper = getUserMapper();
+		Conditions conditions = new Conditions();
+		Integer[] age = {13,50};
+		conditions.add(Restrictions.in("age", age));
+		long count = userMapper.getCountByConditions(conditions);
+		System.out.println(count);
 
 	}
 

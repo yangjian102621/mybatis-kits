@@ -43,7 +43,6 @@ public interface BaseMapper<M> {
      */
     public int update(M model);
 
-
     /**
      *
      * 根据 id 更新对应的model（更新所有字段，包括null的）
@@ -150,7 +149,14 @@ public interface BaseMapper<M> {
      * @param map
      * @return
      */
-    public long getCount(Map<String, Object> map);
+    public long getCountByMap(Map<String, Object> map);
+
+    /**
+     * 根据 Conditions 条件查询总记录数
+     * @param conditions
+     * @return
+     */
+    public long getCountByConditions(Conditions conditions);
 
     /**
      *

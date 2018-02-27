@@ -70,6 +70,7 @@ public class MybatisAutoMapperBuilder   {
 
             getCount(builderAssistant, boundType, actualModelClass, table);
             getCountByMap(builderAssistant, boundType, actualModelClass, table);
+            getCountByConditions(builderAssistant, boundType, actualModelClass, table);
             //
             add(builderAssistant, boundType, actualModelClass, table);
         }
@@ -149,6 +150,14 @@ public class MybatisAutoMapperBuilder   {
                 new NoKeyGenerator(), null, null);
     }
 
+    private MappedStatement addUpdateByConditionsMappedStatement(MapperBuilderAssistant builderAssistant,Class<?>
+            mapperClass, String id, String sql, Class<?> resultType) {
+        SqlSource sqlSource = this.conditionsLanguageDriver.createSqlSource(this.mybatisConfiguration, sql, resultType);
+
+        return this.addMappedStatement(builderAssistant,mapperClass, id, sqlSource, SqlCommandType.UPDATE, null, null, resultType,
+                new NoKeyGenerator(), null, null,this.conditionsLanguageDriver);
+    }
+
     private MappedStatement addDeleteMappedStatement(MapperBuilderAssistant builderAssistant,Class<?> mapperClass, String id, String sql, Class<?> resultType) {
         SqlSource sqlSource = languageDriver.createSqlSource(this.mybatisConfiguration, sql, resultType);
         return this.addMappedStatement(builderAssistant,mapperClass, id, sqlSource, SqlCommandType.DELETE, resultType, null, int.class,
@@ -196,17 +205,26 @@ public class MybatisAutoMapperBuilder   {
     /** 查询总记录数 */
     private void getCount(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, Class<?> modelClass, Table table) {
         Template sqlMethod = Template.GET_COUNT;
-        String sql = String.format(sqlMethod.getSql(), table.getColumnsSqlAs(), table.getWrapName(),"");
+        String sql = String.format(sqlMethod.getSql(), table.getWrapName(),"");
 
-        addSelectMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, modelClass);
+        addSelectMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, Long.class);
     }
 
     /** 根据map 查询总记录数 */
     private void getCountByMap(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, Class<?> modelClass, Table table) {
-        Template sqlMethod = Template.GET_COUNT;
-        String sql = String.format(sqlMethod.getSql(), table.getColumnsSqlAs(), table.getWrapName(),genWhereSqlByMap());
+        Template sqlMethod = Template.GET_COUNT_BY_MAP;
+        String sql = String.format(sqlMethod.getSql(), table.getWrapName(), genWhereSqlByMap());
 
-        addSelectMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, modelClass);
+        addSelectConditionsMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, Long.class);
+    }
+
+
+    /** 根据map 查询总记录数 */
+    private void getCountByConditions(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, Class<?> modelClass, Table table) {
+        Template sqlMethod = Template.GET_COUNT_BY_CONDITIONS;
+        String sql = String.format(sqlMethod.getSql(), table.getWrapName(),genWhereSqlByCondition());
+
+        addSelectConditionsMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, Long.class);
     }
 
     /** 根据map 查询所有记录 */
