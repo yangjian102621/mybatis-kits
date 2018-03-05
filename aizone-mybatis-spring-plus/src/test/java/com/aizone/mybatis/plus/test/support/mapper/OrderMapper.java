@@ -1,4 +1,4 @@
-package com.aizone.mybatis.plus.test.support.dao;
+package com.aizone.mybatis.plus.test.support.mapper;
 
 
 import com.aizone.mybatis.plus.test.support.model.Order;

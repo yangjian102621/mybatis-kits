@@ -1,7 +1,7 @@
 package com.aizone.mybatis.plus.test.plus;
 
 import com.aizone.mybatis.plus.test.AbstractMybatisTest;
-import com.aizone.mybatis.plus.test.support.dao.UserMapper;
+import com.aizone.mybatis.plus.test.support.mapper.UserMapper;
 import com.aizone.mybatis.plus.test.support.model.User;
 import com.aizone.mybatis.spring.plus.MybatisConfiguration;
 import com.aizone.mybatis.spring.plus.MybatisSqlSessionFactoryBean;
@@ -69,7 +69,7 @@ public class MappedStatementTest extends AbstractMybatisTest {
 	public void testGetMapperStatement() throws Exception {
 		Collection<MappedStatement> mappedStatements = configuration.getMappedStatements();
 		Collection<String> mappedStatementNames = configuration.getMappedStatementNames();
-		MappedStatement mappedStatement = configuration.getMappedStatement("com.aizone.mybatis.plus.test.support.dao.UserMapper.get");
+		MappedStatement mappedStatement = configuration.getMappedStatement("com.aizone.mybatis.plus.test.support.dao.mapper.UserMapper.selectUser");
 		System.out.println(mappedStatement);
 		BoundSql boundSql = mappedStatement.getBoundSql("34234234");
 		String sql = boundSql.getSql();
@@ -82,7 +82,7 @@ public class MappedStatementTest extends AbstractMybatisTest {
 		//conditions.add(Restrictions.eq("name", "名字"));
 		conditions.add(Restrictions.or(Restrictions.like("name", "名字"),Restrictions.and(Restrictions.eq("count", 1),Restrictions.eq("count", 2))));
 
-		MappedStatement mappedStatement = configuration.getMappedStatement("com.aizone.mybatis.plus.test.support.dao.UserMapper.searchByConditions");
+		MappedStatement mappedStatement = configuration.getMappedStatement("com.aizone.mybatis.plus.test.support.dao.mapper.UserMapper.searchByConditions");
 
 		BoundSql boundSql = mappedStatement.getBoundSql(conditions);
 		String sql = boundSql.getSql();

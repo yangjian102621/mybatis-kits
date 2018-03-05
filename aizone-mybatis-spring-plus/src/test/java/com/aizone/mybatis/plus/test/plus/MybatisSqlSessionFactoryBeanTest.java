@@ -1,7 +1,7 @@
 package com.aizone.mybatis.plus.test.plus;
 
 import com.aizone.mybatis.plus.test.AbstractMybatisTest;
-import com.aizone.mybatis.plus.test.support.dao.UserMapper;
+import com.aizone.mybatis.plus.test.support.mapper.UserMapper;
 import com.aizone.mybatis.plus.test.support.model.User;
 import com.aizone.mybatis.spring.plus.MybatisConfiguration;
 import com.aizone.mybatis.spring.plus.MybatisSqlSessionFactoryBean;
@@ -168,9 +168,9 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("name", "two name");
-		map.put("sex",2);
+		map.put("sex",22);
 
-		Page<User> page = new Page<User>();
+		Page<User> page = new Page<>();
 		List<User> list = userMapper.searchByMap(page, map);
 
 		for (User user : list) {
@@ -270,6 +270,12 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 		long count = userMapper.getCountByConditions(conditions);
 		System.out.println(count);
 
+	}
+
+	@Test
+	public void testSelectByusername() {
+		UserMapper userMapper = getUserMapper();
+		userMapper.getUserByName("first name");
 	}
 
 }
