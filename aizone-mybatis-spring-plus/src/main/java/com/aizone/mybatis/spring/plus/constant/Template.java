@@ -12,13 +12,12 @@ public enum Template {
 	ADD("add", "添加数据", "<script>INSERT INTO %s %s VALUES %s</script>"),
 	UPDATE("update", "增量更新数据", "<script>UPDATE %s %s WHERE %s=#{%s}</script>"),
 	UPDATE_ALL("updateAll", "全量更新数据", "<script>UPDATE %s %s WHERE %s=#{%s}</script>"),
-	UPDATE_BY_CONDITIONS("updateByConditions", "批量更新数据", "<script>UPDATE %s %s %s</script>"),
 	DELETE("delete", "删除一条数据", "<script>DELETE FROM %s WHERE %s=#{%s}</script>"),
 	DELETE_BY_CONDITIONS("deleteByConditions", "批量删除数据", "<script>DELETE FROM %s %s</script>"),
 
 	GET("get", "根据id查询", "<script>SELECT %s FROM %s WHERE %s=#{%s}</script>"),
 	GET_BY_MAP("getByMap", "根据map 查询数据一条数据", "<script>SELECT %s FROM %s %s</script>"),
-	GET_BY_CONDITIONS("getByConditions", "根据Conditions获取一个对象", "<script>SELECT %s FROM %s %s</script>"),
+	GET_BY_CONDITIONS("getByConditions", "根据Conditions获取一个对象", "<script>SELECT %s FROM %s %s LIMIT 0,1</script>"),
 
 	GET_COUNT("getCount", "获取总记录数", "<script>SELECT COUNT(1) FROM %s %s</script>"),
 	GET_COUNT_BY_MAP("getCountByMap", "根据map获取总记录数", "<script>SELECT COUNT(1) FROM %s %s</script>"),

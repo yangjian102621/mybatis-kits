@@ -278,4 +278,13 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 		userMapper.getUserByName("first name");
 	}
 
+	@Test
+	public void testGetByCondition() {
+
+		UserMapper userMapper = getUserMapper();
+		Conditions conditions = new Conditions();
+		conditions.addOrder(Order.desc("id"));
+		User user = userMapper.getByConditions(conditions);
+		System.out.println(user);
+	}
 }
