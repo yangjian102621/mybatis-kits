@@ -140,7 +140,7 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 		UserMapper userMapper = getUserMapper();
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		//map.put("name","two name");
+		map.put("name","two name");
 		map.put("sex",2);
 		map.put("__order", "id desc");
 
@@ -148,6 +148,19 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 		for (User u : users) {
 			_Logger.info("结果：{}",u);
 		}
+	}
+
+	@Test
+	public void testGetByMap() throws Exception {
+		UserMapper userMapper = getUserMapper();
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("name","two name");
+		map.put("sex",2);
+		map.put("__order", "id desc");
+
+		User user = userMapper.getByMap(map);
+		_Logger.info("结果：{}",user);
 	}
 
 	@Test
@@ -257,6 +270,8 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 		System.out.println(count);
 
 	}
+
+
 
 	/**
 	 * test get count by conditions
