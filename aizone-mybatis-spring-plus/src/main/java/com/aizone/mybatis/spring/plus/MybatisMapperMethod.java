@@ -112,6 +112,10 @@ public class MybatisMapperMethod extends MapperMethod {
         if (method.hasRowBounds()) {
             RowBounds rowBounds = method.extractRowBounds(args);
             result = sqlSession.<E>selectList(command.getName(), param, rowBounds);
+            // 处理分页的返回类型
+            if(rowBounds instanceof MybatisRowBounds){
+                return ((MybatisRowBounds) rowBounds).getPage();
+            }
         } else {
             result = sqlSession.<E>selectList(command.getName(), param);
         }
@@ -242,7 +246,12 @@ public class MybatisMapperMethod extends MapperMethod {
                 this.returnType = method.getReturnType();
             }
             this.returnsVoid = void.class.equals(this.returnType);
-            this.returnsMany = (configuration.getObjectFactory().isCollection(this.returnType) || this.returnType.isArray());
+            Integer uniqueParamIndex = getUniqueParamIndex(method, Page.class);
+            if(null != uniqueParamIndex){
+                this.returnsMany = true;
+            }else {
+                this.returnsMany = (configuration.getObjectFactory().isCollection(this.returnType) || this.returnType.isArray());
+            }
             this.returnsCursor = Cursor.class.equals(this.returnType);
             this.mapKey = getMapKey(method);
             this.returnsMap = (this.mapKey != null);

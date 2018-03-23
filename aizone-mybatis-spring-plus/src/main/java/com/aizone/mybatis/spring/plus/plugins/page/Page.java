@@ -1,8 +1,6 @@
 package com.aizone.mybatis.spring.plus.plugins.page;
 
 import java.io.Serializable;
-import java.util.AbstractList;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +10,7 @@ import java.util.List;
  * @author yangjian
  * @param <T> model
  */
-public class Page<T> extends AbstractList<T> implements Serializable {
+public class Page<T> implements Serializable {
     /** 页码，默认是第一页 */
     private int pageNo = 1;
     /** 每页显示的记录数，默认是10 */
@@ -26,8 +24,7 @@ public class Page<T> extends AbstractList<T> implements Serializable {
 
     public Page() {}
 
-    public Page(int pageNo, int pageSize) {
-        this.pageNo = pageNo;
+    public Page(int pageSize) {
         this.pageSize = pageSize;
     }
 
@@ -85,40 +82,6 @@ public class Page<T> extends AbstractList<T> implements Serializable {
     public Page setResults(List<T> results) {
         this.results = results;
         return this;
-    }
-
-    /**
-     * 获取下一页
-     * @return
-     */
-    public int getNextPage() {
-        return pageNo + 1;
-    }
-
-    /**
-     * 获取上一页
-     * @return
-     */
-    public int getPrevPage() {
-        return pageNo - 1;
-    }
-
-    @Override
-    public int size() {
-        return null != getResults() ? getResults().size() : 0;
-    }
-
-    @Override
-    public T get(int index) {
-        return null != getResults() ? getResults().get(index) : null;
-    }
-
-    @Override
-    public boolean add(T t) {
-        if(null == this.results){
-            this.results = new ArrayList<T>();
-        }
-        return this.results.add(t);
     }
 
     @Override

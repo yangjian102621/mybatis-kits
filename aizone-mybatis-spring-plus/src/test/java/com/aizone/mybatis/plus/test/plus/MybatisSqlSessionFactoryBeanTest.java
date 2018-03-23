@@ -7,9 +7,6 @@ import com.aizone.mybatis.spring.plus.MybatisConfiguration;
 import com.aizone.mybatis.spring.plus.MybatisSqlSessionFactoryBean;
 import com.aizone.mybatis.spring.plus.plugins.page.Page;
 import com.aizone.mybatis.spring.plus.plugins.page.PaginationInterceptor;
-import com.aizone.mybatis.spring.plus.support.Conditions;
-import com.aizone.mybatis.spring.plus.support.Order;
-import com.aizone.mybatis.spring.plus.support.ext.Restrictions;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.Configuration;
@@ -114,7 +111,6 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 		UserMapper userMapper = getUserMapper();
 
 		User user = new User("0123456-11", "测试添加", 12, 1);
-
 		userMapper.add(user);
 
 		List<User> userList = userMapper.search();
@@ -126,12 +122,12 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 	@Test
 	public void testUpdate() throws Exception {
 		UserMapper userMapper = getUserMapper();
-		User user = userMapper.get("0123456-01");
+		User user = userMapper.get("0123456-10");
 		_Logger.info("结果：{}", user);
 		user.setName("更新名称");
 		userMapper.update(user);
 
-		user = userMapper.get("0123456-01");
+		user = userMapper.get("0123456-10");
 		_Logger.info("结果：{}", user);
 	}
 
@@ -142,7 +138,6 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("name","two name");
 		map.put("sex",2);
-		map.put("__order", "id desc");
 
 		List<User> users = userMapper.searchByMap(map);
 		for (User u : users) {
@@ -151,26 +146,13 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 	}
 
 	@Test
-	public void testGetByMap() throws Exception {
-		UserMapper userMapper = getUserMapper();
-
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("name","two name");
-		map.put("sex",2);
-		map.put("__order", "id desc");
-
-		User user = userMapper.getByMap(map);
-		_Logger.info("结果：{}",user);
-	}
-
-	@Test
 	public void testSearchPage() throws Exception {
 		UserMapper userMapper = getUserMapper();
 		Page<User> page = new Page<User>();
 		page.setPageSize(2);
-		List<User> list = userMapper.search(page);
+		page = userMapper.search(page);
 
-		for (User user : list) {
+		for (User user : page.getResults()) {
 			_Logger.info("结果：{}",user);
 		}
 	}
@@ -181,125 +163,14 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("name", "two name");
-		map.put("sex",22);
+		map.put("sex",2);
 
-		Page<User> page = new Page<>();
-		List<User> list = userMapper.searchByMap(page, map);
-
-		for (User user : list) {
-			_Logger.info("结果：{}",user);
-		}
-	}
-
-	@Test
-	public void testSearchOrderBy() throws Exception {
-		UserMapper userMapper = getUserMapper();
-		List<User> userList = userMapper.searchOrderBy("id DESC");
-		for (User user : userList) {
-			_Logger.info("结果：{}",user);
-		}
-	}
-
-	@Test
-	public void testUserOrderBy() throws Exception {
-		UserMapper userMapper = getUserMapper();
-
-		Conditions conditions = new Conditions();
-		conditions.add(Restrictions.gt("age", 15));
-		conditions.addOrder(Order.desc("age"));
-		conditions.addOrder(Order.asc("id"));
-		conditions.addOrder(Order.asc("name"));
-		List<User> users = userMapper.searchByConditions(conditions);
-		for (User u : users) {
-			_Logger.info("结果：{}",u);
-		}
-	}
-
-	@Test
-	public void testUserPageOrderBy() throws Exception {
 		Page<User> page = new Page<User>();
-		UserMapper userMapper = getUserMapper();
+		page = userMapper.searchByMap(page, map);
 
-		Conditions conditions = new Conditions();
-		conditions.add(Restrictions.gt("age", 15));
-		conditions.addOrder(Order.desc("age"));
-		conditions.addOrder(Order.asc("id"));
-		conditions.addOrder(Order.asc("name"));
-		page = userMapper.searchByConditions(page,conditions);
-		for (User u : page.getResults()) {
-			_Logger.info("结果：{}",u);
+		for (User user : page.getResults()) {
+			_Logger.info("结果：{}",user);
 		}
 	}
 
-	/**
-	 * test delete items by conditions
-	 */
-	@Test
-	public void testDeleteByConditions() {
-		UserMapper userMapper = getUserMapper();
-		Conditions conditions = new Conditions();
-		Integer[] age = {221,222};
-		conditions.add(Restrictions.in("age", age));
-		//conditions.add(Restrictions.eq("name", "xxxx"));
-		userMapper.deleteByConditions(conditions);
-
-		List<User> list = userMapper.searchByConditions(conditions);
-		for (User u : list) {
-			_Logger.info("结果：{}",u);
-		}
-
-	}
-
-	@Test
-	public void testGetCount() {
-		UserMapper userMapper = getUserMapper();
-		long count = userMapper.getCount();
-		System.out.println(count);
-
-	}
-
-	/**
-	 * test get count by map
-	 */
-	@Test
-	public void testGetCountByMap() {
-		UserMapper userMapper = getUserMapper();
-		HashMap<String, Object> map = new HashMap<>(16);
-		map.put("sex", 1);
-		long count = userMapper.getCountByMap(map);
-		System.out.println(count);
-
-	}
-
-
-
-	/**
-	 * test get count by conditions
-	 */
-	@Test
-	public void testGetCountByConditions() {
-		UserMapper userMapper = getUserMapper();
-		Conditions conditions = new Conditions();
-		Integer[] age = {13,50};
-		conditions.add(Restrictions.in("age", age));
-		long count = userMapper.getCountByConditions(conditions);
-		System.out.println(count);
-
-	}
-
-	@Test
-	public void testSelectByusername() {
-		UserMapper userMapper = getUserMapper();
-		userMapper.getUserByName("first name");
-	}
-
-	@Test
-	public void testGetByCondition() {
-
-		UserMapper userMapper = getUserMapper();
-		Conditions conditions = new Conditions();
-		conditions.addOrder(Order.desc("id"));
-		User user = userMapper.getByConditions(conditions);
-		System.out.println(user);
-	}
 }

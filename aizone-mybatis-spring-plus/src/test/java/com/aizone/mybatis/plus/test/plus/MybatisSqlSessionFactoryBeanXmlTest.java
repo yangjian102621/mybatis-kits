@@ -6,6 +6,7 @@ import com.aizone.mybatis.plus.test.support.mapper.UserMapper;
 import com.aizone.mybatis.plus.test.support.model.User;
 import com.aizone.mybatis.spring.plus.plugins.page.Page;
 import com.aizone.mybatis.spring.plus.support.Conditions;
+import com.aizone.mybatis.spring.plus.support.Order;
 import com.aizone.mybatis.spring.plus.support.ext.MatchMode;
 import com.aizone.mybatis.spring.plus.support.ext.Restrictions;
 import com.aizone.mybatis.spring.plus.util.IdUtils;
@@ -22,6 +23,7 @@ import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -52,11 +54,11 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 		return sqlSession.getMapper(UserMapper.class);
 	}
 
-    private OrderMapper getOrderMapper() {
-        SqlSession sqlSession = getSqlSession();
-        assertNotNull("sqlSession 不能为空",sqlSession);
-        return sqlSession.getMapper(OrderMapper.class);
-    }
+	private OrderMapper getOrderMapper() {
+		SqlSession sqlSession = getSqlSession();
+		assertNotNull("sqlSession 不能为空",sqlSession);
+		return sqlSession.getMapper(OrderMapper.class);
+	}
 
 	@Test
 	public void testSessionFactory() throws Exception {
@@ -101,7 +103,7 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	public void testGetByConditions() throws Exception {
 		UserMapper userMapper = getUserMapper();
 		Conditions conditions = new Conditions();
-		conditions.add(Restrictions.eq("id", "0123456-02"));
+		conditions.add(Restrictions.eq("status", "0"));
 		User user = userMapper.getByConditions(conditions);
 		_Logger.info("结果：{}",user);
 	}
@@ -135,9 +137,11 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 		UserMapper userMapper = getUserMapper();
 		User user = userMapper.get("0123456-10");
 		_Logger.info("结果：{}", user);
-		user.setName("更新名称"+System.currentTimeMillis());
-		user.setAge((int) (Math.random()*100));
-		userMapper.update(user);
+		if(null != user){
+			user.setName("更新名称"+System.currentTimeMillis());
+			user.setAge((int) (Math.random()*100));
+			userMapper.update(user);
+		}
 		user = userMapper.get("0123456-10");
 		_Logger.info("结果：{}", user);
 	}
@@ -164,7 +168,7 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 		page = userMapper.search(page);
 
 		_Logger.info("分页结果：{}",page);
-		for (User user : page) {
+		for (User user : page.getResults()) {
 			_Logger.info("结果：{}",user);
 		}
 	}
@@ -174,13 +178,13 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 		UserMapper userMapper = getUserMapper();
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		 map.put("name","two name");
-		 map.put("sex",2);
+		map.put("name","two name");
+		map.put("sex",2);
 
 		Page<User> page = new Page<User>();
 		page = userMapper.searchByMap(page, map);
 		_Logger.info("分页结果：{}",page);
-		for (User user : page) {
+		for (User user : page.getResults()) {
 			_Logger.info("结果：{}",user);
 		}
 	}
@@ -253,7 +257,7 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 		conditions.add(Restrictions.gt("age", 19));
 		page = userMapper.searchByConditions(page,conditions);
 		_Logger.info("分页结果：{}",page);
-		for (User user : page) {
+		for (User user : page.getResults()) {
 			_Logger.info("结果：{}",user);
 		}
 	}
@@ -261,34 +265,96 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	@Test
 	public void testDeleteUser() throws Exception {
 		UserMapper userMapper = getUserMapper();
-		User user = userMapper.get("0123456-12");
+		User user = userMapper.get("0123456-02");
 		_Logger.info("结果：{}",user);
-		userMapper.delete(user);
-		user = userMapper.get("0123456-12");
+		userMapper.delete(user.getId());
+		user = userMapper.get("0123456-02");
 		_Logger.info("结果：{}",user);
 	}
 
 	@Test
 	public void testGetNewId() throws Exception {
-        for (int i = 0; i < 1000; i++) {
-            UserMapper userMapper = getUserMapper();
-            String id = userMapper.getNewId();
-            _Logger.info("结果：{},{}",userMapper,id);
-        }
+		for (int i = 0; i < 1000; i++) {
+			UserMapper userMapper = getUserMapper();
+			String id = userMapper.getNewId();
+			_Logger.info("结果：{},{}",userMapper,id);
+		}
 	}
 
-    @Test
-    public void testGetNewIds() throws Exception {
-        for (int i = 0; i < 1000; i++) {
-            UserMapper userMapper = getUserMapper();
-            String id = userMapper.getNewId();
-            OrderMapper orderMapper = getOrderMapper();
-            String ido = orderMapper.getNewId();
-            _Logger.info("结果：{},{}",userMapper.hashCode(),id);
-            _Logger.info("结果：{},{}",orderMapper.hashCode(),ido);
-        }
-        IdUtils.printIdUtil();
-    }
+	@Test
+	public void testGetNewIds() throws Exception {
+		for (int i = 0; i < 1000; i++) {
+			UserMapper userMapper = getUserMapper();
+			String id = userMapper.getNewId();
+			OrderMapper orderMapper = getOrderMapper();
+			String ido = orderMapper.getNewId();
+			_Logger.info("结果：{},{}",userMapper.hashCode(),id);
+			_Logger.info("结果：{},{}",orderMapper.hashCode(),ido);
+		}
+		IdUtils.printIdUtil();
+	}
+
+	@Test
+	public void testUserMap() throws Exception {
+		UserMapper userMapper = getUserMapper();
+		Map userMap = userMapper.getUserMap();
+		_Logger.info("结果：{}",userMap);
+	}
+
+	@Test
+	public void testUserOrderBy() throws Exception {
+		UserMapper userMapper = getUserMapper();
+
+		Conditions conditions = new Conditions();
+		conditions.add(Restrictions.gt("age", 15));
+		conditions.addOrder(Order.desc("age"));
+		conditions.addOrder(Order.asc("id"));
+		conditions.addOrder(Order.asc("name"));
+		List<User> users = userMapper.searchByConditions(conditions);
+		for (User u : users) {
+			_Logger.info("结果：{}",u);
+		}
+	}
+
+	@Test
+	public void testUserPageOrderBy() throws Exception {
+		Page<User> page = new Page<User>();
+		UserMapper userMapper = getUserMapper();
+
+		Conditions conditions = new Conditions();
+		conditions.add(Restrictions.gt("age", 15));
+		conditions.addOrder(Order.desc("age"));
+		conditions.addOrder(Order.asc("id"));
+		conditions.addOrder(Order.asc("name"));
+		page = userMapper.searchByConditions(page,conditions);
+		for (User u : page.getResults()) {
+			_Logger.info("结果：{}",u);
+		}
+	}
+
+	@Test
+	public void testGetCount() throws Exception {
+		UserMapper userMapper = getUserMapper();
+		long count = userMapper.getCount();
+		_Logger.info("结果：{}",count);
+	}
+
+	@Test
+	public void testGetCountMap() throws Exception {
+		UserMapper userMapper = getUserMapper();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("name","two name");
+		map.put("sex",2);
+		long count = userMapper.getCountByMap(map);
+		_Logger.info("结果：{}",count);
+	}
+
+	@Test
+	public void testGetUserByNameName() throws Exception {
+		UserMapper userMapper = getUserMapper();
+		List<User> userByName = userMapper.getUserByName("first name");
+		_Logger.info("结果：{}",userByName);
+	}
 
 	@Test
 	public void testSearchUsersList() throws Exception {

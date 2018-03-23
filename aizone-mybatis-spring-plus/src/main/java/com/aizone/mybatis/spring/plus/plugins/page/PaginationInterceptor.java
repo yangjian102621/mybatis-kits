@@ -10,7 +10,7 @@ import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
-import org.apache.ibatis.scripting.defaults.DefaultParameterHandler;
+import org.apache.ibatis.scripting.LanguageDriver;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 
@@ -60,7 +60,8 @@ public class PaginationInterceptor implements Interceptor {
 
                     PreparedStatement preparedStatement = connection.prepareStatement(sb.toString());
                     // 处理参数
-                    ParameterHandler parameterHandler = new DefaultParameterHandler(mappedStatement, parameterObject, boundSql);
+                    LanguageDriver lang = mappedStatement.getLang();
+                    ParameterHandler parameterHandler = lang.createParameterHandler(mappedStatement, parameterObject, boundSql);
                     parameterHandler.setParameters(preparedStatement);
 
                     ResultSet resultSet = preparedStatement.executeQuery();

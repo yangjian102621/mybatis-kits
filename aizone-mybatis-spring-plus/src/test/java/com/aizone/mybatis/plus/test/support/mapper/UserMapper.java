@@ -7,8 +7,11 @@ import com.aizone.mybatis.spring.plus.support.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserMapper extends BaseMapper<User> {
+
+	public Map getUserMap();
 
 	public List<User> getUserByName(String name);
 
