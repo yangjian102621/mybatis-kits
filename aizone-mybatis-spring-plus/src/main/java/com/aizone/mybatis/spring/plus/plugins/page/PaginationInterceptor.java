@@ -26,8 +26,8 @@ import java.util.Properties;
  *
  */
 @Intercepts({@Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class,
-                                                                        RowBounds.class, ResultHandler.class, CacheKey.class ,
-                                                                        BoundSql.class})})
+        RowBounds.class, ResultHandler.class, CacheKey.class ,
+        BoundSql.class})})
 public class PaginationInterceptor implements Interceptor {
 
     @Override
@@ -79,7 +79,7 @@ public class PaginationInterceptor implements Interceptor {
                     if(null != proceed && proceed instanceof List){
                         List result = (List) proceed;
                         page.setResults(result);
-                        return page;
+                        return proceed;
                     }
                     return proceed;
                 }finally {

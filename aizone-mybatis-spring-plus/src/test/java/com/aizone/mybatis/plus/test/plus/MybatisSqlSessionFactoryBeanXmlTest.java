@@ -289,4 +289,18 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
         }
         IdUtils.printIdUtil();
     }
+
+	@Test
+	public void testSearchUsersList() throws Exception {
+		UserMapper userMapper = getUserMapper();
+		List<User> userPage = userMapper.searchUsers("first name", null);
+		_Logger.info("结果：{}",userPage);
+	}
+
+	@Test
+	public void testSearchUsersPage() throws Exception {
+		UserMapper userMapper = getUserMapper();
+		Page<User> userPage = userMapper.searchUsers(new Page<>(), null, 0);
+		_Logger.info("结果：{}",userPage);
+	}
 }

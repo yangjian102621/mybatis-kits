@@ -150,14 +150,6 @@ public class MybatisAutoMapperBuilder   {
                 new NoKeyGenerator(), null, null);
     }
 
-    private MappedStatement addUpdateByConditionsMappedStatement(MapperBuilderAssistant builderAssistant,Class<?>
-            mapperClass, String id, String sql, Class<?> resultType) {
-        SqlSource sqlSource = this.conditionsLanguageDriver.createSqlSource(this.mybatisConfiguration, sql, resultType);
-
-        return this.addMappedStatement(builderAssistant,mapperClass, id, sqlSource, SqlCommandType.UPDATE, null, null, resultType,
-                new NoKeyGenerator(), null, null,this.conditionsLanguageDriver);
-    }
-
     private MappedStatement addDeleteMappedStatement(MapperBuilderAssistant builderAssistant,Class<?> mapperClass, String id, String sql, Class<?> resultType) {
         SqlSource sqlSource = languageDriver.createSqlSource(this.mybatisConfiguration, sql, resultType);
         return this.addMappedStatement(builderAssistant,mapperClass, id, sqlSource, SqlCommandType.DELETE, resultType, null, int.class,

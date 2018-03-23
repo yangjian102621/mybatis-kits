@@ -1,6 +1,7 @@
 package com.aizone.mybatis.spring.plus;
 
 import com.aizone.mybatis.spring.plus.typehandler.ConditionsTypeHandler;
+import com.aizone.mybatis.spring.plus.typehandler.DateTypeHandler;
 import com.aizone.mybatis.spring.spring.SqlSessionFactoryBean;
 import org.apache.ibatis.builder.xml.XMLMapperBuilder;
 import org.apache.ibatis.executor.ErrorContext;
@@ -86,6 +87,8 @@ public class MybatisSqlSessionFactoryBean extends SqlSessionFactoryBean {
 				}
 			}
 		}
+
+		configuration.getTypeAliasRegistry().registerAlias(DateTypeHandler.class);
 
 		if (!isEmpty(this.plugins)) {
 			for (Interceptor plugin : this.plugins) {
