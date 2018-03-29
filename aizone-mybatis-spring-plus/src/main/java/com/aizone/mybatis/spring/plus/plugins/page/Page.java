@@ -84,6 +84,22 @@ public class Page<T> implements Serializable {
         return this;
     }
 
+    /**
+     * 获取下一页
+     * @return
+     */
+    public int getNextPage() {
+        return pageNo + 1;
+    }
+
+    /**
+     * 获取上一页
+     * @return
+     */
+    public int getPrevPage() {
+        return pageNo - 1;
+    }
+
     @Override
     public String toString() {
         return "Page{" +
