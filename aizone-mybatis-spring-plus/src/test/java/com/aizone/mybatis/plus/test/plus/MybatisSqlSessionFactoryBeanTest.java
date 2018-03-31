@@ -19,6 +19,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.sql.DataSource;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -110,7 +111,9 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 	public void testAdd() throws Exception {
 		UserMapper userMapper = getUserMapper();
 
-		User user = new User("0123456-11", "测试添加", 12, 1);
+		User user = new User("0123456-123", "测试添加", 12, 1);
+		user.setAddTime(new Date());
+		user.setStatus(1);
 		userMapper.add(user);
 
 		List<User> userList = userMapper.search();

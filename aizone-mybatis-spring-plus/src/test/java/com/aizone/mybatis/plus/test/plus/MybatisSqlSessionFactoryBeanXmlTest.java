@@ -20,10 +20,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -195,11 +192,12 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 
 		Conditions conditions = new Conditions();
 		//conditions.add(Restrictions.eq("name", "two name"));
-		conditions.add(Restrictions.eq("sex", 2));
+		Date now = new Date();
+		conditions.add(Restrictions.gt("add_time", now));
 		//conditions.add(Restrictions.gt("age", 15));
 		//conditions.add(Restrictions.lt("age", 25));
-		conditions.add(Restrictions.and(Restrictions.gt("age", 15),Restrictions.lt("age", 20)));
-		conditions.add(Restrictions.or(Restrictions.eq("name", "two name"),Restrictions.eq("name", "four name")));
+		//conditions.add(Restrictions.and(Restrictions.gt("age", 15),Restrictions.lt("age", 20)));
+		//conditions.add(Restrictions.or(Restrictions.eq("name", "two name"),Restrictions.eq("name", "four name")));
 		List<User> users = userMapper.searchByConditions(conditions);
 		for (User u : users) {
 			_Logger.info("结果：{}",u);

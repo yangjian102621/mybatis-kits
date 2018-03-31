@@ -4,6 +4,7 @@ package com.aizone.mybatis.plus.test.support.model;
 import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import java.util.Date;
 
 /**
  *
@@ -16,6 +17,8 @@ public class User {
     private String name;
     private int age;
     private int sex;
+    private Date addTime;
+    private Integer status;
     @Transient
     private int phone;
 
@@ -53,6 +56,14 @@ public class User {
         return this;
     }
 
+    public Date getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(Date addTime) {
+        this.addTime = addTime;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -65,8 +76,24 @@ public class User {
         this.sex = sex;
     }
 
-    public String toString() {
-        return "[" + id + "," + name + "," + sex + "," + age + "]";
+    public Integer getStatus() {
+        return status;
     }
 
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", sex=" + sex +
+                ", addTime=" + addTime +
+                ", status=" + status +
+                ", phone=" + phone +
+                '}';
+    }
 }
