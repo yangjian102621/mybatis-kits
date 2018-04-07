@@ -143,7 +143,7 @@ public class MybatisMapperTest {
 		page = userMapper.search(page);
 
 		_Logger.info("分页结果：{}",page);
-		for (User user : page) {
+		for (User user : page.getResults()) {
 			_Logger.info("结果：{}",user);
 		}
 	}
@@ -159,7 +159,7 @@ public class MybatisMapperTest {
 		Page<User> page = new Page<User>();
 		page = userMapper.searchByMap(page, map);
 		_Logger.info("分页结果：{}",page);
-		for (User user : page) {
+		for (User user : page.getResults()) {
 			_Logger.info("结果：{}",user);
 		}
 	}
@@ -232,7 +232,7 @@ public class MybatisMapperTest {
 		conditions.add(Restrictions.gt("age", 19));
 		page = userMapper.searchByConditions(page,conditions);
 		_Logger.info("分页结果：{}",page);
-		for (User user : page) {
+		for (User user : page.getResults()) {
 			_Logger.info("结果：{}",user);
 		}
 	}

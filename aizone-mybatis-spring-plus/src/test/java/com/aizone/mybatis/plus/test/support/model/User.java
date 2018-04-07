@@ -1,23 +1,21 @@
 package com.aizone.mybatis.plus.test.support.model;
 
 
-import javax.persistence.Column;
+import com.aizone.mybatis.spring.plus.support.BaseModel;
+
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import java.util.Date;
 
 /**
  *
  * @author yangjian
  */
 @Table(name = "user")
-public class User {
-    @Column(name = "id")
-    private String id;
+public class User extends BaseModel<String> {
+
     private String name;
     private int age;
     private int sex;
-    private Date addTime;
     private Integer status;
     @Transient
     private int phone;
@@ -25,14 +23,9 @@ public class User {
     public User() {}
 
     public User(String id, String name, int age, int sex) {
-        this.id = id;
         this.name = name;
         this.age = age;
         this.sex = sex;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getName() {
@@ -54,14 +47,6 @@ public class User {
     public User setPhone(int phone) {
         this.phone = phone;
         return this;
-    }
-
-    public Date getAddTime() {
-        return addTime;
-    }
-
-    public void setAddTime(Date addTime) {
-        this.addTime = addTime;
     }
 
     public void setName(String name) {
@@ -87,11 +72,10 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id='" + id + '\'' +
+                "id='" + this.getId() + '\'' +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", sex=" + sex +
-                ", addTime=" + addTime +
                 ", status=" + status +
                 ", phone=" + phone +
                 '}';
