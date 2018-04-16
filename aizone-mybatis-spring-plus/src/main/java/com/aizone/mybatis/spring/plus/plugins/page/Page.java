@@ -25,6 +25,7 @@ public class Page<T> implements Serializable {
     public Page() {}
 
     public Page(int pageNo, int pageSize) {
+        this.pageNo = pageNo;
         this.pageSize = pageSize;
     }
 
