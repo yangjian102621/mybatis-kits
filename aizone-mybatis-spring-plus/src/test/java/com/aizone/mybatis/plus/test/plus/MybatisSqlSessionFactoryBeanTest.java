@@ -112,7 +112,6 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 		UserMapper userMapper = getUserMapper();
 
 		User user = new User("0123456-123", "测试添加", 12, 1);
-		user.setAddTime(new Date());
 		user.setStatus(1);
 		userMapper.add(user);
 
@@ -125,12 +124,13 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 	@Test
 	public void testUpdate() throws Exception {
 		UserMapper userMapper = getUserMapper();
-		User user = userMapper.get("0123456-10");
+		User user = userMapper.get("0123456-01");
 		_Logger.info("结果：{}", user);
 		user.setName("更新名称");
+		user.setUpdateTime(new Date());
 		userMapper.update(user);
 
-		user = userMapper.get("0123456-10");
+		user = userMapper.get("0123456-01");
 		_Logger.info("结果：{}", user);
 	}
 
