@@ -8,7 +8,7 @@ import java.util.Collection;
  *
  *
  *
- * @author yangjian
+ * @author chenzhaoju
  */
 public class Restrictions {
 

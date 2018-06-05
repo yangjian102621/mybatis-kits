@@ -24,7 +24,7 @@ import org.springframework.util.StringUtils;
 import javax.sql.DataSource;
 
 /**
- * @author yangjian
+ * @author chenzhaoju
  */
 @org.springframework.context.annotation.Configuration
 @ConditionalOnClass({ SqlSessionFactory.class, SqlSessionFactoryBean.class })

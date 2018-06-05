@@ -4,7 +4,7 @@ import com.aizone.mybatis.spring.plus.support.Criterion;
 
 /**
  *
- * @author yangjian
+ * @author chenzhaoju
  */
 public class SimpleExpression extends AbstractCriterion implements Criterion {
 

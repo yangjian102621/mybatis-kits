@@ -5,7 +5,7 @@ import com.aizone.mybatis.spring.plus.support.ext.Restrictions;
 import org.junit.Test;
 
 /**
- * @author yangjian
+ * @author chenzhaoju
  */
 public class ConditionsTest {
 

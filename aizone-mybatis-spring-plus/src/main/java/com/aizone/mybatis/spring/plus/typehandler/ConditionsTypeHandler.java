@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * @author yangjian
+ * @author chenzhaoju
  */
 @MappedTypes(Conditions.class)
 public class ConditionsTypeHandler extends BaseTypeHandler<Object> {

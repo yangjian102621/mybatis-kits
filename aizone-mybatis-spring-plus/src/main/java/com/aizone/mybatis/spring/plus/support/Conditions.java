@@ -12,7 +12,7 @@ import java.util.Map;
  *
  * 查询条件
  *
- * @author yangjian
+ * @author chenzhaoju
  */
 public class Conditions implements Criterion,Serializable {
 

@@ -26,7 +26,7 @@ import static org.springframework.util.StringUtils.tokenizeToStringArray;
  *
  * SqlSessionFactoryBean 拓展
  *
- * @author yangjian
+ * @author chenzhaoju
  *
  */
 public class MybatisSqlSessionFactoryBean extends SqlSessionFactoryBean {

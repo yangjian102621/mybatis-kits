@@ -4,7 +4,8 @@ package com.aizone.mybatis.spring.plus.constant;
  *
  * 用于注入的语句模板
  *
- * @author yangjian
+ * @author chenzhaoju
+ * Modified By : yangjian
  *
  */
 public enum Template {

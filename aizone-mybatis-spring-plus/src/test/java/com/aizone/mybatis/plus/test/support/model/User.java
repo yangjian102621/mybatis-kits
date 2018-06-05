@@ -8,7 +8,7 @@ import javax.persistence.Transient;
 
 /**
  *
- * @author yangjian
+ * @author chenzhaoju
  */
 @Table(name = "user")
 public class User extends BaseModel<String> {

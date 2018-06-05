@@ -16,7 +16,8 @@ import java.util.Map;
  * <p>
  *     数据库的表、字段命名只支持 驼峰式+下划线的方式
  * </p>
- * @author yangjian
+ * @author chenzhaoju
+ * Modified By : yangjian
  */
 public class Table {
     public final static Map<Class<?>,Table> TABLES = new HashMap<Class<?>,Table>();

@@ -22,7 +22,7 @@ import java.util.List;
  *
  * 专门处理 conditions 参数的
  *
- * @author yangjian
+ * @author chenzhaoju
  */
 public class ConditionsParameterHandler extends DefaultParameterHandler{
 

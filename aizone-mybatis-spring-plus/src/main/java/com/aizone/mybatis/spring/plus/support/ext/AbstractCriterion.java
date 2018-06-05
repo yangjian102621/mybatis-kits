@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author yangjian
+ * @author chenzhaoju
  */
 public abstract class AbstractCriterion implements Criterion {
 

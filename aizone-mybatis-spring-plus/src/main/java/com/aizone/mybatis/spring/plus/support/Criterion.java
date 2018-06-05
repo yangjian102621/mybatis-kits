@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
- * @author yangjian
+ * @author chenzhaoju
  */
 public interface Criterion extends Serializable {
 

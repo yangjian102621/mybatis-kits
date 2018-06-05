@@ -23,8 +23,8 @@ import java.lang.reflect.Type;
  *
  * 处理预定义的CRUD 方法
  *
- * @author yangjian
- *
+ * @author chenzhaoju
+ * Modified By : yangjian
  */
 public class MybatisAutoMapperBuilder   {
     public final static Logger _Logger = LoggerFactory.getLogger(MybatisAutoMapperBuilder.class);

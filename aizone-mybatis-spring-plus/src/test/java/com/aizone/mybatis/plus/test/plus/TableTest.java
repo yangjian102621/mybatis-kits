@@ -7,7 +7,7 @@ import org.junit.Test;
 
 /**
  *
- * @author yangjian
+ * @author chenzhaoju
  */
 public class TableTest {
 

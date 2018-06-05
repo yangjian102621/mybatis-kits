@@ -17,7 +17,7 @@ import static org.junit.Assert.assertNotNull;
 
 /**
  *
- * @author yangjian
+ * @author chenzhaoju
  */
 public class MybatisApiTest extends AbstractMybatisTest {
 

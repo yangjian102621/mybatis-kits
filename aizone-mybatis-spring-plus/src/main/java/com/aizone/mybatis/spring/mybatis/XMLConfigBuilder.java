@@ -28,7 +28,7 @@ import java.util.Properties;
 
 /**
  * 参考 mybatis 的 org.apache.ibatis.builder.xml.XMLConfigBuilder
- * @author yangjian
+ * @author chenzhaoju
  *
  */
 public class XMLConfigBuilder extends BaseBuilder {

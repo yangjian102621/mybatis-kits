@@ -6,7 +6,8 @@ import java.util.Date;
 /**
  * 基础model
  *
- * @author yangjian
+ * @author chenzhaoju
+ * Modified By : yangjian
  */
 public abstract class BaseModel<T> implements Serializable {
     /** id */

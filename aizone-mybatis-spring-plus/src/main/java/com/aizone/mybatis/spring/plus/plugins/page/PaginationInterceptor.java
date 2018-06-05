@@ -22,7 +22,7 @@ import java.util.Properties;
 
 /**
  * 分页插件
- * @author yangjian
+ * @author chenzhaoju
  *
  */
 @Intercepts({@Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class,

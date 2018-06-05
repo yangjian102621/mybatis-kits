@@ -4,7 +4,7 @@ import com.aizone.mybatis.spring.plus.plugins.page.Page;
 import org.apache.ibatis.session.RowBounds;
 
 /**
- * @author yangjian
+ * @author chenzhaoju
  */
 public class MybatisRowBounds extends RowBounds {
 

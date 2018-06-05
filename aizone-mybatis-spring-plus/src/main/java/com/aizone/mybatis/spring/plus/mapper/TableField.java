@@ -8,7 +8,7 @@ import java.lang.reflect.Field;
 
 /**
  * model 对应的 字段
- * @author yangjian
+ * @author chenzhaoju
  */
 public class TableField {
 

@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 /**
  *
- * @author yangjian
+ * @author chenzhaoju
  */
 public class Misc {
     /** 日志记录器 */

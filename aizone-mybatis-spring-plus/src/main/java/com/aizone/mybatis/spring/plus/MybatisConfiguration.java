@@ -8,7 +8,7 @@ import org.apache.ibatis.session.Configuration;
  *
  * 拓展mybatis 的配置对象
  *
- * @author yangjian
+ * @author chenzhaoju
  *
  */
 public class MybatisConfiguration extends Configuration{

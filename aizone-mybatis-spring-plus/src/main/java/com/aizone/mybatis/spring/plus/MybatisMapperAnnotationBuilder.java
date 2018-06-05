@@ -35,7 +35,8 @@ import java.util.*;
 
 /**
  *
- * @author yangjian
+ * @author chenzhaoju
+ * Modified By : yangjian
  */
 public class MybatisMapperAnnotationBuilder extends MapperAnnotationBuilder {
 

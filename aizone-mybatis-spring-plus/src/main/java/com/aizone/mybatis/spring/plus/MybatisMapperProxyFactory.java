@@ -5,7 +5,7 @@ import org.apache.ibatis.binding.MapperProxyFactory;
 import org.apache.ibatis.session.SqlSession;
 
 /**
- * @author yangjian
+ * @author chenzhaoju
  */
 public class MybatisMapperProxyFactory<T> extends MapperProxyFactory<T> {
 

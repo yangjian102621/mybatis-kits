@@ -7,7 +7,8 @@ import java.util.List;
  *
  * 分页数据
  *
- * @author yangjian
+ * @author chenzhaoju
+ * Modified By : yangjian
  * @param <T> model
  */
 public class Page<T> implements Serializable {

@@ -7,7 +7,7 @@ import javax.persistence.Transient;
 
 /**
  *
- * @author yangjian
+ * @author chenzhaoju
  */
 public class Order extends BaseModel {
 

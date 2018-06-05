@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 /**
- * @author yangjian
+ * @author chenzhaoju
  */
 public class MybatisMapperProxy<T> extends MapperProxy<T> {
 

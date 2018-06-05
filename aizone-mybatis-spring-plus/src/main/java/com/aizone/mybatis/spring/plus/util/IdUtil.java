@@ -10,7 +10,7 @@ import java.util.Properties;
  * 支持服务器id配置（0 ~ 0xFF） ： 参数名称 : aizone.serverid <br/>
  * 可以使用 -Daizone.serverid=7 配置
  * </p>
- * @author yangjian
+ * @author chenzhaoju
  *
  */
 public final class IdUtil {

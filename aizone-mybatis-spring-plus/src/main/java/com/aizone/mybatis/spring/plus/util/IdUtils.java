@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 管理所以id工具
  *
- * @author yangjian
+ * @author chenzhaoju
  *
  */
 public final class IdUtils {

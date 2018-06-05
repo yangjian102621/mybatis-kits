@@ -23,7 +23,8 @@ import java.lang.reflect.Type;
 import java.util.*;
 
 /**
- * @author yangjian
+ * @author chenzhaoju
+ * Modified By : yangjian
  */
 public class MybatisMapperMethod extends MapperMethod {
 

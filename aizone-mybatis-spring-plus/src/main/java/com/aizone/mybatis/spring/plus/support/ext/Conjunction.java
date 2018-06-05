@@ -5,7 +5,7 @@ import com.aizone.mybatis.spring.plus.support.Criterion;
 import java.util.Collection;
 
 /**
- * @author yangjian
+ * @author chenzhaoju
  */
 public class Conjunction extends Junction {
 

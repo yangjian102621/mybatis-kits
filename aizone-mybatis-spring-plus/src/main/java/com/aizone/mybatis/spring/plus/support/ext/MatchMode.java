@@ -1,7 +1,7 @@
 package com.aizone.mybatis.spring.plus.support.ext;
 
 /**
- * @author yangjian
+ * @author chenzhaoju
  */
 public enum MatchMode {
 

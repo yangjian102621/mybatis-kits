@@ -30,7 +30,7 @@ import static org.junit.Assert.assertNotNull;
  * 全局配置测试
  * </p>
  *
- * @author yangjian
+ * @author chenzhaoju
  * @Date 2016-12-22
  */
 public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {

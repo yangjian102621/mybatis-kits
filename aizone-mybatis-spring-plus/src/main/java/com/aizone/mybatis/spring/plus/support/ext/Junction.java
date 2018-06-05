@@ -5,7 +5,7 @@ import com.aizone.mybatis.spring.plus.support.Criterion;
 import java.util.*;
 
 /**
- * @author yangjian
+ * @author chenzhaoju
  */
 public class Junction extends AbstractCriterion implements Criterion {
     private final Nature nature;

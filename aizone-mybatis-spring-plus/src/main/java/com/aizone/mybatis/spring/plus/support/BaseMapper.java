@@ -13,7 +13,8 @@ import java.util.Map;
  *
  * @param <M> model
  *
- * @author yangjian
+ * @author chenzhaoju
+ * Modified By : yangjian
  *
  */
 public interface BaseMapper<M> {

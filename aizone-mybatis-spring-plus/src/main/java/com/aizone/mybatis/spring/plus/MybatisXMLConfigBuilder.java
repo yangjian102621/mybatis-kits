@@ -12,7 +12,7 @@ import java.util.Properties;
  *
  * config xml 文件构建 config对象
  *
- * @author yangjian
+ * @author chenzhaoju
  *
  */
 public class MybatisXMLConfigBuilder extends XMLConfigBuilder {

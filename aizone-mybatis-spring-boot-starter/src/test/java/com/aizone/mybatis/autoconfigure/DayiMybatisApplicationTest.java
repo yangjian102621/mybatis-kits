@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author yangjian
+ * @author chenzhaoju
  */
 @SpringBootApplication
 @MapperScan("com.aizone.mybatis.autoconfigure.mapper")

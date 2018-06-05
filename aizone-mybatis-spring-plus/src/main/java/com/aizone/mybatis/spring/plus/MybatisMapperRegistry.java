@@ -12,7 +12,7 @@ import java.util.*;
 
 /**
  *
- * @author yangjian
+ * @author chenzhaoju
  */
 public class MybatisMapperRegistry extends MapperRegistry {
 

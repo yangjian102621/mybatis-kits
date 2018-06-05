@@ -12,7 +12,7 @@ import org.apache.ibatis.session.Configuration;
  *
  * 处理 conditions 的 LanguageDriver
  *
- * @author yangjian
+ * @author chenzhaoju
  */
 public class ConditionsLanguageDriver extends XMLLanguageDriver {
 

@@ -5,7 +5,7 @@ import javax.persistence.Transient;
 
 /**
  *
- * @author yangjian
+ * @author chenzhaoju
  */
 public class User {
     //@Column(name = "userid")
