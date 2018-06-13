@@ -12,7 +12,7 @@
 
     <groupId>com.ppblock.mybatis</groupId>
     <artifactId>mybatis-all</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>ppblock-mybatis-all</name>
@@ -37,7 +37,7 @@
         <file_encoding>UTF-8</file_encoding>
         <maven_compiler_plugin_version>2.3.2</maven_compiler_plugin_version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <repo.host>172.16.10.72</repo.host>
+        <repo.host>www.nexus.inet</repo.host>
     </properties>
     
     <!-- configures for artifact deployment -->
