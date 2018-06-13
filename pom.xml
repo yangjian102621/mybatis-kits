@@ -10,18 +10,18 @@
         <version>1.5.9.RELEASE</version>
     </parent>
 
-    <groupId>com.aizone.mybatis</groupId>
-    <artifactId>aizone-mybatis-all</artifactId>
+    <groupId>com.ppblock.mybatis</groupId>
+    <artifactId>mybatis-all</artifactId>
     <version>1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>aizone-mybatis-all</name>
+    <name>ppblock-mybatis-all</name>
     <description>${project.name}</description>
 
     <modules>
-        <module>aizone-mybatis-spring-plus</module>
-        <module>aizone-mybatis-spring-boot-autoconfigure</module>
-        <module>aizone-mybatis-spring-boot-starter</module>
+        <module>mybatis-spring-plus</module>
+        <module>mybatis-spring-boot-autoconfigure</module>
+        <module>mybatis-spring-boot-starter</module>
     </modules>
 
     <properties>
@@ -37,7 +37,7 @@
         <file_encoding>UTF-8</file_encoding>
         <maven_compiler_plugin_version>2.3.2</maven_compiler_plugin_version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <repo.host>192.168.0.138</repo.host>
+        <repo.host>172.16.10.72</repo.host>
     </properties>
     
     <!-- configures for artifact deployment -->

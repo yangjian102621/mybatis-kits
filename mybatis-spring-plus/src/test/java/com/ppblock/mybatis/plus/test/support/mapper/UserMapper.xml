@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ppblock.mybatis.plus.test.support.mapper.UserMapper">
+
+    <resultMap id="baseResult" type="com.ppblock.mybatis.plus.test.support.model.User" />
+    
+    <select id="getUserByName" resultMap="baseResult">
+        SELECT * from user where name = #{name};
+    </select>
+    
+    <select id="getUserMap" resultType="hashmap">
+        SELECT * from user where id = '0123456-10';
+    </select>
+    
+    <select id="searchUsers" resultMap="baseResult">
+        SELECT * from user
+        <where>
+            <if test="name != null">
+                name = #{name}
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+        </where>
+    </select>
+</mapper>
