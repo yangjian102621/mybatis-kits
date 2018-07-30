@@ -24,7 +24,6 @@ public enum Template {
 	GET_COUNT_BY_MAP("getCountByMap", "根据map获取总记录数", "<script>SELECT COUNT(1) FROM %s %s</script>"),
 	GET_COUNT_BY_CONDITIONS("getCountByConditions", "根据条件获取总记录数", "<script>SELECT COUNT(1) FROM %s %s</script>"),
 	SEARCH("search", "根据条件获取数据", "<script>SELECT %s FROM %s</script>"),
-	SEARCH_ORDER_BY("searchOrderBy", "根据条件获取数据", "<script>SELECT %s FROM %s %s</script>"),
 	SEARCH_BY_MAP("searchByMap", "根据map 查询数据", "<script>SELECT %s FROM %s %s %s</script>"),
 	SEARCH_BY_CONDITIONS("searchByConditions", "根据Conditions 查询数据", "<script>SELECT %s FROM %s %s</script>");
 

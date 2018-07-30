@@ -64,7 +64,6 @@ public class MybatisAutoMapperBuilder   {
             getByMap(builderAssistant, boundType, actualModelClass, table);
             getByConditions(builderAssistant, boundType, actualModelClass, table);
             searchAll(builderAssistant, boundType, actualModelClass, table);
-            searchOrderBy(builderAssistant, boundType, actualModelClass, table);
             searchByMap(builderAssistant, boundType, actualModelClass, table);
             searchByConditions(builderAssistant, boundType, actualModelClass, table);
 
@@ -176,20 +175,6 @@ public class MybatisAutoMapperBuilder   {
     private void searchAll(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, Class<?> modelClass, Table table) {
         Template sqlMethod = Template.SEARCH;
         String sql = String.format(sqlMethod.getSql(), table.getColumnsSqlAs(), table.getWrapName());
-
-        addSelectMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, modelClass);
-    }
-
-    /**
-     * 查询所有数据,并排序
-     * @param builderAssistant
-     * @param mapperClass
-     * @param modelClass
-     * @param table
-     */
-    private void searchOrderBy(MapperBuilderAssistant builderAssistant, Class<?> mapperClass, Class<?> modelClass, Table table) {
-        Template sqlMethod = Template.SEARCH_ORDER_BY;
-        String sql = String.format(sqlMethod.getSql(), table.getColumnsSqlAs(), table.getWrapName(),genOrderSql());
 
         addSelectMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, modelClass);
     }

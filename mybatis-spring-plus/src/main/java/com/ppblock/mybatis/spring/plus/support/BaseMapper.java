@@ -109,14 +109,6 @@ public interface BaseMapper<M> {
     public List<M> search();
 
     /**
-     *
-     * 取出全部数据,并排序
-     * @param order
-     * @return
-     */
-    public List<M> searchOrderBy(String order);
-
-    /**
      * 分页搜索
      * @param page
      * @return
