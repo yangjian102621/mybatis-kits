@@ -24,7 +24,10 @@ public abstract class BaseModel<T> implements Serializable {
         this.id = id;
     }
 
-    protected BaseModel() {}
+    protected BaseModel() {
+        this.createTime = new Date();
+        this.updateTime = createTime;
+    }
 
     protected BaseModel(T id) {
         this.id = id;
