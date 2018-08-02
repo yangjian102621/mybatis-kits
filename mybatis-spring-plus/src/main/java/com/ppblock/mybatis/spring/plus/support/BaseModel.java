@@ -4,18 +4,25 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 基础model
- *
- * @author chenzhaoju
- * Modified By : yangjian
+ * 通用数据模型，作为一般数据模型的基础类
+ * @author yangjian
  */
 public abstract class BaseModel<T> implements Serializable {
-    /** id */
-    private T id ;
-    /** 创建时间 */
-    private Date createTime;
-    /** 更新时间 */
-    private Date updateTime;
+
+    //主键ID, 泛型，一般是字符串类型的或者整数形的
+    protected T id;
+    // 创建时间
+    protected Date createTime;
+    // 最后一次更新时间
+    protected Date updateTime;
+
+    public T getId() {
+        return id;
+    }
+
+    public void setId(T id) {
+        this.id = id;
+    }
 
     protected BaseModel() {}
 
@@ -25,30 +32,19 @@ public abstract class BaseModel<T> implements Serializable {
         this.updateTime = createTime;
     }
 
-    public T getId() {
-        return id;
-    }
-
     public Date getCreateTime() {
         return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public Date getUpdateTime() {
         return updateTime;
     }
 
-    public BaseModel setCreateTime(Date createTime) {
-        this.createTime = createTime;
-        return this;
-    }
-
-    public BaseModel setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-        return this;
-    }
-
-    public BaseModel setId(T id) {
-        this.id = id;
-        return this;
     }
 }
