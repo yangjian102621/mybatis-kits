@@ -10,11 +10,11 @@ import java.util.Date;
 public abstract class BaseModel<T> implements Serializable {
 
     //主键ID, 泛型，一般是字符串类型的或者整数形的
-    protected T id;
+    public T id;
     // 创建时间
-    protected Date createTime;
+    public Date createTime;
     // 最后一次更新时间
-    protected Date updateTime;
+    public Date updateTime;
 
     public T getId() {
         return id;
@@ -29,7 +29,7 @@ public abstract class BaseModel<T> implements Serializable {
         this.updateTime = createTime;
     }
 
-    protected BaseModel(T id) {
+    public BaseModel(T id) {
         this.id = id;
         this.createTime = new Date();
         this.updateTime = createTime;
