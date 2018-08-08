@@ -5,10 +5,11 @@ import com.ppblock.mybatis.spring.plus.support.BaseModel;
 
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import java.math.BigDecimal;
 
 /**
  *
- * @author chenzhaoju
+ * @author yangjian
  */
 @Table(name = "user")
 public class User extends BaseModel<String> {
@@ -16,7 +17,8 @@ public class User extends BaseModel<String> {
     private String name;
     private int age;
     private int sex;
-    private Integer status;
+    private int status;
+    private BigDecimal balance;
     @Transient
     private int phone;
 
@@ -69,14 +71,26 @@ public class User extends BaseModel<String> {
         this.status = status;
     }
 
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "id='" + this.getId() + '\'' +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", age=" + age +
                 ", sex=" + sex +
                 ", status=" + status +
+                ", balance=" + balance +
                 ", phone=" + phone +
                 '}';
     }

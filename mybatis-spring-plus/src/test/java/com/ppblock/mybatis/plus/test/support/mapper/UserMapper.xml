@@ -23,4 +23,22 @@
             </if>
         </where>
     </select>
+    
+    <update id="mathOpt" parameterType="com.ppblock.mybatis.spring.plus.support.MathOptVo">
+        update user
+        <set>
+            <if test="opt == 'add'">
+                ${field} = ${field} + #{offset} WHERE id = #{id}
+            </if>
+            <if test="opt == 'subtract'">
+                ${field} = ${field} - #{offset} WHERE id = #{id} AND ${field} > #{offset}
+            </if>
+            <if test="opt == 'multiply'">
+                ${field} = ${field} * #{offset} WHERE id = #{id} AND ${offset} != 0
+            </if>
+            <if test="opt == 'divide'">
+                ${field} = ${field} / #{offset} WHERE id = #{id} AND ${offset} != 0
+            </if>
+        </set>
+    </update>
 </mapper>

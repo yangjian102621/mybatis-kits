@@ -7,6 +7,7 @@ import com.ppblock.mybatis.spring.plus.MybatisConfiguration;
 import com.ppblock.mybatis.spring.plus.MybatisSqlSessionFactoryBean;
 import com.ppblock.mybatis.spring.plus.plugins.page.Page;
 import com.ppblock.mybatis.spring.plus.plugins.page.PaginationInterceptor;
+import com.ppblock.mybatis.spring.plus.support.MathOptVo;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.Configuration;
@@ -19,6 +20,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import javax.sql.DataSource;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -174,6 +176,18 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 		for (User user : page.getResults()) {
 			_Logger.info("结果：{}",user);
 		}
+	}
+
+	@Test
+	public void updateBalance() {
+
+		UserMapper userMapper = getUserMapper();
+		String id = "0123456-01";
+		MathOptVo<String, BigDecimal> balance = new MathOptVo<>(id, "balance", BigDecimal.valueOf(Math.random() * 10
+				+ 1), MathOptVo.MULTIPLY);
+		Integer integer = userMapper.mathOpt(balance);
+		System.out.println(integer);
+
 	}
 
 }
