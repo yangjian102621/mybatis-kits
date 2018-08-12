@@ -24,7 +24,7 @@ public interface BaseMapper<M> {
      *
      * @return
      */
-    public String getNewId() ;
+    String getNewId() ;
 
     /**
      *
@@ -33,7 +33,7 @@ public interface BaseMapper<M> {
      * @param model
      * @return int
      */
-    public int add(M model);
+    int add(M model);
 
     /**
      *
@@ -42,7 +42,7 @@ public interface BaseMapper<M> {
      * @param model
      * @return int
      */
-    public int update(M model);
+    int update(M model);
 
     /**
      *
@@ -50,7 +50,7 @@ public interface BaseMapper<M> {
      * @param model
      * @return
      */
-    public int updateAll(M model);
+    int updateAll(M model);
 
     /**
      *
@@ -59,7 +59,7 @@ public interface BaseMapper<M> {
      * @param model
      * @return
      */
-    public int delete(M model);
+    int delete(M model);
 
     /**
      *
@@ -68,14 +68,14 @@ public interface BaseMapper<M> {
      * @param id
      * @return
      */
-    public int delete(Serializable id);
+    int delete(Serializable id);
 
     /**
      * 根据条件批量删除
      * @param conditions
      * @return
      */
-    public int deleteByConditions(Conditions conditions);
+    int deleteByConditions(Conditions conditions);
 
     /**
      *
@@ -84,14 +84,14 @@ public interface BaseMapper<M> {
      * @param id 主键
      * @return M
      */
-    public M get(Serializable id);
+    M get(Serializable id);
 
     /**
      * 根据map 获取一条数据
      * @param map
      * @return
      */
-    public M getByMap(Map<String, Object> map);
+    M getByMap(Map<String, Object> map);
 
     /**
      *
@@ -99,28 +99,28 @@ public interface BaseMapper<M> {
      * @param conditions
      * @return
      */
-    public M getByConditions(Conditions conditions);
+    M getByConditions(Conditions conditions);
 
     /**
      *
      * 取出全部数据
      * @return
      */
-    public List<M> search();
+    List<M> search();
 
     /**
      * 分页搜索
      * @param page
      * @return
      */
-    public Page<M> search(Page<M> page);
+    Page<M> search(Page<M> page);
 
     /**
      * 根据map查询
      * @param map
      * @return
      */
-    public List<M> searchByMap(Map<String, Object> map);
+    List<M> searchByMap(Map<String, Object> map);
 
     /**
      * 分页搜索
@@ -129,27 +129,27 @@ public interface BaseMapper<M> {
      * @param map
      * @return
      */
-    public Page<M> searchByMap(Page<M> page, Map<String, Object> map);
+    Page<M> searchByMap(Page<M> page, Map<String, Object> map);
 
     /**
      * 获取总记录数
      * @return
      */
-    public long getCount();
+    long getCount();
 
     /**
      * 根据map条件查询总记录数
      * @param map
      * @return
      */
-    public long getCountByMap(Map<String, Object> map);
+    long getCountByMap(Map<String, Object> map);
 
     /**
      * 根据 Conditions 条件查询总记录数
      * @param conditions
      * @return
      */
-    public long getCountByConditions(Conditions conditions);
+    long getCountByConditions(Conditions conditions);
 
     /**
      *
@@ -157,7 +157,7 @@ public interface BaseMapper<M> {
      * @param conditions
      * @return
      */
-    public List<M> searchByConditions(Conditions conditions);
+    List<M> searchByConditions(Conditions conditions);
 
     /**
      *
@@ -166,6 +166,6 @@ public interface BaseMapper<M> {
      * @param conditions
      * @return
      */
-    public Page<M> searchByConditions(Page<M> page,Conditions conditions);
+    Page<M> searchByConditions(Page<M> page,Conditions conditions);
 
 }

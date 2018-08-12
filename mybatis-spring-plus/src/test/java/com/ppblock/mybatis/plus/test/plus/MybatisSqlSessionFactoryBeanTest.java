@@ -1,13 +1,16 @@
 package com.ppblock.mybatis.plus.test.plus;
 
 import com.ppblock.mybatis.plus.test.AbstractMybatisTest;
+import com.ppblock.mybatis.plus.test.support.mapper.OrderMapper;
 import com.ppblock.mybatis.plus.test.support.mapper.UserMapper;
+import com.ppblock.mybatis.plus.test.support.model.Order;
 import com.ppblock.mybatis.plus.test.support.model.User;
 import com.ppblock.mybatis.spring.plus.MybatisConfiguration;
 import com.ppblock.mybatis.spring.plus.MybatisSqlSessionFactoryBean;
 import com.ppblock.mybatis.spring.plus.plugins.page.Page;
 import com.ppblock.mybatis.spring.plus.plugins.page.PaginationInterceptor;
 import com.ppblock.mybatis.spring.plus.support.MathOptVo;
+import com.ppblock.mybatis.spring.plus.util.IdUtil;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.Configuration;
@@ -24,6 +27,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -56,7 +60,9 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 		// configuration.setDefaultExecutorType(ExecutorType.REUSE) ; // 使用该配置语句会有重用
 
 		configuration.getTypeAliasRegistry().registerAlias(User.class);
+		configuration.getTypeAliasRegistry().registerAlias(Order.class);
 		configuration.addMapper(UserMapper.class);
+		configuration.addMapper(OrderMapper.class);
 
 		// spring 的步骤
 		builder.setPlugins(new Interceptor[]{new PaginationInterceptor()});
@@ -113,7 +119,7 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 	public void testAdd() throws Exception {
 		UserMapper userMapper = getUserMapper();
 
-		User user = new User("0123456-123", "测试添加", 12, 1);
+		User user = new User(IdUtil.getInstance().getNewId(), "测试添加", 12, 1);
 		user.setStatus(1);
 		userMapper.add(user);
 
@@ -182,12 +188,24 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 	public void updateBalance() {
 
 		UserMapper userMapper = getUserMapper();
-		String id = "0123456-01";
+		String id = "0123456-02";
 		MathOptVo<String, BigDecimal> balance = new MathOptVo<>(id, "balance", BigDecimal.valueOf(Math.random() * 10
-				+ 1), MathOptVo.MULTIPLY);
+				+ 1), MathOptVo.ADD);
 		Integer integer = userMapper.mathOpt(balance);
 		System.out.println(integer);
 
+	}
+
+	/**
+	 * 返回自增 ID 测试
+	 */
+	@Test
+	public void keyGeneratorTest() {
+		SqlSession sqlSession = getSqlSession();
+		OrderMapper mapper = sqlSession.getMapper(OrderMapper.class);
+		Order order = new Order(UUID.randomUUID().toString());
+		mapper.add(order);
+		System.out.println(order);
 	}
 
 }

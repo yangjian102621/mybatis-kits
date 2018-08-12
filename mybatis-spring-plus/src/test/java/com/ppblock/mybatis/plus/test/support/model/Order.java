@@ -1,26 +1,40 @@
 package com.ppblock.mybatis.plus.test.support.model;
 
 
-import com.ppblock.mybatis.spring.plus.support.BaseModel;
+import com.ppblock.mybatis.spring.plus.support.BaseIntegerModel;
 
-import javax.persistence.Transient;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
- *
- * @author chenzhaoju
+ * order model
+ * @author yangjian
  */
-public class Order extends BaseModel {
+@Table(name = "orders")
+public class Order extends BaseIntegerModel {
 
-    private String number;
-    private int count;
-    @Transient
-    private double amount;
+    @Id
+    private String orderNo;
 
-    public Order(String number, int count, double amount) {
-        this.number = number;
-        this.count = count;
-        this.amount = amount;
+    public Order() {}
+
+    public Order(String orderNo) {
+        this.orderNo = orderNo;
     }
 
+    public String getOrderNo() {
+        return orderNo;
+    }
 
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderNo='" + orderNo + '\'' +
+                '}';
+    }
 }

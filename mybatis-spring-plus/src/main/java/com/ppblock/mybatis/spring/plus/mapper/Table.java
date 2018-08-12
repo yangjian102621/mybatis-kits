@@ -3,6 +3,7 @@ package com.ppblock.mybatis.spring.plus.mapper;
 import com.ppblock.mybatis.spring.plus.util.Misc;
 import org.apache.ibatis.builder.MapperBuilderAssistant;
 
+import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -64,10 +65,12 @@ public class Table {
             if(null != transientA){
                 continue;
             }
-            boolean isId = false;
-            if("id".equals(field.getName())){
-                isId = true;
-            }
+            Id id = field.getAnnotation(Id.class);
+            // added by yangjian at 2018-08-11
+            // null == this.idTableField 保证一个 table 只有一个主键 id
+            // 添加 @Id 注解支持, 如果没有添加任何注解，则默认 primaryKey 字段为 id
+            boolean isId = null == this.idTableField && (null != id || "id".equals(field.getName()));
+
             addTableFields(field,isId);
         }
     }

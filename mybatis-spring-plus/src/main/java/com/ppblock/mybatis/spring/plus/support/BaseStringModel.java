@@ -4,35 +4,35 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 通用数据模型，作为一般数据模型的基础类
+ * String 类型 id 的通用数据模型
  * @author yangjian
+ * @since 18-8-11 上午11:21
  */
-public abstract class BaseModel<T> implements Serializable {
+public abstract class BaseStringModel implements Serializable {
 
-    //主键ID, 泛型，一般是字符串类型的或者整数形的
-    public T id;
+    //主键ID
+    public String id;
     // 创建时间
     public Date createTime;
     // 最后一次更新时间
     public Date updateTime;
 
-    public T getId() {
+    protected BaseStringModel() {
+        this(null);
+    }
+
+    public BaseStringModel(String id) {
+        this.id = id;
+        this.createTime = new Date();
+        this.updateTime = createTime;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(T id) {
+    public void setId(String id) {
         this.id = id;
-    }
-
-    protected BaseModel() {
-        this.createTime = new Date();
-        this.updateTime = createTime;
-    }
-
-    public BaseModel(T id) {
-        this.id = id;
-        this.createTime = new Date();
-        this.updateTime = createTime;
     }
 
     public Date getCreateTime() {

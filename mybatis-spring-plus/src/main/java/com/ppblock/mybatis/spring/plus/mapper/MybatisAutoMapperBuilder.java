@@ -6,6 +6,7 @@ import com.ppblock.mybatis.spring.plus.constant.Template;
 import com.ppblock.mybatis.spring.plus.languagedriver.ConditionsLanguageDriver;
 import com.ppblock.mybatis.spring.plus.support.BaseMapper;
 import org.apache.ibatis.builder.MapperBuilderAssistant;
+import org.apache.ibatis.executor.keygen.Jdbc3KeyGenerator;
 import org.apache.ibatis.executor.keygen.KeyGenerator;
 import org.apache.ibatis.executor.keygen.NoKeyGenerator;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -134,12 +135,19 @@ public class MybatisAutoMapperBuilder   {
                 new NoKeyGenerator(), null, null,this.conditionsLanguageDriver);
     }
 
-    private MappedStatement addInsertMappedStatement(MapperBuilderAssistant builderAssistant,Class<?> mapperClass, String id, String sql, Class<?> resultType) {
+    private MappedStatement addInsertMappedStatement(MapperBuilderAssistant builderAssistant,Class<?> mapperClass,
+                                                     String id, String sql, Class<?> resultType, Table table) {
         SqlSource sqlSource = languageDriver.createSqlSource(this.mybatisConfiguration, sql, resultType);
+        Class<?> primaryKeyClass = table.getIdTableField().getJavaType();
+		// 这里根据 id 的类型判断： 如果 id 是 Integer 自增的，则需要给实体注入数据库返回的自增id
+        if (primaryKeyClass.equals(Integer.class)) {
+            return this.addMappedStatement(builderAssistant,mapperClass, id, sqlSource, SqlCommandType.INSERT, resultType, null, int.class,
+                    new Jdbc3KeyGenerator(), table.getIdTableField().getColumnName(), null);
+        } else {
+            return this.addMappedStatement(builderAssistant,mapperClass, id, sqlSource, SqlCommandType.INSERT, resultType, null, int.class,
+                    new NoKeyGenerator(), null, null);
+        }
 
-		//TODO 这些还需要处理id的生成问题
-        return this.addMappedStatement(builderAssistant,mapperClass, id, sqlSource, SqlCommandType.INSERT, resultType, null, int.class,
-                new NoKeyGenerator(), null, null);
     }
 
     private MappedStatement addUpdateMappedStatement(MapperBuilderAssistant builderAssistant,Class<?> mapperClass, String id, String sql, Class<?> resultType) {
@@ -243,7 +251,7 @@ public class MybatisAutoMapperBuilder   {
         Template sqlMethod = Template.ADD;
         String sql = String.format(sqlMethod.getSql(), table.getWrapName(),table.getColumnsSql(),table.getFieldSql());
 
-        addInsertMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, modelClass);
+        addInsertMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, modelClass, table);
     }
 
     /** 增量更新数据 */

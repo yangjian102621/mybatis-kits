@@ -1,33 +1,39 @@
 package com.ppblock.mybatis.plus.test.support.model;
 
 
-import com.ppblock.mybatis.spring.plus.support.BaseModel;
+import com.ppblock.mybatis.spring.plus.support.BaseStringModel;
 
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  *
- * @author yangjian
+ * @author chenzhaoju
  */
 @Table(name = "user")
-public class User extends BaseModel<String> {
+public class User extends BaseStringModel {
 
+    @Id
     private String name;
     private int age;
     private int sex;
     private int status;
-    private BigDecimal balance;
+    private BigDecimal balance = BigDecimal.ZERO;
     @Transient
     private int phone;
 
     public User() {}
 
     public User(String id, String name, int age, int sex) {
+        this.id = id;
         this.name = name;
         this.age = age;
         this.sex = sex;
+        this.createTime = new Date(System.currentTimeMillis());
+        this.updateTime = this.createTime;
     }
 
     public String getName() {
@@ -86,12 +92,15 @@ public class User extends BaseModel<String> {
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", age=" + age +
                 ", sex=" + sex +
                 ", status=" + status +
                 ", balance=" + balance +
                 ", phone=" + phone +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
                 '}';
     }
 }
