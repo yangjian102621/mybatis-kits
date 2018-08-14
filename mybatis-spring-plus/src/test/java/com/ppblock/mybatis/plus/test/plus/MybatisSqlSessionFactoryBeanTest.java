@@ -122,6 +122,7 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 		User user = new User(IdUtil.getInstance().getNewId(), "测试添加", 12, 1);
 		user.setStatus(1);
 		userMapper.add(user);
+		System.out.println(user);
 
 		List<User> userList = userMapper.search();
 		for (User u : userList) {

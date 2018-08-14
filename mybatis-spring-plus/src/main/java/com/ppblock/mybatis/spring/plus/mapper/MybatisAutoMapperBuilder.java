@@ -138,15 +138,8 @@ public class MybatisAutoMapperBuilder   {
     private MappedStatement addInsertMappedStatement(MapperBuilderAssistant builderAssistant,Class<?> mapperClass,
                                                      String id, String sql, Class<?> resultType, Table table) {
         SqlSource sqlSource = languageDriver.createSqlSource(this.mybatisConfiguration, sql, resultType);
-        Class<?> primaryKeyClass = table.getIdTableField().getJavaType();
-		// 这里根据 id 的类型判断： 如果 id 是 Integer 自增的，则需要给实体注入数据库返回的自增id
-        if (primaryKeyClass.equals(Integer.class)) {
-            return this.addMappedStatement(builderAssistant,mapperClass, id, sqlSource, SqlCommandType.INSERT, resultType, null, int.class,
-                    new Jdbc3KeyGenerator(), table.getIdTableField().getColumnName(), null);
-        } else {
-            return this.addMappedStatement(builderAssistant,mapperClass, id, sqlSource, SqlCommandType.INSERT, resultType, null, int.class,
-                    new NoKeyGenerator(), null, null);
-        }
+        return this.addMappedStatement(builderAssistant,mapperClass, id, sqlSource, SqlCommandType.INSERT, resultType, null, int.class,
+                new Jdbc3KeyGenerator(), table.getIdTableField().getColumnName(), null);
 
     }
 

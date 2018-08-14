@@ -1,9 +1,8 @@
 package com.ppblock.mybatis.plus.test.support.model;
 
 
-import com.ppblock.mybatis.spring.plus.support.BaseIntegerModel;
+import com.ppblock.mybatis.spring.plus.support.BaseModel;
 
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -11,9 +10,8 @@ import javax.persistence.Table;
  * @author yangjian
  */
 @Table(name = "orders")
-public class Order extends BaseIntegerModel {
+public class Order extends BaseModel<Integer> {
 
-    @Id
     private String orderNo;
 
     public Order() {}

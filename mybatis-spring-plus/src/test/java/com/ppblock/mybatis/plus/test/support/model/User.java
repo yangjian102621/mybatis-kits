@@ -1,9 +1,8 @@
 package com.ppblock.mybatis.plus.test.support.model;
 
 
-import com.ppblock.mybatis.spring.plus.support.BaseStringModel;
+import com.ppblock.mybatis.spring.plus.support.BaseModel;
 
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.math.BigDecimal;
@@ -14,9 +13,8 @@ import java.util.Date;
  * @author chenzhaoju
  */
 @Table(name = "user")
-public class User extends BaseStringModel {
+public class User extends BaseModel<String> {
 
-    @Id
     private String name;
     private int age;
     private int sex;
