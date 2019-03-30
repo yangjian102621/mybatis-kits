@@ -37,7 +37,7 @@
         <file_encoding>UTF-8</file_encoding>
         <maven_compiler_plugin_version>3.5</maven_compiler_plugin_version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <repo.host>www.nexus.inet</repo.host>
+        <repo.host>nexus.r9it.com</repo.host>
     </properties>
     
     <!-- configures for artifact deployment -->
