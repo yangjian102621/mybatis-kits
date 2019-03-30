@@ -24,6 +24,10 @@
         </where>
     </select>
     
+    <select id="getAmountSum" parameterType="date" resultType="decimal">
+      SELECT SUM(age) as age FROM user WHERE update_time &gt;= #{date};
+    </select>
+    
     <update id="mathOpt" parameterType="com.ppblock.mybatis.spring.plus.support.MathOptVo">
         update user
         <set>

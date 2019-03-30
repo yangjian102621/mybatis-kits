@@ -209,4 +209,10 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 		System.out.println(order);
 	}
 
+	@Test
+	public void testGetAmountSum() {
+		UserMapper userMapper = getUserMapper();
+		System.out.println(userMapper.getAmountSum(new Date()));
+	}
+
 }

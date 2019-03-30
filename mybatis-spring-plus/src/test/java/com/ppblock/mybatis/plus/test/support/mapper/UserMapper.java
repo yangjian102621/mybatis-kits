@@ -7,6 +7,8 @@ import com.ppblock.mybatis.spring.plus.support.BaseMapper;
 import com.ppblock.mybatis.spring.plus.support.MathOptVo;
 import org.apache.ibatis.annotations.Param;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,13 +18,15 @@ import java.util.Map;
  */
 public interface UserMapper extends BaseMapper<User> {
 
-	public Map getUserMap();
+	Map getUserMap();
 
-	public List<User> getUserByName(String name);
+	List<User> getUserByName(String name);
 
-	public Page<User> searchUsers(Page<User> page, @Param("name")String name, @Param("status")Integer status);
+	Page<User> searchUsers(Page<User> page, @Param("name")String name, @Param("status")Integer status);
 
-	public List<User> searchUsers(@Param("name")String name,@Param("status")Integer status);
+	List<User> searchUsers(@Param("name")String name,@Param("status")Integer status);
 
 	Integer mathOpt(MathOptVo vo);
+
+	BigDecimal getAmountSum(Date date);
 }

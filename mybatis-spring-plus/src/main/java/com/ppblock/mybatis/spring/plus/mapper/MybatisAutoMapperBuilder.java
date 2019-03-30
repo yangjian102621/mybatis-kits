@@ -53,13 +53,13 @@ public class MybatisAutoMapperBuilder   {
             Table table = Table.valueOf(builderAssistant,actualModelClass);
 
             if(null != table.getIdTableField()){
-                // 防止没有id字段导致出错吧
+                // 防止没有id字段导致出错
                 get(builderAssistant, boundType, actualModelClass, table);
                 update(builderAssistant, boundType, actualModelClass, table);
                 updateAll(builderAssistant, boundType, actualModelClass, table);
                 delete(builderAssistant, boundType, actualModelClass, table);
                 deleteByConditions(builderAssistant, boundType, actualModelClass, table);
-            }else {
+            } else {
                 _Logger.warn("{}没有定义id字段！！", actualModelClass.getSimpleName());
             }
             getByMap(builderAssistant, boundType, actualModelClass, table);
@@ -71,7 +71,7 @@ public class MybatisAutoMapperBuilder   {
             getCount(builderAssistant, boundType, actualModelClass, table);
             getCountByMap(builderAssistant, boundType, actualModelClass, table);
             getCountByConditions(builderAssistant, boundType, actualModelClass, table);
-            //
+
             add(builderAssistant, boundType, actualModelClass, table);
         }
     }
@@ -281,19 +281,6 @@ public class MybatisAutoMapperBuilder   {
         Template sqlMethod = Template.DELETE;
         String sql = String.format(sqlMethod.getSql(), table.getWrapName(),table.getIdTableField().getColumnName(),table.getIdTableField().getFieldName());
         addDeleteMappedStatement(builderAssistant,mapperClass, sqlMethod.getMethod(), sql, modelClass);
-    }
-
-    /**
-     * 生成排序字段
-     * @return
-     */
-    private String genOrderSql(){
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("\n<if test=\"null != _parameter\">");
-        sb.append("ORDER BY ${_parameter}");
-        sb.append("</if>");
-        return sb.toString();
     }
 
     /**
