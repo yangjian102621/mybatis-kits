@@ -19,6 +19,7 @@ import java.util.Properties;
  * mybatis 配置
  *
  * @author chenzhaoju
+ * @author yangjian
  */
 @ConfigurationProperties(prefix = MybatisProperties.MYBATIS_PREFIX)
 public class MybatisProperties {

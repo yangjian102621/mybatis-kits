@@ -7,6 +7,7 @@ import org.apache.ibatis.datasource.DataSourceFactory;
 import org.apache.ibatis.executor.ErrorContext;
 import org.apache.ibatis.executor.loader.ProxyFactory;
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.io.VFS;
 import org.apache.ibatis.mapping.DatabaseIdProvider;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.parsing.XNode;
@@ -127,7 +128,9 @@ public class XMLConfigBuilder extends BaseBuilder {
             String[] clazzes = value.split(",");
             for (String clazz : clazzes) {
                 if (!clazz.isEmpty()) {
-                    configuration.setVfsImpl(Resources.classForName(clazz));
+                    @SuppressWarnings("unchecked")
+                    Class<? extends VFS> vfsImpl = (Class<? extends VFS>)Resources.classForName(clazz);
+                    configuration.setVfsImpl(vfsImpl);
                 }
             }
         }
