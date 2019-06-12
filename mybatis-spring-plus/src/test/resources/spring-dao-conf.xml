@@ -12,24 +12,24 @@
 		<property name="password" value="123456" />
 	</bean>
 
-	<bean id="sqlSessionFactory" class="com.rockyang.mybatis.spring.plus.MybatisSqlSessionFactoryBean">
+	<bean id="sqlSessionFactory" class="org.rockyang.mybatis.spring.plus.MybatisSqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<!-- 自动扫描Mapping.xml文件 -->
-		<property name="mapperLocations" value="classpath:com/rockyang/mybatis/plus/test/support/mapper/*.xml"/>
+		<property name="mapperLocations" value="classpath:org/rockyang/mybatis/plus/test/support/mapper/*.xml"/>
 		<property name="configLocation" value="classpath:mybatis-config.xml"/>
-		<property name="typeAliasesPackage" value="com.rockyang.mybatis.plus.test.support.model"/>
+		<property name="typeAliasesPackage" value="org.rockyang.mybatis.plus.test.support.model"/>
 		<property name="plugins">
 			<array>
 				<!-- 分页插件配置 -->
-				<!--<bean id="conditionsInterceptor" class="com.rockyang.mybatis.spring.plus.plugins.conditions.ConditionsInterceptor"/>-->
-				<bean id="paginationInterceptor" class="com.rockyang.mybatis.spring.plus.plugins.page.PaginationInterceptor"/>
+				<!--<bean id="conditionsInterceptor" class="org.rockyang.mybatis.spring.plus.plugins.conditions.ConditionsInterceptor"/>-->
+				<bean id="paginationInterceptor" class="org.rockyang.mybatis.spring.plus.plugins.page.PaginationInterceptor"/>
 			</array>
 		</property>
 	</bean>
 
 	<!-- MyBatis 动态扫描  -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.rockyang.mybatis.plus.test.support.mapper"/>
+		<property name="basePackage" value="org.rockyang.mybatis.plus.test.support.mapper"/>
 	</bean>
 
 </beans>

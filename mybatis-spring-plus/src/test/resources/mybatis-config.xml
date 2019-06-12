@@ -30,17 +30,16 @@
 	</settings>
 
 	<!--<typeAliases>-->
-		<!--<typeAlias type="com.rockyang.mybatis.support.model.User" alias="User" />-->
+		<!--<typeAlias type="org.rockyang.mybatis.support.model.User" alias="User" />-->
 	<!--</typeAliases>-->
 
     <!--<plugins>-->
-        <!--<plugin interceptor="com.rockyang.mybatis.plus.plugins.page.PaginationInterceptor"></plugin>-->
+        <!--<plugin interceptor="org.rockyang.mybatis.plus.plugins.page.PaginationInterceptor"></plugin>-->
     <!--</plugins>-->
 
 	<!--<mappers>-->
-		<!--<mapper resource="com/rockyang/mydemo/user/mapper/UserMapper.xml" />-->
+		<!--<mapper resource="org/rockyang/mydemo/user/mapper/UserMapper.xml" />-->
 	<!--</mappers>-->
-
 
 </configuration>
     
