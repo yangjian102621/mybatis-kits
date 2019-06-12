@@ -1,3 +1,3 @@
-MyBatis-SpringBoot-All
+MyBatis-Kits
 ==========
-MyBatis 中间件，实现了 CRUD，各种自定义查询，以及分页查询
+MyBatis 增强工具包，实现了便捷的单表 CRUD，各种自定义条件查询，以及物理分页查询，像使用 PHP 操作数据库一样简单。

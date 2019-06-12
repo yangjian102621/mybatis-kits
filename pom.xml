@@ -13,7 +13,7 @@
     <description>${project.name}</description>
 
     <modules>
-        <module>mybatis-spring-plus</module>
+        <module>mybatis-kits-core</module>
         <module>mybatis-spring-boot</module>
     </modules>
 
@@ -158,11 +158,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>3.5</version>
+                <version>2.5.3</version>
                 <configuration>
                     <goals>deploy</goals>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
-                    <tagNameFormat>release-@{project.version}</tagNameFormat>
+                    <tagNameFormat>${project.version}</tagNameFormat>
                 </configuration>
             </plugin>
         </plugins>

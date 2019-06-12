@@ -9,7 +9,7 @@
         <version>1.5.0</version>
     </parent>
     
-    <artifactId>mybatis-spring-plus</artifactId>
+    <artifactId>mybatis-kits-core</artifactId>
     <name>${project.artifactId}</name>
     <packaging>jar</packaging>
     

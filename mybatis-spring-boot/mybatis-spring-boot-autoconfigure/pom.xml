@@ -28,8 +28,7 @@
         
         <dependency>
             <groupId>org.rockyang</groupId>
-            <artifactId>mybatis-spring-plus</artifactId>
-            <version>${project.parent.version}</version>
+            <artifactId>mybatis-kits-core</artifactId>
         </dependency>
 
     </dependencies>
