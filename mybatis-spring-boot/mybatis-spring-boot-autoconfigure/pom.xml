@@ -4,19 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.rockyang.mybatis</groupId>
-        <artifactId>mybatis-plus-all</artifactId>
-        <version>1.4-SNAPSHOT</version>
+        <groupId>org.rockyang</groupId>
+        <artifactId>mybatis-spring-boot</artifactId>
+        <version>1.5.0</version>
     </parent>
     <artifactId>mybatis-spring-boot-autoconfigure</artifactId>
     <name>${project.artifactId}</name>
 
     <dependencies>
-        <dependency>
-            <groupId>org.rockyang.mybatis</groupId>
-            <artifactId>mybatis-spring-plus</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
+        <!-- Compile dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
@@ -24,6 +20,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.rockyang</groupId>
+            <artifactId>mybatis-spring-plus</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
 
     </dependencies>

@@ -4,13 +4,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.rockyang.mybatis</groupId>
-        <artifactId>mybatis-plus-all</artifactId>
-        <version>1.4-SNAPSHOT</version>
+        <groupId>org.rockyang</groupId>
+        <artifactId>mybatis-kits</artifactId>
+        <version>1.5.0</version>
     </parent>
+    
     <artifactId>mybatis-spring-plus</artifactId>
     <name>${project.artifactId}</name>
     <packaging>jar</packaging>
+    
+    <properties>
+        <spring.version>4.3.8.RELEASE</spring.version>
+        <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -18,21 +24,36 @@
             <artifactId>mybatis</artifactId>
         </dependency>
         <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+        </dependency>
+        
+        <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
+            <version>${mybatis-spring.version}</version>
+            <scope>provided</scope>
         </dependency>
+        
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+            <scope>provided</scope>
         </dependency>
+        
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -45,11 +66,13 @@
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
         </dependency>
+    
         <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.9</version>
         </dependency>
-
+        
         <!-- 测试使用 -->
         <dependency>
             <groupId>mysql</groupId>
@@ -59,13 +82,9 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot.version}</version>
             <scope>test</scope>
         </dependency>
-	    <dependency>
-		    <groupId>joda-time</groupId>
-		    <artifactId>joda-time</artifactId>
-		    <version>2.9.9</version>
-	    </dependency>
 
     </dependencies>
 

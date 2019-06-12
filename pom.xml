@@ -3,25 +3,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.9.RELEASE</version>
-    </parent>
-
-    <groupId>org.rockyang.mybatis</groupId>
-    <artifactId>mybatis-plus-all</artifactId>
-    <version>1.4-SNAPSHOT</version>
+    
+    <groupId>org.rockyang</groupId>
+    <artifactId>mybatis-kits</artifactId>
+    <version>1.5.0</version>
     <packaging>pom</packaging>
 
-    <name>mybatis-all</name>
+    <name>mybatis-kits</name>
     <description>${project.name}</description>
 
     <modules>
         <module>mybatis-spring-plus</module>
-        <module>mybatis-spring-boot-autoconfigure</module>
-        <module>mybatis-spring-boot-starter</module>
+        <module>mybatis-spring-boot</module>
     </modules>
 
     <properties>
@@ -70,6 +63,8 @@
                 <artifactId>persistence-api</artifactId>
                 <version>1.0</version>
             </dependency>
+            
+            <!--  logger -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
@@ -139,6 +134,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.2</version>
                 <configuration>
                     <fork>true</fork>
                     <source>${java_source_version}</source>

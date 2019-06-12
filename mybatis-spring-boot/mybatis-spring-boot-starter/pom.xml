@@ -4,19 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.rockyang.mybatis</groupId>
-        <artifactId>mybatis-plus-all</artifactId>
-        <version>1.4-SNAPSHOT</version>
+        <groupId>org.rockyang</groupId>
+        <artifactId>mybatis-spring-boot</artifactId>
+        <version>1.5.0</version>
     </parent>
     <artifactId>mybatis-spring-boot-starter</artifactId>
     <name>${project.artifactId}</name>
 
     <dependencies>
-        <dependency>
-            <groupId>org.rockyang.mybatis</groupId>
-            <artifactId>mybatis-spring-boot-autoconfigure</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
+        <!-- spring boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -25,6 +21,8 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
+        
+        <!-- mybatis -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
@@ -33,8 +31,13 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
         </dependency>
+    
+        <dependency>
+            <groupId>org.rockyang</groupId>
+            <artifactId>mybatis-spring-boot-autoconfigure</artifactId>
+        </dependency>
 
-        <!-- 测试使用 -->
+        <!-- for test -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -43,6 +46,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <version>${spring-boot.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
