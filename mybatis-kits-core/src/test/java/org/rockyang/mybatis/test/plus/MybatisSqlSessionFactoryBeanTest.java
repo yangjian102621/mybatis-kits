@@ -1,12 +1,11 @@
-package org.rockyang.mybatis.plus.test.plus;
+package org.rockyang.mybatis.test.plus;
 
-import org.rockyang.mybatis.plus.test.AbstractMybatisTest;
-import org.rockyang.mybatis.plus.test.support.mapper.OrderMapper;
-import org.rockyang.mybatis.plus.test.support.mapper.UserMapper;
-import org.rockyang.mybatis.plus.test.support.model.Order;
-import org.rockyang.mybatis.plus.test.support.model.User;
+import org.rockyang.mybatis.test.AbstractMybatis;
+import org.rockyang.mybatis.test.support.mapper.OrderMapper;
+import org.rockyang.mybatis.test.support.mapper.UserMapper;
+import org.rockyang.mybatis.test.support.model.Order;
+import org.rockyang.mybatis.test.support.model.User;
 import org.rockyang.mybatis.plus.MybatisConfiguration;
-import org.rockyang.mybatis.plus.MybatisSqlSessionFactoryBean;
 import org.rockyang.mybatis.plus.plugins.page.Page;
 import org.rockyang.mybatis.plus.plugins.page.PaginationInterceptor;
 import org.rockyang.mybatis.plus.support.MathOptVo;
@@ -39,13 +38,13 @@ import static org.junit.Assert.assertNotNull;
  * @author chenzhaoju
  * @author yangjian
  */
-public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
+public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatis {
 
 	private SqlSessionFactory sqlSessionFactory;
 
 	@Before
 	public void buildSessionFactory() throws Exception {
-		MybatisSqlSessionFactoryBean builder = new MybatisSqlSessionFactoryBean();
+		org.rockyang.mybatis.plus.MybatisSqlSessionFactoryBean builder = new org.rockyang.mybatis.plus.MybatisSqlSessionFactoryBean();
 
 		Configuration configuration = new MybatisConfiguration();
 		DataSource dataSource = getDataSource();
@@ -56,8 +55,13 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 
 		configuration.setLazyLoadingEnabled(true);
 		configuration.setCacheEnabled(false);// 该配置直接开启缓存 ,默认是开启的
-		configuration.setDefaultExecutorType(ExecutorType.SIMPLE) ; // 配置默认的执行器。SIMPLE 就是普通的执行器；REUSE 执行器会重用预处理语句（prepared statements）； BATCH 执行器将重用语句并执行批量更新;
-		// configuration.setDefaultExecutorType(ExecutorType.REUSE) ; // 使用该配置语句会有重用
+		/**
+		 * 配置默认的执行器。SIMPLE 就是普通的执行器；
+		 * REUSE 执行器会重用预处理语句（prepared statements）；
+		 * BATCH 执行器将重用语句并执行批量更新;
+		 */
+		//configuration.setDefaultExecutorType(ExecutorType.REUSE) ;
+		configuration.setDefaultExecutorType(ExecutorType.SIMPLE) ;
 
 		configuration.getTypeAliasRegistry().registerAlias(User.class);
 		configuration.getTypeAliasRegistry().registerAlias(Order.class);
@@ -84,12 +88,15 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 	}
 
 	@Test
-	public void testSessionFactory() throws Exception {
+	public void testSessionFactory()
+	{
 		SqlSession sqlSession = getSqlSession();
+		_Logger.info("sqlSession, {}", sqlSession);
 	}
 
 	@Test
-	public void testSearchUser() throws Exception {
+	public void testSearchUser()
+	{
 		UserMapper userMapper = getUserMapper();
 		List<User> userList = userMapper.search();
 		for (User user : userList) {
@@ -98,14 +105,16 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 	}
 
 	@Test
-	public void testGetUser() throws Exception {
+	public void testGetUser()
+	{
 		UserMapper userMapper = getUserMapper();
 		User user = userMapper.get("0123456-01");
 		_Logger.info("结果：{}",user);
 	}
 
 	@Test
-	public void testGetUserMuti() throws Exception {
+	public void testGetUserMuti()
+	{
 		UserMapper userMapper = getUserMapper();
 		User user = userMapper.get("0123456-01");
 		_Logger.info("结果：{}", user);
@@ -116,7 +125,8 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 	}
 
 	@Test
-	public void testAdd() throws Exception {
+	public void testAdd()
+	{
 		UserMapper userMapper = getUserMapper();
 
 		User user = new User(IdUtil.getInstance().getNewId(), "测试添加", 12, 1);
@@ -131,7 +141,8 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 	}
 
 	@Test
-	public void testUpdate() throws Exception {
+	public void testUpdate()
+	{
 		UserMapper userMapper = getUserMapper();
 		User user = userMapper.get("0123456-01");
 		_Logger.info("结果：{}", user);
@@ -144,7 +155,8 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 	}
 
 	@Test
-	public void testSearchByMap() throws Exception {
+	public void testSearchByMap()
+	{
 		UserMapper userMapper = getUserMapper();
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -158,7 +170,8 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 	}
 
 	@Test
-	public void testSearchPage() throws Exception {
+	public void testSearchPage()
+	{
 		UserMapper userMapper = getUserMapper();
 		Page<User> page = new Page<User>();
 		page.setPageSize(2);
@@ -170,7 +183,8 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 	}
 
 	@Test
-	public void testSearchByMapPage() throws Exception {
+	public void testSearchByMapPage()
+	{
 		UserMapper userMapper = getUserMapper();
 
 		HashMap<String, Object> map = new HashMap<String, Object>();

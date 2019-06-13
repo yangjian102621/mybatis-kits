@@ -1,24 +1,21 @@
-package org.rockyang.mybatis.plus.test.support.mapper;
+package org.rockyang.mybatis.test.support.mapper;
 
 
-import org.rockyang.mybatis.plus.test.support.model.User;
+import org.apache.ibatis.annotations.Param;
 import org.rockyang.mybatis.plus.plugins.page.Page;
 import org.rockyang.mybatis.plus.support.BaseMapper;
 import org.rockyang.mybatis.plus.support.MathOptVo;
-import org.apache.ibatis.annotations.Param;
+import org.rockyang.mybatis.test.support.model.User;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * user mapper
  * @author yangjian
  */
 public interface UserMapper extends BaseMapper<User> {
-
-	Map getUserMap();
 
 	List<User> getUserByName(String name);
 

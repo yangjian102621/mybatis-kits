@@ -1,23 +1,21 @@
-package org.rockyang.mybatis.plus.test.plus;
+package org.rockyang.mybatis.test.plus;
 
-import org.rockyang.mybatis.plus.test.AbstractMybatisTest;
-import org.rockyang.mybatis.plus.test.support.mapper.UserMapper;
-import org.rockyang.mybatis.plus.test.support.model.User;
-import org.rockyang.mybatis.plus.MybatisConfiguration;
-import org.rockyang.mybatis.plus.MybatisSqlSessionFactoryBean;
-import org.rockyang.mybatis.plus.support.Conditions;
-import org.rockyang.mybatis.plus.support.ext.Restrictions;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.Environment;
-import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ExecutorType;
-import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.junit.Before;
 import org.junit.Test;
+import org.rockyang.mybatis.plus.MybatisConfiguration;
+import org.rockyang.mybatis.plus.MybatisSqlSessionFactoryBean;
+import org.rockyang.mybatis.plus.support.Conditions;
+import org.rockyang.mybatis.plus.support.ext.Restrictions;
+import org.rockyang.mybatis.test.AbstractMybatis;
+import org.rockyang.mybatis.test.support.mapper.UserMapper;
+import org.rockyang.mybatis.test.support.model.User;
 
 import javax.sql.DataSource;
 import java.util.Collection;
@@ -30,7 +28,7 @@ import java.util.Collection;
  * @author chenzhaoju
  * @author yangjian
  */
-public class MappedStatementTest extends AbstractMybatisTest {
+public class MappedStatementTest extends AbstractMybatis {
 	private Configuration configuration ;
 	private SqlSessionFactory sqlSessionFactory;
 
@@ -47,8 +45,13 @@ public class MappedStatementTest extends AbstractMybatisTest {
 
 		configuration.setLazyLoadingEnabled(true);
 		configuration.setCacheEnabled(false);// 该配置直接开启缓存 ,默认是开启的
-		configuration.setDefaultExecutorType(ExecutorType.SIMPLE) ; // 配置默认的执行器。SIMPLE 就是普通的执行器；REUSE 执行器会重用预处理语句（prepared statements）； BATCH 执行器将重用语句并执行批量更新;
-		// configuration.setDefaultExecutorType(ExecutorType.REUSE) ; // 使用该配置语句会有重用
+		/**
+		 * 配置默认的执行器。SIMPLE 就是普通的执行器；
+		 * REUSE 执行器会重用预处理语句（prepared statements）；
+		 * BATCH 执行器将重用语句并执行批量更新;
+		 */
+		//configuration.setDefaultExecutorType(ExecutorType.REUSE) ;
+		configuration.setDefaultExecutorType(ExecutorType.SIMPLE) ;
 
 		configuration.getTypeAliasRegistry().registerAlias(User.class);
 		configuration.addMapper(UserMapper.class);
@@ -61,15 +64,12 @@ public class MappedStatementTest extends AbstractMybatisTest {
 		sqlSessionFactory = builder.getObject();
 	}
 
-	private SqlSession getSqlSession() {
-		return sqlSessionFactory.openSession();
-	}
-
 	@Test
-	public void testGetMapperStatement() throws Exception {
-		Collection<MappedStatement> mappedStatements = configuration.getMappedStatements();
+	public void testGetMapperStatement()
+	{
+		Collection<org.apache.ibatis.mapping.MappedStatement> mappedStatements = configuration.getMappedStatements();
 		Collection<String> mappedStatementNames = configuration.getMappedStatementNames();
-		MappedStatement mappedStatement = configuration.getMappedStatement("org.rockyang.mybatis.plus.test.support" +
+		org.apache.ibatis.mapping.MappedStatement mappedStatement = configuration.getMappedStatement("org.rockyang.mybatis.plus.test.support" +
 				".dao.mapper.UserMapper.selectUser");
 		System.out.println(mappedStatement);
 		BoundSql boundSql = mappedStatement.getBoundSql("34234234");
@@ -78,12 +78,13 @@ public class MappedStatementTest extends AbstractMybatisTest {
 	}
 
 	@Test
-	public void testSearchByConditionsMapper() throws Exception {
+	public void testSearchByConditionsMapper()
+	{
 		Conditions conditions = new Conditions();
 		//conditions.add(Restrictions.eq("name", "名字"));
 		conditions.add(Restrictions.or(Restrictions.like("name", "名字"),Restrictions.and(Restrictions.eq("count", 1),Restrictions.eq("count", 2))));
 
-		MappedStatement mappedStatement = configuration.getMappedStatement("org.rockyang.mybatis.plus.test.support" +
+		org.apache.ibatis.mapping.MappedStatement mappedStatement = configuration.getMappedStatement("org.rockyang.mybatis.plus.test.support" +
 				".dao.mapper.UserMapper.searchByConditions");
 
 		BoundSql boundSql = mappedStatement.getBoundSql(conditions);

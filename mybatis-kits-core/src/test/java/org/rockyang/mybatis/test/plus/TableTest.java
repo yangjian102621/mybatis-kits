@@ -1,7 +1,7 @@
-package org.rockyang.mybatis.plus.test.plus;
+package org.rockyang.mybatis.test.plus;
 
-import org.rockyang.mybatis.plus.test.support.model.Order;
-import org.rockyang.mybatis.plus.test.support.model.User;
+import org.rockyang.mybatis.test.support.model.Order;
+import org.rockyang.mybatis.test.support.model.User;
 import org.rockyang.mybatis.plus.mapper.Table;
 import org.junit.Test;
 
@@ -13,7 +13,8 @@ import org.junit.Test;
 public class TableTest {
 
     @Test
-    public void testTable() throws Exception {
+    public void testTable()
+    {
 
         Table tableUser = Table.valueOf(User.class, "com.fiidee.mybatis.support.model.User");
         System.out.println(tableUser);
@@ -22,7 +23,8 @@ public class TableTest {
     }
 
     @Test
-    public void testColumnSql() throws Exception {
+    public void testColumnSql()
+    {
         Table tableUser = Table.valueOf(User.class, "com.fiidee.mybatis.support.model.User");
         Table tableOrder = Table.valueOf(Order.class, "com.fiidee.mybatis.support.model.Order");
 

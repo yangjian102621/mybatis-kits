@@ -1,9 +1,9 @@
-package org.rockyang.mybatis.plus.test.plus;
+package org.rockyang.mybatis.test.plus;
 
-import org.rockyang.mybatis.plus.test.AbstractMybatisTest;
-import org.rockyang.mybatis.plus.test.support.mapper.OrderMapper;
-import org.rockyang.mybatis.plus.test.support.mapper.UserMapper;
-import org.rockyang.mybatis.plus.test.support.model.User;
+import org.rockyang.mybatis.test.AbstractMybatis;
+import org.rockyang.mybatis.test.support.mapper.OrderMapper;
+import org.rockyang.mybatis.test.support.mapper.UserMapper;
+import org.rockyang.mybatis.test.support.model.User;
 import org.rockyang.mybatis.plus.plugins.page.Page;
 import org.rockyang.mybatis.plus.support.Conditions;
 import org.rockyang.mybatis.plus.support.Order;
@@ -35,7 +35,8 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring-dao-conf.xml")
 public class MybatisSqlSessionFactoryBeanXmlTest {
-	public static final Logger _Logger = LoggerFactory.getLogger(AbstractMybatisTest.class);
+
+	public static final Logger _Logger = LoggerFactory.getLogger(AbstractMybatis.class);
 
 	@Resource
 	private SqlSessionFactory sqlSessionFactory;
@@ -58,19 +59,23 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testSessionFactory() throws Exception {
+	public void testSessionFactory()
+	{
 		SqlSession sqlSession = getSqlSession();
+		_Logger.info("sqlSession: {}", sqlSession);
 	}
 
 	@Test
-	public void testUserMapper() throws Exception {
+	public void testUserMapper()
+	{
 		UserMapper userMapper = getUserMapper();
 		assertNotNull("userMapper 不能为空",userMapper);
 	}
 
 
 	@Test
-	public void testSearchUser() throws Exception {
+	public void testSearchUser()
+	{
 		UserMapper userMapper = getUserMapper();
 		List<User> userList = userMapper.search();
 		for (User user : userList) {
@@ -79,14 +84,16 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testGetUser() throws Exception {
+	public void testGetUser()
+	{
 		UserMapper userMapper = getUserMapper();
 		User user = userMapper.get("0123456-01");
 		_Logger.info("结果：{}",user);
 	}
 
 	@Test
-	public void testGetByMap() throws Exception {
+	public void testGetByMap()
+	{
 		UserMapper userMapper = getUserMapper();
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -97,7 +104,8 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testGetByConditions() throws Exception {
+	public void testGetByConditions()
+	{
 		UserMapper userMapper = getUserMapper();
 		Conditions conditions = new Conditions();
 		conditions.add(Restrictions.eq("status", "0"));
@@ -106,7 +114,8 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testGetUserMuti() throws Exception {
+	public void testGetUserMuti()
+	{
 		UserMapper userMapper = getUserMapper();
 		User user = userMapper.get("0123456-01");
 		_Logger.info("结果：{}", user);
@@ -117,7 +126,8 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testAdd() throws Exception {
+	public void testAdd()
+	{
 		UserMapper userMapper = getUserMapper();
 
 		User user = new User("0123456-12", "测试添加2", 12, 1);
@@ -130,7 +140,8 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testUpdate() throws Exception {
+	public void testUpdate()
+	{
 		UserMapper userMapper = getUserMapper();
 		User user = userMapper.get("0123456-10");
 		_Logger.info("结果：{}", user);
@@ -144,7 +155,8 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testSearchByMap() throws Exception {
+	public void testSearchByMap()
+	{
 		UserMapper userMapper = getUserMapper();
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -158,7 +170,8 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testSearchPage() throws Exception {
+	public void testSearchPage()
+	{
 		UserMapper userMapper = getUserMapper();
 		Page<User> page = new Page<User>();
 		page.setPageSize(5);
@@ -171,7 +184,8 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testSearchByMapPage() throws Exception {
+	public void testSearchByMapPage()
+	{
 		UserMapper userMapper = getUserMapper();
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -187,7 +201,8 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testSearchByConditions() throws Exception {
+	public void testSearchByConditions()
+	{
 		UserMapper userMapper = getUserMapper();
 
 		Conditions conditions = new Conditions();
@@ -205,7 +220,8 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testSearchByConditionsIn() throws Exception {
+	public void testSearchByConditionsIn()
+	{
 		UserMapper userMapper = getUserMapper();
 
 		Conditions conditions = new Conditions();
@@ -218,7 +234,8 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testSearchByConditionsBetween() throws Exception {
+	public void testSearchByConditionsBetween()
+	{
 		UserMapper userMapper = getUserMapper();
 
 		Conditions conditions = new Conditions();
@@ -231,7 +248,8 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testSearchByConditionsLike() throws Exception {
+	public void testSearchByConditionsLike()
+	{
 		UserMapper userMapper = getUserMapper();
 
 		Conditions conditions = new Conditions();
@@ -244,7 +262,8 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testSearchByConditionsPage() throws Exception {
+	public void testSearchByConditionsPage()
+	{
 		UserMapper userMapper = getUserMapper();
 
 		Page<User> page = new Page<User>();
@@ -261,7 +280,8 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testDeleteUser() throws Exception {
+	public void testDeleteUser()
+	{
 		UserMapper userMapper = getUserMapper();
 		User user = userMapper.get("0123456-02");
 		_Logger.info("结果：{}",user);
@@ -271,7 +291,8 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testGetNewId() throws Exception {
+	public void testGetNewId()
+	{
 		for (int i = 0; i < 1000; i++) {
 			UserMapper userMapper = getUserMapper();
 			String id = userMapper.getNewId();
@@ -280,7 +301,8 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testGetNewIds() throws Exception {
+	public void testGetNewIds()
+	{
 		for (int i = 0; i < 1000; i++) {
 			UserMapper userMapper = getUserMapper();
 			String id = userMapper.getNewId();
@@ -293,14 +315,8 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testUserMap() throws Exception {
-		UserMapper userMapper = getUserMapper();
-		Map userMap = userMapper.getUserMap();
-		_Logger.info("结果：{}",userMap);
-	}
-
-	@Test
-	public void testUserOrderBy() throws Exception {
+	public void testUserOrderBy()
+	{
 		UserMapper userMapper = getUserMapper();
 
 		Conditions conditions = new Conditions();
@@ -315,7 +331,8 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testUserPageOrderBy() throws Exception {
+	public void testUserPageOrderBy()
+	{
 		Page<User> page = new Page<User>();
 		UserMapper userMapper = getUserMapper();
 
@@ -331,14 +348,16 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testGetCount() throws Exception {
+	public void testGetCount()
+	{
 		UserMapper userMapper = getUserMapper();
 		long count = userMapper.getCount();
 		_Logger.info("结果：{}",count);
 	}
 
 	@Test
-	public void testGetCountMap() throws Exception {
+	public void testGetCountMap()
+	{
 		UserMapper userMapper = getUserMapper();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("name","two name");
@@ -348,21 +367,24 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testGetUserByNameName() throws Exception {
+	public void testGetUserByNameName()
+	{
 		UserMapper userMapper = getUserMapper();
 		List<User> userByName = userMapper.getUserByName("first name");
 		_Logger.info("结果：{}",userByName);
 	}
 
 	@Test
-	public void testSearchUsersList() throws Exception {
+	public void testSearchUsersList()
+	{
 		UserMapper userMapper = getUserMapper();
 		List<User> userPage = userMapper.searchUsers("first name", null);
 		_Logger.info("结果：{}",userPage);
 	}
 
 	@Test
-	public void testSearchUsersPage() throws Exception {
+	public void testSearchUsersPage()
+	{
 		UserMapper userMapper = getUserMapper();
 		Page<User> userPage = userMapper.searchUsers(new Page<>(), null, 0);
 		_Logger.info("结果：{}",userPage);

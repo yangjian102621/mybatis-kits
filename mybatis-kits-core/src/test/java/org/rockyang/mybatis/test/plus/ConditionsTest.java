@@ -1,4 +1,4 @@
-package org.rockyang.mybatis.plus.test.plus;
+package org.rockyang.mybatis.test.plus;
 
 import org.rockyang.mybatis.plus.support.Conditions;
 import org.rockyang.mybatis.plus.support.ext.Restrictions;
@@ -11,7 +11,8 @@ import org.junit.Test;
 public class ConditionsTest {
 
     @Test
-    public void testSimpleExpression() throws Exception {
+    public void testSimpleExpression()
+    {
         Conditions conditions = new Conditions();
         conditions.add(Restrictions.eq("count", 2));
         conditions.add(Restrictions.eq("name", "名字"));
@@ -24,7 +25,8 @@ public class ConditionsTest {
     }
 
     @Test
-    public void testBetweenExpression() throws Exception {
+    public void testBetweenExpression()
+    {
         Conditions conditions = new Conditions();
         conditions.add(Restrictions.eq("count", 2));
         conditions.add(Restrictions.between("age",20,30));
@@ -32,7 +34,8 @@ public class ConditionsTest {
     }
 
     @Test
-    public void testConjunction() throws Exception {
+    public void testConjunction()
+    {
         Conditions conditions = new Conditions();
         conditions.add(Restrictions.and(Restrictions.eq("age",18),Restrictions.eq("name","李四")));
         conditions.add(Restrictions.or(Restrictions.eq("count",18),Restrictions.eq("count",29)));
@@ -40,7 +43,8 @@ public class ConditionsTest {
     }
 
     @Test
-    public void testOneConjunction() throws Exception {
+    public void testOneConjunction()
+    {
         Conditions conditions = new Conditions();
         conditions.add(Restrictions.or(Restrictions.eq("count", 18), Restrictions.eq("count", 29)));
         System.out.println(conditions.toSqlString());
