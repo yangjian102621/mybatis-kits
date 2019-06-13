@@ -2,12 +2,13 @@ package org.rockyang.mybatis.plus.test.plus;
 
 import org.rockyang.mybatis.plus.test.support.model.Order;
 import org.rockyang.mybatis.plus.test.support.model.User;
-import org.rockyang.mybatis.spring.plus.mapper.Table;
+import org.rockyang.mybatis.plus.mapper.Table;
 import org.junit.Test;
 
 /**
  *
  * @author chenzhaoju
+ * @author yangjian
  */
 public class TableTest {
 

@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 /**
  *
  * @author chenzhaoju
+ * @author yangjian
  *
  */
 public abstract class AbstractMybatisTest {

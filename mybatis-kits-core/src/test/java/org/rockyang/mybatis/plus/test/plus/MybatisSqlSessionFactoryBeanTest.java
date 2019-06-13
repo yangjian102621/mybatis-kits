@@ -5,12 +5,12 @@ import org.rockyang.mybatis.plus.test.support.mapper.OrderMapper;
 import org.rockyang.mybatis.plus.test.support.mapper.UserMapper;
 import org.rockyang.mybatis.plus.test.support.model.Order;
 import org.rockyang.mybatis.plus.test.support.model.User;
-import org.rockyang.mybatis.spring.plus.MybatisConfiguration;
-import org.rockyang.mybatis.spring.plus.MybatisSqlSessionFactoryBean;
-import org.rockyang.mybatis.spring.plus.plugins.page.Page;
-import org.rockyang.mybatis.spring.plus.plugins.page.PaginationInterceptor;
-import org.rockyang.mybatis.spring.plus.support.MathOptVo;
-import org.rockyang.mybatis.spring.plus.util.IdUtil;
+import org.rockyang.mybatis.plus.MybatisConfiguration;
+import org.rockyang.mybatis.plus.MybatisSqlSessionFactoryBean;
+import org.rockyang.mybatis.plus.plugins.page.Page;
+import org.rockyang.mybatis.plus.plugins.page.PaginationInterceptor;
+import org.rockyang.mybatis.plus.support.MathOptVo;
+import org.rockyang.mybatis.plus.util.IdUtil;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.Configuration;
@@ -37,7 +37,7 @@ import static org.junit.Assert.assertNotNull;
  * </p>
  *
  * @author chenzhaoju
- * @Date 2016-12-22
+ * @author yangjian
  */
 public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatisTest {
 

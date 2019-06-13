@@ -1,7 +1,7 @@
 package org.rockyang.mybatis.plus.test.support.model;
 
 
-import org.rockyang.mybatis.spring.plus.support.BaseModel;
+import org.rockyang.mybatis.plus.support.BaseModel;
 
 import javax.persistence.Table;
 

@@ -3,10 +3,10 @@ package org.rockyang.mybatis.plus.test.plus;
 import org.rockyang.mybatis.plus.test.AbstractMybatisTest;
 import org.rockyang.mybatis.plus.test.support.mapper.UserMapper;
 import org.rockyang.mybatis.plus.test.support.model.User;
-import org.rockyang.mybatis.spring.plus.MybatisConfiguration;
-import org.rockyang.mybatis.spring.plus.MybatisSqlSessionFactoryBean;
-import org.rockyang.mybatis.spring.plus.support.Conditions;
-import org.rockyang.mybatis.spring.plus.support.ext.Restrictions;
+import org.rockyang.mybatis.plus.MybatisConfiguration;
+import org.rockyang.mybatis.plus.MybatisSqlSessionFactoryBean;
+import org.rockyang.mybatis.plus.support.Conditions;
+import org.rockyang.mybatis.plus.support.ext.Restrictions;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -28,7 +28,7 @@ import java.util.Collection;
  * </p>
  *
  * @author chenzhaoju
- * @Date 2016-12-22
+ * @author yangjian
  */
 public class MappedStatementTest extends AbstractMybatisTest {
 	private Configuration configuration ;

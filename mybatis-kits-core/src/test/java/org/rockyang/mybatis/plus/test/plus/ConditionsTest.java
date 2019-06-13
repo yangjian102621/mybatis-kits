@@ -1,11 +1,12 @@
 package org.rockyang.mybatis.plus.test.plus;
 
-import org.rockyang.mybatis.spring.plus.support.Conditions;
-import org.rockyang.mybatis.spring.plus.support.ext.Restrictions;
+import org.rockyang.mybatis.plus.support.Conditions;
+import org.rockyang.mybatis.plus.support.ext.Restrictions;
 import org.junit.Test;
 
 /**
  * @author chenzhaoju
+ * @author yangjian
  */
 public class ConditionsTest {
 

@@ -2,9 +2,9 @@ package org.rockyang.mybatis.plus.test.support.mapper;
 
 
 import org.rockyang.mybatis.plus.test.support.model.User;
-import org.rockyang.mybatis.spring.plus.plugins.page.Page;
-import org.rockyang.mybatis.spring.plus.support.BaseMapper;
-import org.rockyang.mybatis.spring.plus.support.MathOptVo;
+import org.rockyang.mybatis.plus.plugins.page.Page;
+import org.rockyang.mybatis.plus.support.BaseMapper;
+import org.rockyang.mybatis.plus.support.MathOptVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.math.BigDecimal;

@@ -24,7 +24,7 @@
         </where>
     </select>
     
-    <update id="mathOpt" parameterType="org.rockyang.mybatis.spring.plus.support.MathOptVo">
+    <update id="mathOpt" parameterType="org.rockyang.mybatis.plus.support.MathOptVo">
         update user
         <set>
             <if test="opt == 'add'">

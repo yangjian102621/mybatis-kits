@@ -12,7 +12,7 @@
 		<property name="password" value="123456" />
 	</bean>
 
-	<bean id="sqlSessionFactory" class="org.rockyang.mybatis.spring.plus.MybatisSqlSessionFactoryBean">
+	<bean id="sqlSessionFactory" class="org.rockyang.mybatis.plus.MybatisSqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<!-- 自动扫描Mapping.xml文件 -->
 		<property name="mapperLocations" value="classpath:org/rockyang/mybatis/plus/test/support/mapper/*.xml"/>
@@ -22,7 +22,7 @@
 			<array>
 				<!-- 分页插件配置 -->
 				<!--<bean id="conditionsInterceptor" class="org.rockyang.mybatis.spring.plus.plugins.conditions.ConditionsInterceptor"/>-->
-				<bean id="paginationInterceptor" class="org.rockyang.mybatis.spring.plus.plugins.page.PaginationInterceptor"/>
+				<bean id="paginationInterceptor" class="org.rockyang.mybatis.plus.plugins.page.PaginationInterceptor"/>
 			</array>
 		</property>
 	</bean>

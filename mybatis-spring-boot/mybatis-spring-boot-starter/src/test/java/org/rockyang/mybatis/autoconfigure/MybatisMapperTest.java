@@ -2,10 +2,10 @@ package org.rockyang.mybatis.autoconfigure;
 
 import org.rockyang.mybatis.autoconfigure.mapper.UserMapper;
 import org.rockyang.mybatis.autoconfigure.model.User;
-import org.rockyang.mybatis.spring.plus.plugins.page.Page;
-import org.rockyang.mybatis.spring.plus.support.Conditions;
-import org.rockyang.mybatis.spring.plus.support.ext.MatchMode;
-import org.rockyang.mybatis.spring.plus.support.ext.Restrictions;
+import org.rockyang.mybatis.plus.plugins.page.Page;
+import org.rockyang.mybatis.plus.support.Conditions;
+import org.rockyang.mybatis.plus.support.ext.MatchMode;
+import org.rockyang.mybatis.plus.support.ext.Restrictions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -25,8 +25,8 @@ import static org.junit.Assert.assertNotNull;
  * 全局配置测试
  * </p>
  *
- * @author  yangjian
- * @Date 2016-12-22
+ * @author yangjian
+ * @author chenzhaoju
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest

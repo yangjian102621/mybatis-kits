@@ -4,12 +4,12 @@ import org.rockyang.mybatis.plus.test.AbstractMybatisTest;
 import org.rockyang.mybatis.plus.test.support.mapper.OrderMapper;
 import org.rockyang.mybatis.plus.test.support.mapper.UserMapper;
 import org.rockyang.mybatis.plus.test.support.model.User;
-import org.rockyang.mybatis.spring.plus.plugins.page.Page;
-import org.rockyang.mybatis.spring.plus.support.Conditions;
-import org.rockyang.mybatis.spring.plus.support.Order;
-import org.rockyang.mybatis.spring.plus.support.ext.MatchMode;
-import org.rockyang.mybatis.spring.plus.support.ext.Restrictions;
-import org.rockyang.mybatis.spring.plus.util.IdUtils;
+import org.rockyang.mybatis.plus.plugins.page.Page;
+import org.rockyang.mybatis.plus.support.Conditions;
+import org.rockyang.mybatis.plus.support.Order;
+import org.rockyang.mybatis.plus.support.ext.MatchMode;
+import org.rockyang.mybatis.plus.support.ext.Restrictions;
+import org.rockyang.mybatis.plus.util.IdUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
@@ -30,7 +30,7 @@ import static org.junit.Assert.assertNotNull;
  * </p>
  *
  * @author  yangjian
- * @Date 2016-12-22
+ * @author chenzhaoju
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring-dao-conf.xml")
