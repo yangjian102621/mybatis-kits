@@ -5,6 +5,7 @@ import org.rockyang.mybatis.plus.support.Criterion;
 import java.util.Collection;
 
 /**
+ * SQL 条件连接符，默认使用 AND
  * @author chenzhaoju
  * @author yangjian
  */

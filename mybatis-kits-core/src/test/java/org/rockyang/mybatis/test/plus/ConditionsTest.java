@@ -22,6 +22,16 @@ public class ConditionsTest {
         conditions.add(Restrictions.le("num", 130));
         conditions.add(Restrictions.ne("address", "这个地址"));
         System.out.println(conditions.toSqlString());
+
+        Conditions conditions1 = new Conditions();
+        conditions1.eq("count", 2)
+                .eq("name", "名字")
+                .ge("age", 18)
+                .lt("age", 30)
+                .ge("num",8)
+                .le("num", 130)
+                .ne("address", "这个地址");
+        System.out.println(conditions1.toSqlString());
     }
 
     @Test
@@ -47,6 +57,14 @@ public class ConditionsTest {
     {
         Conditions conditions = new Conditions();
         conditions.add(Restrictions.or(Restrictions.eq("count", 18), Restrictions.eq("count", 29)));
+        System.out.println(conditions.toSqlString());
+    }
+
+    @Test
+    public void testSqlRestriction()
+    {
+        Conditions conditions = new Conditions();
+        conditions.add(Restrictions.sqlRestriction("where id = 100 and name = 'xiaoming'", null));
         System.out.println(conditions.toSqlString());
     }
 

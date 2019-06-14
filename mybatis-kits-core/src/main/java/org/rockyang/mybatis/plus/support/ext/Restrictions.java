@@ -91,6 +91,12 @@ public class Restrictions {
         return disjunction( predicates );
     }
 
+    /**
+     * 自定义 SQL 查询
+     * @param sql
+     * @param value
+     * @return
+     */
     public static Criterion sqlRestriction(String sql, Object value) {
         return new SimpleExpression( sql, value, "" );
     }

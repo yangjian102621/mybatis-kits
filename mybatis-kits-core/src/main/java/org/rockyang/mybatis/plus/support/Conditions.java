@@ -1,12 +1,9 @@
 package org.rockyang.mybatis.plus.support;
 
-import org.rockyang.mybatis.plus.support.ext.Restrictions;
+import org.rockyang.mybatis.plus.support.ext.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  *
@@ -66,7 +63,11 @@ public class Conditions implements Criterion,Serializable {
         return toSqlString();
     }
 
-    public String getOrderBySql(){
+    /**
+     * 获取排序 SQL
+     * @return
+     */
+    public String getOrderSqlString(){
         if(0 == this.orders.size()){
             return "";
         }
@@ -80,5 +81,91 @@ public class Conditions implements Criterion,Serializable {
             sql.append(order.toSqlString());
         }
         return sql.toString();
+    }
+
+    /**
+     * 便捷条件操作
+     */
+    public Conditions eq(String propertyName, Object value)
+    {
+        return add(Restrictions.eq(propertyName, value));
+    }
+
+    public Conditions ne(String propertyName, Object value)
+    {
+        return add(Restrictions.ne(propertyName, value));
+    }
+
+    public Conditions like(String propertyName, String value)
+    {
+        return add(Restrictions.like(propertyName, value));
+    }
+
+    public Conditions like(String propertyName, String value, MatchMode matchMode)
+    {
+        return add(Restrictions.like(propertyName, value, matchMode));
+    }
+
+    public Conditions gt(String propertyName, Object value)
+    {
+        return add(Restrictions.gt(propertyName, value));
+    }
+
+
+    public Conditions lt(String propertyName, Object value)
+    {
+        return add(Restrictions.lt(propertyName, value));
+    }
+
+
+    public Conditions le(String propertyName, Object value)
+    {
+        return add(Restrictions.le(propertyName, value));
+    }
+
+    public Conditions ge(String propertyName, Object value)
+    {
+        return add(Restrictions.ge(propertyName, value));
+    }
+
+
+    public Conditions between(String propertyName, Object lo, Object hi)
+    {
+        return add(Restrictions.between(propertyName, lo, hi));
+    }
+
+
+    public Conditions in(String propertyName, Object[] values)
+    {
+        return add(Restrictions.in(propertyName, values));
+    }
+
+
+    public Conditions in(String propertyName, Collection values)
+    {
+        return add(Restrictions.in(propertyName, values));
+    }
+
+    public Conditions isNull(String propertyName)
+    {
+        return add(Restrictions.isNull(propertyName));
+    }
+
+
+    public Conditions isNotNull(String propertyName)
+    {
+        return add(Restrictions.isNotNull(propertyName));
+    }
+
+    public Conditions sqlRestriction(String sql, Object value) {
+        return add(Restrictions.sqlRestriction(sql, value));
+    }
+
+    public Conditions conjunction() {
+        return add(Restrictions.conjunction());
+    }
+
+    public Conditions disjunction() {
+        return add(Restrictions.disjunction());
     }
 }
