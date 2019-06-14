@@ -16,7 +16,7 @@ public abstract class AbstractMybatis {
     public static final Logger _Logger = LoggerFactory.getLogger(AbstractMybatis.class);
 
     private String driverClassName = "com.mysql.jdbc.Driver" ;
-    private String url = "jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=utf8" ;
+    private String url = "jdbc:mysql://127.0.0.1:3306/mybatis-kits-demo?useUnicode=true&characterEncoding=utf8" ;
     private String username = "root" ;
     private String password = "123456" ;
 

@@ -17,33 +17,4 @@
 		<module>spring-boot-starter-demo</module>
 	</modules>
 	
-	<properties>
-		<spring-boot.version>2.1.1.RELEASE</spring-boot.version>
-	</properties>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-web</artifactId>
-				<version>${spring-boot.version}</version>
-			</dependency>
-			
-			<dependency>
-				<groupId>org.rockyang</groupId>
-				<artifactId>mybatis-spring-boot-starter</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.ppblock.mybatis</groupId>
-				<artifactId>mybatis-spring-plus</artifactId>
-				<version>${ppblock-mybatis.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>mysql</groupId>
-				<artifactId>mysql-connector-java</artifactId>
-				<version>${mysql.version}</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 </project>

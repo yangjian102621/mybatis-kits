@@ -1,4 +1,4 @@
-package org.rockyang.mybatis.autoconfigure.model;
+package org.rockyang.mybatis.boot.demo.test.model;
 
 
 import javax.persistence.Transient;

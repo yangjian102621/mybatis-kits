@@ -1,7 +1,7 @@
-package org.rockyang.mybatis.autoconfigure;
+package org.rockyang.mybatis.boot.demo.test;
 
-import org.rockyang.mybatis.autoconfigure.mapper.UserMapper;
-import org.rockyang.mybatis.autoconfigure.model.User;
+import org.rockyang.mybatis.boot.demo.test.mapper.UserMapper;
+import org.rockyang.mybatis.boot.demo.test.model.User;
 import org.rockyang.mybatis.plus.plugins.page.Page;
 import org.rockyang.mybatis.plus.support.Conditions;
 import org.rockyang.mybatis.plus.support.ext.MatchMode;

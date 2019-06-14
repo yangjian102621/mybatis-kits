@@ -1,4 +1,4 @@
-package org.rockyang.mybatis.autoconfigure;
+package org.rockyang.mybatis.boot.demo.test;
 
 
 import org.mybatis.spring.annotation.MapperScan;

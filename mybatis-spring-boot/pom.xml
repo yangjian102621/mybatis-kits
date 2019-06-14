@@ -11,10 +11,6 @@
 	<packaging>pom</packaging>
 	<artifactId>mybatis-spring-boot</artifactId>
 	
-	<properties>
-		<spring-boot.version>2.1.1.RELEASE</spring-boot.version>
-	</properties>
-	
 	<modules>
 		<module>mybatis-spring-boot-autoconfigure</module>
 		<module>mybatis-spring-boot-starter</module>

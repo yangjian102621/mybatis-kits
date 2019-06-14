@@ -30,6 +30,11 @@
             <groupId>org.rockyang.mybatis</groupId>
             <artifactId>mybatis-kits-core</artifactId>
         </dependency>
+    
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
 
     </dependencies>
 
