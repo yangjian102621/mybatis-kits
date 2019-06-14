@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>mybatis-kits</artifactId>
+		<groupId>org.rockyang.mybatis</groupId>
+		<version>1.5.0</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	
+	<artifactId>demos</artifactId>
+	<packaging>pom</packaging>
+	
+	<description>Mybatis-Kit demo projects</description>
+	<modules>
+		<module>spring-boot-starter-demo</module>
+	</modules>
+	
+	<properties>
+		<spring-boot.version>2.1.1.RELEASE</spring-boot.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${spring-boot.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.rockyang</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.ppblock.mybatis</groupId>
+				<artifactId>mybatis-spring-plus</artifactId>
+				<version>${ppblock-mybatis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>
