@@ -67,7 +67,7 @@ public class Conditions implements Criterion,Serializable {
      * 获取排序 SQL
      * @return
      */
-    public String getOrderSqlString(){
+    public String getOrderBySql(){
         if(0 == this.orders.size()){
             return "";
         }

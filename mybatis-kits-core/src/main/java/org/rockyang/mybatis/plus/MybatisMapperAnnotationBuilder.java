@@ -40,8 +40,8 @@ import java.util.*;
  */
 public class MybatisMapperAnnotationBuilder extends MapperAnnotationBuilder {
 
-    private final Set<Class<? extends Annotation>> sqlAnnotationTypes = new HashSet<Class<? extends Annotation>>();
-    private final Set<Class<? extends Annotation>> sqlProviderAnnotationTypes = new HashSet<Class<? extends Annotation>>();
+    private final Set<Class<? extends Annotation>> sqlAnnotationTypes = new HashSet<>();
+    private final Set<Class<? extends Annotation>> sqlProviderAnnotationTypes = new HashSet<>();
 
     private Configuration configuration;
     private MapperBuilderAssistant assistant;

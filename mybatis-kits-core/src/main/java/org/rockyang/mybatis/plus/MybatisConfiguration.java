@@ -7,7 +7,7 @@ import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSession;
 
 /**
- * 拓展mybatis 的配置对象
+ * 拓展 mybatis 的配置对象
  *
  * @author yangjian
  * @author chenzhaoju

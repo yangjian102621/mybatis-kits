@@ -18,7 +18,7 @@ import java.util.*;
 public class MybatisMapperRegistry extends MapperRegistry {
 
     private final Configuration config;
-    private final Map<Class<?>, MapperProxyFactory<?>> knownMappers = new HashMap<Class<?>, MapperProxyFactory<?>>();
+    private final Map<Class<?>, MapperProxyFactory<?>> knownMappers = new HashMap<>();
 
     public MybatisMapperRegistry(Configuration config) {
         super(config);

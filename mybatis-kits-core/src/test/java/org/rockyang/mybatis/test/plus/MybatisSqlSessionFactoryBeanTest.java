@@ -1,5 +1,6 @@
 package org.rockyang.mybatis.test.plus;
 
+import org.rockyang.mybatis.spring.MybatisSqlSessionFactoryBean;
 import org.rockyang.mybatis.test.AbstractMybatis;
 import org.rockyang.mybatis.test.support.mapper.OrderMapper;
 import org.rockyang.mybatis.test.support.mapper.UserMapper;
@@ -44,7 +45,7 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatis {
 
 	@Before
 	public void buildSessionFactory() throws Exception {
-		org.rockyang.mybatis.plus.MybatisSqlSessionFactoryBean builder = new org.rockyang.mybatis.plus.MybatisSqlSessionFactoryBean();
+		MybatisSqlSessionFactoryBean builder = new MybatisSqlSessionFactoryBean();
 
 		Configuration configuration = new MybatisConfiguration();
 		DataSource dataSource = getDataSource();

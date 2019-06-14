@@ -16,17 +16,17 @@ public class TableTest {
     public void testTable()
     {
 
-        Table tableUser = Table.valueOf(User.class, "com.fiidee.mybatis.support.model.User");
+        Table tableUser = Table.valueOf(User.class, User.class.toString());
         System.out.println(tableUser);
-        Table tableOrder = Table.valueOf(Order.class, "com.fiidee.mybatis.support.model.Order");
+        Table tableOrder = Table.valueOf(Order.class, Order.class.toString());
         System.out.println(tableOrder);
     }
 
     @Test
     public void testColumnSql()
     {
-        Table tableUser = Table.valueOf(User.class, "com.fiidee.mybatis.support.model.User");
-        Table tableOrder = Table.valueOf(Order.class, "com.fiidee.mybatis.support.model.Order");
+        Table tableUser = Table.valueOf(User.class, User.class.toString());
+        Table tableOrder = Table.valueOf(Order.class, Order.class.toString());
 
         System.out.println(tableUser.getColumnsSqlAs());
         System.out.println(tableOrder.getColumnsSqlAs());

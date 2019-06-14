@@ -1,7 +1,7 @@
 package org.rockyang.mybatis.boot.autoconfigure;
 
 import org.rockyang.mybatis.plus.MybatisConfiguration;
-import org.rockyang.mybatis.plus.MybatisSqlSessionFactoryBean;
+import org.rockyang.mybatis.spring.MybatisSqlSessionFactoryBean;
 import org.rockyang.mybatis.plus.plugins.page.PaginationInterceptor;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.Configuration;

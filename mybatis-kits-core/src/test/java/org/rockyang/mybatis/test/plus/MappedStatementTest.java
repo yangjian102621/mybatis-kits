@@ -2,23 +2,22 @@ package org.rockyang.mybatis.test.plus;
 
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.Environment;
+import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ExecutorType;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.rockyang.mybatis.plus.MybatisConfiguration;
-import org.rockyang.mybatis.plus.MybatisSqlSessionFactoryBean;
 import org.rockyang.mybatis.plus.support.Conditions;
 import org.rockyang.mybatis.plus.support.ext.Restrictions;
+import org.rockyang.mybatis.spring.MybatisSqlSessionFactoryBean;
 import org.rockyang.mybatis.test.AbstractMybatis;
 import org.rockyang.mybatis.test.support.mapper.UserMapper;
 import org.rockyang.mybatis.test.support.model.User;
 
 import javax.sql.DataSource;
-import java.util.Collection;
 
 /**
  * <p>
@@ -29,8 +28,8 @@ import java.util.Collection;
  * @author yangjian
  */
 public class MappedStatementTest extends AbstractMybatis {
+
 	private Configuration configuration ;
-	private SqlSessionFactory sqlSessionFactory;
 
 	@Before
 	public void buildSessionFactory() throws Exception {
@@ -61,16 +60,13 @@ public class MappedStatementTest extends AbstractMybatis {
 		builder.setConfiguration(configuration);
 		builder.afterPropertiesSet();
 		this.configuration = configuration;
-		sqlSessionFactory = builder.getObject();
 	}
 
 	@Test
 	public void testGetMapperStatement()
 	{
-		Collection<org.apache.ibatis.mapping.MappedStatement> mappedStatements = configuration.getMappedStatements();
-		Collection<String> mappedStatementNames = configuration.getMappedStatementNames();
-		org.apache.ibatis.mapping.MappedStatement mappedStatement = configuration.getMappedStatement("org.rockyang.mybatis.plus.test.support" +
-				".dao.mapper.UserMapper.selectUser");
+		MappedStatement mappedStatement = configuration.getMappedStatement("org.rockyang.mybatis.test.support" +
+				".mapper.UserMapper.getUserByName");
 		System.out.println(mappedStatement);
 		BoundSql boundSql = mappedStatement.getBoundSql("34234234");
 		String sql = boundSql.getSql();
@@ -84,8 +80,8 @@ public class MappedStatementTest extends AbstractMybatis {
 		//conditions.add(Restrictions.eq("name", "名字"));
 		conditions.add(Restrictions.or(Restrictions.like("name", "名字"),Restrictions.and(Restrictions.eq("count", 1),Restrictions.eq("count", 2))));
 
-		org.apache.ibatis.mapping.MappedStatement mappedStatement = configuration.getMappedStatement("org.rockyang.mybatis.plus.test.support" +
-				".dao.mapper.UserMapper.searchByConditions");
+		org.apache.ibatis.mapping.MappedStatement mappedStatement = configuration.getMappedStatement("org.rockyang.mybatis.test.support" +
+				".mapper.UserMapper.searchByConditions");
 
 		BoundSql boundSql = mappedStatement.getBoundSql(conditions);
 		String sql = boundSql.getSql();
