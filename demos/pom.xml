@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
 		<artifactId>mybatis-kits</artifactId>
-		<groupId>org.rockyang.mybatis</groupId>
+		<groupId>org.rockyang</groupId>
 		<version>1.5.0</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>

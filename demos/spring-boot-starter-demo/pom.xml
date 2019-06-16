@@ -29,7 +29,7 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>org.rockyang.mybatis</groupId>
+			<groupId>org.rockyang</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>${mybatis.kits.version}</version>
 		</dependency>
