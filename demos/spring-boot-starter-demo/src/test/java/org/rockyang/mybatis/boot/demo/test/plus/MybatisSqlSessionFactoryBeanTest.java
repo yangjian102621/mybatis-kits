@@ -57,7 +57,12 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatis {
 		configuration.setEnvironment(environment);
 
 		configuration.setLazyLoadingEnabled(true);
-		configuration.setCacheEnabled(false);// 该配置直接开启缓存 ,默认是开启的
+		/**
+		 * 该配置直接开启缓存 ,默认是开启的
+		 * 特别注意，这里是 Mybatis 的一个 Bug，如果设置为 false 会导致插件注入失效
+		 * 直接的结果就是分页插件失效，物理分页不可用
+		 */
+		configuration.setCacheEnabled(true);
 		/**
 		 * 配置默认的执行器。SIMPLE 就是普通的执行器；
 		 * REUSE 执行器会重用预处理语句（prepared statements）；
