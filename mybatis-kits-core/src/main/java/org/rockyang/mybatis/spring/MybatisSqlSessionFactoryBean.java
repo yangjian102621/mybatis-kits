@@ -112,7 +112,7 @@ public class MybatisSqlSessionFactoryBean implements FactoryBean<SqlSessionFacto
 	 * Sets the ObjectFactory.
 	 *
 	 * @since 1.1.2
-	 * @param objectFactory
+	 * @param objectFactory objectFactory
 	 */
 	public void setObjectFactory(ObjectFactory objectFactory) {
 		this.objectFactory = objectFactory;
@@ -122,7 +122,7 @@ public class MybatisSqlSessionFactoryBean implements FactoryBean<SqlSessionFacto
 	 * Sets the ObjectWrapperFactory.
 	 *
 	 * @since 1.1.2
-	 * @param objectWrapperFactory
+	 * @param objectWrapperFactory objectWrapperFactory
 	 */
 	public void setObjectWrapperFactory(ObjectWrapperFactory objectWrapperFactory) {
 		this.objectWrapperFactory = objectWrapperFactory;
@@ -132,7 +132,7 @@ public class MybatisSqlSessionFactoryBean implements FactoryBean<SqlSessionFacto
 	 * Gets the DatabaseIdProvider
 	 *
 	 * @since 1.1.0
-	 * @return
+	 * @return DatabaseIdProvider
 	 */
 	public DatabaseIdProvider getDatabaseIdProvider() {
 		return databaseIdProvider;
@@ -143,7 +143,7 @@ public class MybatisSqlSessionFactoryBean implements FactoryBean<SqlSessionFacto
 	 * As of version 1.2.2 this variable is not initialized by default.
 	 *
 	 * @since 1.1.0
-	 * @param databaseIdProvider
+	 * @param databaseIdProvider databaseIdProvider
 	 */
 	public void setDatabaseIdProvider(DatabaseIdProvider databaseIdProvider) {
 		this.databaseIdProvider = databaseIdProvider;
@@ -252,6 +252,7 @@ public class MybatisSqlSessionFactoryBean implements FactoryBean<SqlSessionFacto
 	/**
 	 * Set the location of the MyBatis {@code SqlSessionFactory} config file. A typical value is
 	 * "WEB-INF/mybatis-configuration.xml".
+	 * @param configLocation location of mybatis configure file
 	 */
 	public void setConfigLocation(Resource configLocation) {
 		this.configLocation = configLocation;
@@ -273,6 +274,7 @@ public class MybatisSqlSessionFactoryBean implements FactoryBean<SqlSessionFacto
 	 * This is an alternative to specifying "&lt;sqlmapper&gt;" entries in an MyBatis config file.
 	 * This property being based on Spring's resource abstraction also allows for specifying
 	 * resource patterns here: e.g. "classpath*:sqlmap/*-mapper.xml".
+	 * @param mapperLocations mapper locations
 	 */
 	public void setMapperLocations(Resource[] mapperLocations) {
 		this.mapperLocations = mapperLocations;
@@ -282,6 +284,7 @@ public class MybatisSqlSessionFactoryBean implements FactoryBean<SqlSessionFacto
 	 * Set optional properties to be passed into the SqlSession configuration, as alternative to a
 	 * {@code &lt;properties&gt;} tag in the configuration xml file. This will be used to
 	 * resolve placeholders in the config file.
+	 * @param sqlSessionFactoryProperties sqlSessionFactory properties
 	 */
 	public void setConfigurationProperties(Properties sqlSessionFactoryProperties) {
 		this.configurationProperties = sqlSessionFactoryProperties;
@@ -300,7 +303,7 @@ public class MybatisSqlSessionFactoryBean implements FactoryBean<SqlSessionFacto
 	 * {@code TransactionAwareDataSourceProxy}, while the transaction manager needs to work on the
 	 * underlying target {@code DataSource}. If there's nevertheless a {@code TransactionAwareDataSourceProxy}
 	 * passed in, it will be unwrapped to extract its target {@code DataSource}.
-	 *
+	 * @param dataSource dataSource
 	 */
 	public void setDataSource(DataSource dataSource) {
 		if (dataSource instanceof TransactionAwareDataSourceProxy) {
@@ -319,7 +322,7 @@ public class MybatisSqlSessionFactoryBean implements FactoryBean<SqlSessionFacto
 	 *
 	 * This is mainly meant for testing so that mock SqlSessionFactory classes can be injected. By
 	 * default, {@code SqlSessionFactoryBuilder} creates {@code DefaultSqlSessionFactory} instances.
-	 *
+	 * @param sqlSessionFactoryBuilder sqlSessionFactoryBuilder
 	 */
 	public void setSqlSessionFactoryBuilder(SqlSessionFactoryBuilder sqlSessionFactoryBuilder) {
 		this.sqlSessionFactoryBuilder = sqlSessionFactoryBuilder;

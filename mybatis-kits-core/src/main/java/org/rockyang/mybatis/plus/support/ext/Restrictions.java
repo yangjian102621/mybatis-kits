@@ -93,9 +93,9 @@ public class Restrictions {
 
     /**
      * 自定义 SQL 查询
-     * @param sql
-     * @param value
-     * @return
+     * @param sql SQL 字符串
+     * @param value 查询绑定值
+     * @return 返回 Criterion 对象
      */
     public static Criterion sqlRestriction(String sql, Object value) {
         return new SimpleExpression( sql, value, "" );

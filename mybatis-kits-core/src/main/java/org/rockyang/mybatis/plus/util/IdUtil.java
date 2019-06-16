@@ -5,10 +5,10 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * 全局唯一 id 工具(时间递增)  <br/>
+ * 全局唯一 id 工具(时间递增)
  * <p>
- * 支持服务器id配置（0 ~ 0xFF） ： 参数名称 : ppblock.serverid <br/>
- * 可以使用 -Dppblock.serverid=7 配置
+ * 支持服务器id配置（0 ~ 0xFF） ： 参数名称 : sys.serverid
+ * 可以使用 -Dsys.serverid={id} 配置
  * </p>
  *
  * @author chenzhaoju
@@ -17,7 +17,7 @@ import java.util.Properties;
 public final class IdUtil {
 
 	/**
-	 * 用于以时间戳生成ID<br/>
+	 * 用于以时间戳生成ID
 	 * 格式为：时间戳 + 以0x1每步递增的计数器 + 服务器ID
 	 */
 	protected volatile long timestamp;
@@ -33,7 +33,7 @@ public final class IdUtil {
 	/**
 	 * 线程变量 ，保存当前线程的时间戳
 	 */
-	protected volatile ThreadLocal<Long> threadLocal = new ThreadLocal<Long>();
+	protected volatile ThreadLocal<Long> threadLocal = new ThreadLocal<>();
 
 	static {
 		String serverId = System.getProperty("sys.serverid");
@@ -66,8 +66,7 @@ public final class IdUtil {
 
 	/**
 	 * 生成id
-	 *
-	 * @return
+	 * @return 返回新的唯一ID
 	 */
 	public String getNewId() {
 		return getNewId(null);
@@ -75,9 +74,8 @@ public final class IdUtil {
 
 	/**
 	 * 生成带前缀的 id
-	 *
 	 * @param prefix 前缀
-	 * @return
+	 * @return 返回新的唯一ID
 	 */
 	public String getNewId(String prefix) {
 		StringBuilder sb;

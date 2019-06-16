@@ -43,8 +43,8 @@ public class MybatisAutoMapperBuilder   {
 
     /**
      * 注入mapper
-     * @param builderAssistant
-     * @param boundType
+     * @param builderAssistant mapper builder assistant
+     * @param boundType bound sql type
      */
     public void inject(MapperBuilderAssistant builderAssistant, Class boundType){
 
@@ -77,9 +77,9 @@ public class MybatisAutoMapperBuilder   {
     }
 
     /**
-     * 获取model 的类型
-     * @param mapperClass
-     * @return
+     * 获取 model 的类型
+     * @param mapperClass mapper class
+     * @return 返回 model 类型
      */
     private Class<?> getActualModelClass(Class<?> mapperClass) {
         if (mapperClass == BaseMapper.class) {

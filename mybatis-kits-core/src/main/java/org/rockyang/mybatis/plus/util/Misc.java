@@ -1,9 +1,6 @@
 package org.rockyang.mybatis.plus.util;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,24 +9,16 @@ import java.util.regex.Pattern;
  * @author chenzhaoju
  */
 public class Misc {
-    /** 日志记录器 */
-    public static final Logger Logger = LoggerFactory.getLogger(Misc.class);
 	/**空字符*/
 	public static final String EMPTY = "";
 	/**下划线字符*/
 	public static final char UNDERLINE = '_';
-	/**占位符*/
-	public static final String PLACE_HOLDER = "{%s}";
-    /** 用来将字节转换成 16 进制表示的字符表 */
+	/** 用来将字节转换成 16 进制表示的字符表 */
     public static final char _hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
 	/**
-	 * <p>
 	 * 判断字符串是否为空
-	 * </p>
-	 *
-	 * @param cs
-	 *            需要判断字符串
+	 * @param cs 需要判断字符串
 	 * @return 判断结果
 	 */
 	public static boolean isEmpty(final CharSequence cs) {
@@ -46,12 +35,8 @@ public class Misc {
 	}
 
 	/**
-	 * <p>
 	 * 字符串驼峰转下划线格式
-	 * </p>
-	 *
-	 * @param param
-	 *            需要转换的字符串
+	 * @param param 需要转换的字符串
 	 * @return 转换好的字符串
 	 */
 	public static String toCamelUnderline(String param) {
@@ -71,12 +56,8 @@ public class Misc {
 	}
 
 	/**
-	 * <p>
 	 * 字符串下划线转驼峰格式
-	 * </p>
-	 *
-	 * @param param
-	 *            需要转换的字符串
+	 * @param param 需要转换的字符串
 	 * @return 转换好的字符串
 	 */
 	public static String underlineToCamel(String param) {
@@ -100,12 +81,8 @@ public class Misc {
 	}
 
 	/**
-	 * <p>
 	 * 首字母转换小写
-	 * </p>
-	 *
-	 * @param param
-	 *            需要转换的字符串
+	 * @param param 需要转换的字符串
 	 * @return 转换好的字符串
 	 */
 	public static String firstToLowerCase(String param) {
@@ -119,27 +96,18 @@ public class Misc {
 	}
 
 	/**
-	 * <p>
 	 * 判断字符串是否为纯大写字母
-	 * </p>
-	 *
-	 * @param str
-	 *            要匹配的字符串
-	 * @return
+	 * @param str 要匹配的字符串
+	 * @return 返回判断结果
 	 */
 	public static boolean isUpperCase(String str) {
 		return match("^[A-Z]+$", str);
 	}
 
 	/**
-	 * <p>
 	 * 正则表达式匹配
-	 * </p>
-	 *
-	 * @param regex
-	 *            正则表达式字符串
-	 * @param str
-	 *            要匹配的字符串
+	 * @param regex 正则表达式字符串
+	 * @param str 要匹配的字符串
 	 * @return 如果str 符合 regex的正则表达式格式,返回true, 否则返回 false;
 	 */
 	public static boolean match(String regex, String str) {
@@ -148,15 +116,7 @@ public class Misc {
 		return matcher.matches();
 	}
 
-	/**
-	 * <p>
-	 * 拼接字符串第二个字符串第一个字母大写
-	 * </p>
-	 *
-	 * @param concatStr
-	 * @param str
-	 * @return
-	 */
+	/* 拼接字符串第二个字符串第一个字母大写 */
 	public static String concatCapitalize(String concatStr, final String str) {
 		if (isEmpty(concatStr)) {
 			concatStr = EMPTY;
@@ -179,14 +139,7 @@ public class Misc {
 		return sb.toString();
 	}
 
-	/**
-	 * <p>
-	 * 字符串第一个字母大写
-	 * </p>
-	 *
-	 * @param str
-	 * @return
-	 */
+	/* 字符串第一个字母大写 */
 	public static String capitalize(final String str) {
 		return concatCapitalize(null, str);
 	}
@@ -194,7 +147,6 @@ public class Misc {
 
 	/**
 	 * 转换为16进制格式的字串
-	 *
 	 * @param val 32位数值
 	 * @return 16进制格式串（如：a1f）
 	 */
@@ -204,7 +156,6 @@ public class Misc {
 
 	/**
 	 * 转为 HEX字串
-	 *
 	 * @param val 32位数值
 	 * @param sb 转换HEX后的追加字串缓冲区
 	 * @return 追加后的字串缓冲区
@@ -263,7 +214,6 @@ public class Misc {
 
 	/**
 	 * 64位整数HEX字串，不足16个字符前端补0
-	 *
 	 * @param val 整数
 	 * @return hex格式串
 	 */
@@ -276,7 +226,6 @@ public class Misc {
 
 	/**
 	 * 32位整数HEX字串，不足8个字符前端补0
-	 *
 	 * @param val 32位数字
 	 * @param sb 字串缓冲区，若为null自动创建新的
 	 * @return 8字符的HEX编码串
@@ -345,7 +294,6 @@ public class Misc {
 
 	/**
 	 * 64位整数HEX字串，不足16个字符前端补0
-	 *
 	 * @param val 64位数值
 	 * @param sb 字串缓冲区，若为null自动创建新的
 	 * @return 16个字符的HEX编码串
@@ -363,12 +311,7 @@ public class Misc {
 		return sb;
 	}
 
-	/**
-	 * 64位整数HEX字串，不足12个字符前端补0
-	 * @param val 64位数值
-	 * @param sb
-	 * @return 12个字符的HEX编码串
-	 */
+	/* 64位整数HEX字串，不足12个字符前端补0, 返回12个字符的HEX编码串 */
 	public static StringBuilder toHexFixed12(long val,StringBuilder sb){
 		if (null == sb) {
 			sb = new StringBuilder(16);
@@ -382,13 +325,7 @@ public class Misc {
 		return sb;
 	}
 
-	/**
-	 * 16位整数HEX字串，不足4个字符前端补0
-	 *
-	 * @param val
-	 * @param sb
-	 * @return
-	 */
+	/* 16位整数HEX字串，不足4个字符前端补0 */
 	public static StringBuilder toHexFixed(short val, StringBuilder sb) {
 		if (null == sb) sb = new StringBuilder(4);
 
@@ -423,13 +360,7 @@ public class Misc {
 		return Integer.parseInt(str);
 	}
 
-    /**
-     * 字符串转成数字
-     *
-     * @param str
-     * @param defaultInt 默认值
-     * @return
-     */
+    /* 字符串转成数字 */
     public static int toInt(String str, int defaultInt) {
         // 如果字串为空时，返回defaultValue
         if (null == str || 0 == str.length()) {

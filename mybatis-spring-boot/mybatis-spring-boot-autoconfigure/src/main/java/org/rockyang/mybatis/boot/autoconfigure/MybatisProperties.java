@@ -68,16 +68,12 @@ public class MybatisProperties {
   @NestedConfigurationProperty
   private Configuration configuration;
 
-  /**
-   * @since 1.1.0
-   */
+  /* @since 1.1.0*/
   public String getConfigLocation() {
     return this.configLocation;
   }
 
-  /**
-   * @since 1.1.0
-   */
+  /* @since 1.1.0 */
   public void setConfigLocation(String configLocation) {
     this.configLocation = configLocation;
   }
@@ -132,16 +128,12 @@ public class MybatisProperties {
     this.executorType = executorType;
   }
 
-  /**
-   * @since 1.2.0
-   */
+  // @since 1.2.0
   public Properties getConfigurationProperties() {
     return configurationProperties;
   }
 
-  /**
-   * @since 1.2.0
-   */
+  // @since 1.2.0
   public void setConfigurationProperties(Properties configurationProperties) {
     this.configurationProperties = configurationProperties;
   }
