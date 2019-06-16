@@ -7,7 +7,7 @@ import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.rockyang.mybatis.plus.MybatisConfiguration;
-import org.rockyang.mybatis.test.AbstractMybatis;
+import org.rockyang.mybatis.boot.demo.test.AbstractMybatis;
 import org.rockyang.mybatis.test.support.mapper.UserMapper;
 import org.rockyang.mybatis.test.support.model.User;
 

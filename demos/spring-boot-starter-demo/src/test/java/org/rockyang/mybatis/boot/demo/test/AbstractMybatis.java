@@ -1,4 +1,4 @@
-package org.rockyang.mybatis.test;
+package org.rockyang.mybatis.boot.demo.test;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +15,7 @@ public abstract class AbstractMybatis {
 
     public static final Logger _Logger = LoggerFactory.getLogger(AbstractMybatis.class);
 
-    private String driverClassName = "com.mysql.jdbc.Driver" ;
+    private String driverClassName = "com.mysql.cj.jdbc.Driver" ;
     private String url = "jdbc:mysql://127.0.0.1:3306/mybatis-kits-demo?useUnicode=true&characterEncoding=utf8" ;
     private String username = "root" ;
     private String password = "123456" ;

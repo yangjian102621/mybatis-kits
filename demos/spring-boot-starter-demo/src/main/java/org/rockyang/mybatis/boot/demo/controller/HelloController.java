@@ -33,4 +33,11 @@ public class HelloController {
 		List<User> users = userMapper.search();
 		return users;
 	}
+
+	@GetMapping("/users/byName")
+	public List<User> getUserByName()
+	{
+		List<User> users = userMapper.getUserByName("测试添加");
+		return users;
+	}
 }

@@ -1,7 +1,7 @@
 package org.rockyang.mybatis.test.plus;
 
 import org.rockyang.mybatis.spring.MybatisSqlSessionFactoryBean;
-import org.rockyang.mybatis.test.AbstractMybatis;
+import org.rockyang.mybatis.boot.demo.test.AbstractMybatis;
 import org.rockyang.mybatis.test.support.mapper.OrderMapper;
 import org.rockyang.mybatis.test.support.mapper.UserMapper;
 import org.rockyang.mybatis.test.support.model.Order;
