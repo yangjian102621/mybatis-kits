@@ -32,6 +32,7 @@
     
         <!-- versions -->
         <java.version>1.8</java.version>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
@@ -94,7 +95,7 @@
         
         <!-- Central maven repository -->
         <profile>
-            <id>release</id>
+            <id>oss</id>
             <properties>
                 <profiles.active>release</profiles.active>
             </properties>
@@ -195,7 +196,7 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <encoding>${maven.compiler.encoding}</encoding>
                     <!-- skip the unit test -->
 					<skip>${skip_junit_test}</skip>
                 </configuration>
