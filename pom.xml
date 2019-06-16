@@ -37,25 +37,99 @@
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <maven-shade-plugin.version>3.2.0</maven-shade-plugin.version>
         <maven-source-plugin.version>3.1.0</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         
+        <!-- vars -->
+        <skip_maven_deploy>false</skip_maven_deploy>
+        <skip_junit_test>true</skip_junit_test>
     </properties>
     
-    <!-- configures for artifact deployment -->
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <name>Release Repository</name>
-            <url>http://${repo.host}/nexus/content/repositories/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>snapshots</id>
-            <name>Snapshot Repository</name>
-            <url>http://${repo.host}/nexus/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
-
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    
+    <developers>
+        <developer>
+            <name>RockYang</name>
+            <email>yangjian102621@gmail.com</email>
+        </developer>
+    </developers>
+    
+    <scm>
+        <connection>scm:git@gitee.com:blackfox/mybats-kits.git</connection>
+        <developerConnection>scm:git@gitee.com:blackfox/mybats-kits.git</developerConnection>
+        <url>git@gitee.com:blackfox/mybats-kits.git</url>
+    </scm>
+    
+    <profiles>
+        <!-- local nexus repository for test -->
+        <profile>
+            <id>dev</id>
+            <properties>
+                <profiles.active>dev</profiles.active>
+            </properties>
+            <!-- configures for artifact deployment -->
+            <distributionManagement>
+                <repository>
+                    <id>releases</id>
+                    <name>Release Repository</name>
+                    <url>http://nexus.r9it.com/repository/maven-releases</url>
+                </repository>
+                <snapshotRepository>
+                    <id>snapshots</id>
+                    <name>Snapshot Repository</name>
+                    <url>http://nexus.r9it.com/repository/maven-snapshots/</url>
+                </snapshotRepository>
+            </distributionManagement>
+            <activation>
+                <!-- default active -->
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        
+        <!-- Central maven repository -->
+        <profile>
+            <id>release</id>
+            <properties>
+                <profiles.active>release</profiles.active>
+            </properties>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>oss</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+                </snapshotRepository>
+                <repository>
+                    <id>oss</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <!-- Gpg Signature -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>oss</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -112,35 +186,6 @@
     </dependencyManagement>
 
 	<build>
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                    <include>**/*.properties</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>**/*.xml</include>
-                    <include>**/*.properties</include>
-                    <include>**/*.factories</include>
-                    <include>**/*.provides</include>
-                </includes>
-                <excludes>
-                    <exclude>logback-test.xml</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>src/test/java</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
-        </resources>
-
         <plugins>
             <!-- setting compiler version and file encoding -->
             <plugin>
@@ -152,7 +197,7 @@
                     <target>${java.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                     <!-- skip the unit test -->
-					<skip>true</skip>
+					<skip>${skip_junit_test}</skip>
                 </configuration>
             </plugin>
             <!-- packaging source code -->
@@ -170,6 +215,20 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- Javadoc -->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-javadoc-plugin</artifactId>-->
+                <!--<version>${maven-javadoc-plugin.version}</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>jar</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
             <!-- set package tagName format -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -181,6 +240,16 @@
                     <tagNameFormat>${project.version}</tagNameFormat>
                 </configuration>
             </plugin>
+            <!-- skip to deploy to repository -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven-deploy-plugin.version}</version>
+                <configuration>
+                    <skip>${skip_maven_deploy}</skip>
+                </configuration>
+            </plugin>
+            
         </plugins>
     </build>
 	
