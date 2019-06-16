@@ -120,6 +120,7 @@ public interface BaseMapper<M> {
      * @param map 查询条件 Map
      * @return 返回数据列表
      */
+    @Deprecated
     List<M> searchByMap(Map<String, Object> map);
 
     /**
@@ -129,6 +130,7 @@ public interface BaseMapper<M> {
      * @param map 查询条件 Map
      * @return 返回填充数据后的 Page 对象
      */
+    @Deprecated
     Page<M> searchByMap(Page<M> page, Map<String, Object> map);
 
     /**
@@ -142,6 +144,7 @@ public interface BaseMapper<M> {
      * @param map 查询 Map
      * @return 返回符合条件的记录总数
      */
+    @Deprecated
     long getCountByMap(Map<String, Object> map);
 
     /**

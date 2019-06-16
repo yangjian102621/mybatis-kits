@@ -61,9 +61,9 @@
     </developers>
     
     <scm>
-        <connection>scm:git@gitee.com:blackfox/mybats-kits.git</connection>
-        <developerConnection>scm:git@gitee.com:blackfox/mybats-kits.git</developerConnection>
-        <url>git@gitee.com:blackfox/mybats-kits.git</url>
+        <connection>scm:https://gitee.com/blackfox/mybats-kits.git</connection>
+        <developerConnection>scm:https://gitee.com/blackfox/mybats-kits.git</developerConnection>
+        <url>https://gitee.com/blackfox/mybats-kits.git</url>
     </scm>
     
     <profiles>
