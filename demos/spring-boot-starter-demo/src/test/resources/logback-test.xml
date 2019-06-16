@@ -13,7 +13,7 @@
 	</root>
 
 	<!-- 开启调试模式，打印 SQL 语句 -->
-	<logger level="DEBUG" name="org.rockyang.mybatis" additivity="false">
+	<logger level="DEBUG" name="org.rockyang.mybatis.boot.demo.test" additivity="false">
 		<appender-ref ref="STDOUT"/>
 	</logger>
 

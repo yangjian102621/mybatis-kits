@@ -2,6 +2,7 @@ package org.rockyang.mybatis.boot.demo.controller;
 
 import org.rockyang.mybatis.boot.demo.mapper.UserMapper;
 import org.rockyang.mybatis.boot.demo.model.User;
+import org.rockyang.mybatis.plus.plugins.page.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,8 +31,10 @@ public class HelloController {
 	@GetMapping("/users")
 	public List<User> searchUsers()
 	{
-		List<User> users = userMapper.search();
-		return users;
+		Page<User> page = new Page<>();
+		page.setPageSize(5);
+		page = userMapper.search(page);
+		return page.getResults();
 	}
 
 	@GetMapping("/users/byName")
