@@ -1,11 +1,11 @@
-package org.rockyang.mybatis.test.support.mapper;
+package org.rockyang.mybatis.boot.demo.test.support.mapper;
 
 
 import org.apache.ibatis.annotations.Param;
+import org.rockyang.mybatis.boot.demo.test.support.model.User;
 import org.rockyang.mybatis.plus.plugins.page.Page;
 import org.rockyang.mybatis.plus.support.BaseMapper;
 import org.rockyang.mybatis.plus.support.MathOptVo;
-import org.rockyang.mybatis.test.support.model.User;
 
 import java.math.BigDecimal;
 import java.util.Date;

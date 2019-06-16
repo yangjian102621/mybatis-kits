@@ -1,9 +1,9 @@
-package org.rockyang.mybatis.test.plus;
+package org.rockyang.mybatis.boot.demo.test.plus;
 
-import org.rockyang.mybatis.test.support.model.Order;
-import org.rockyang.mybatis.test.support.model.User;
-import org.rockyang.mybatis.plus.mapper.Table;
 import org.junit.Test;
+import org.rockyang.mybatis.boot.demo.test.support.model.Order;
+import org.rockyang.mybatis.boot.demo.test.support.model.User;
+import org.rockyang.mybatis.plus.mapper.Table;
 
 /**
  *

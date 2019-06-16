@@ -1,7 +1,7 @@
-package org.rockyang.mybatis.test.support.mapper;
+package org.rockyang.mybatis.boot.demo.test.support.mapper;
 
 
-import org.rockyang.mybatis.test.support.model.Order;
+import org.rockyang.mybatis.boot.demo.test.support.model.Order;
 import org.rockyang.mybatis.plus.support.BaseMapper;
 
 /**

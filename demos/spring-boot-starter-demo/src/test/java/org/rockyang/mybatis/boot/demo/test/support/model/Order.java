@@ -1,4 +1,4 @@
-package org.rockyang.mybatis.test.support.model;
+package org.rockyang.mybatis.boot.demo.test.support.model;
 
 
 import org.rockyang.mybatis.plus.support.BaseModel;

@@ -1,16 +1,5 @@
-package org.rockyang.mybatis.test.plus;
+package org.rockyang.mybatis.boot.demo.test.plus;
 
-import org.rockyang.mybatis.spring.MybatisSqlSessionFactoryBean;
-import org.rockyang.mybatis.boot.demo.test.AbstractMybatis;
-import org.rockyang.mybatis.test.support.mapper.OrderMapper;
-import org.rockyang.mybatis.test.support.mapper.UserMapper;
-import org.rockyang.mybatis.test.support.model.Order;
-import org.rockyang.mybatis.test.support.model.User;
-import org.rockyang.mybatis.plus.MybatisConfiguration;
-import org.rockyang.mybatis.plus.plugins.page.Page;
-import org.rockyang.mybatis.plus.plugins.page.PaginationInterceptor;
-import org.rockyang.mybatis.plus.support.MathOptVo;
-import org.rockyang.mybatis.plus.util.IdUtil;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.Configuration;
@@ -21,6 +10,18 @@ import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.junit.Before;
 import org.junit.Test;
+import org.rockyang.mybatis.boot.demo.test.AbstractMybatis;
+import org.rockyang.mybatis.boot.demo.test.support.mapper.OrderMapper;
+import org.rockyang.mybatis.boot.demo.test.support.mapper.UserMapper;
+import org.rockyang.mybatis.boot.demo.test.support.model.Order;
+import org.rockyang.mybatis.boot.demo.test.support.model.User;
+import org.rockyang.mybatis.plus.MybatisConfiguration;
+import org.rockyang.mybatis.plus.plugins.page.Page;
+import org.rockyang.mybatis.plus.plugins.page.PaginationInterceptor;
+import org.rockyang.mybatis.plus.support.MathOptVo;
+import org.rockyang.mybatis.plus.util.IdUtil;
+import org.rockyang.mybatis.spring.MybatisSqlSessionFactoryBean;
+import org.springframework.test.context.ContextConfiguration;
 
 import javax.sql.DataSource;
 import java.math.BigDecimal;
@@ -39,6 +40,7 @@ import static org.junit.Assert.assertNotNull;
  * @author chenzhaoju
  * @author yangjian
  */
+@ContextConfiguration(locations = "classpath:application.properties")
 public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatis {
 
 	private SqlSessionFactory sqlSessionFactory;
@@ -175,7 +177,7 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatis {
 	public void testSearchPage()
 	{
 		UserMapper userMapper = getUserMapper();
-		Page<User> page = new Page<User>();
+		Page<User> page = new Page<>();
 		page.setPageSize(2);
 		page = userMapper.search(page);
 

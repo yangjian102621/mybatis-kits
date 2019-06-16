@@ -1,4 +1,4 @@
-package org.rockyang.mybatis.test.plus;
+package org.rockyang.mybatis.boot.demo.test.plus;
 
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.Environment;
@@ -9,13 +9,13 @@ import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.junit.Before;
 import org.junit.Test;
+import org.rockyang.mybatis.boot.demo.test.AbstractMybatis;
+import org.rockyang.mybatis.boot.demo.test.support.mapper.UserMapper;
+import org.rockyang.mybatis.boot.demo.test.support.model.User;
 import org.rockyang.mybatis.plus.MybatisConfiguration;
 import org.rockyang.mybatis.plus.support.Conditions;
 import org.rockyang.mybatis.plus.support.ext.Restrictions;
 import org.rockyang.mybatis.spring.MybatisSqlSessionFactoryBean;
-import org.rockyang.mybatis.boot.demo.test.AbstractMybatis;
-import org.rockyang.mybatis.test.support.mapper.UserMapper;
-import org.rockyang.mybatis.test.support.model.User;
 
 import javax.sql.DataSource;
 

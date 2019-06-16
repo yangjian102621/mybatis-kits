@@ -65,6 +65,25 @@
 				</includes>
 			</resource>
 		</resources>
+		
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**</include>
+				</includes>
+			</testResource>
+			<testResource>
+				<directory>src/test/java/</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</testResource>
+		</testResources>
+		
+		
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

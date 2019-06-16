@@ -15,13 +15,13 @@
 	<bean id="sqlSessionFactory" class="org.rockyang.mybatis.spring.MybatisSqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<!-- 自动扫描Mapping.xml文件 -->
-		<property name="mapperLocations" value="classpath:org/rockyang/mybatis/test/support/mapper/*.xml"/>
-		<property name="configLocation" value="classpath:src/test/resources/mybatis-config.xml"/>
-		<property name="typeAliasesPackage" value="org.rockyang.mybatis.plus.test.support.model"/>
+		<property name="mapperLocations" value="classpath:org/rockyang/mybatis/boot/demo/test/support/mapper/*.xml"/>
+		<property name="configLocation"
+		          value="classpath:mybatis-config.xml"/>
+		<property name="typeAliasesPackage" value="org.rockyang.mybatis.boot.demo.test.support.model"/>
 		<property name="plugins">
 			<array>
 				<!-- 分页插件配置 -->
-				<!--<bean id="conditionsInterceptor" class="org.rockyang.mybatis.spring.plus.plugins.conditions.ConditionsInterceptor"/>-->
 				<bean id="paginationInterceptor" class="org.rockyang.mybatis.plus.plugins.page.PaginationInterceptor"/>
 			</array>
 		</property>
@@ -29,7 +29,7 @@
 
 	<!-- MyBatis 动态扫描  -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="org.rockyang.mybatis.test.support.mapper"/>
+		<property name="basePackage" value="org.rockyang.mybatis.boot.demo.test.support.mapper"/>
 	</bean>
 
 </beans>

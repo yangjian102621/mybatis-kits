@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.rockyang.mybatis.test.support.mapper.OrderMapper">
+<mapper namespace="org.rockyang.mybatis.boot.demo.test.support.mapper.OrderMapper">
 
-    <resultMap id="baseResult" type="org.rockyang.mybatis.test.support.model.Order" />
+    <resultMap id="baseResult" type="org.rockyang.mybatis.boot.demo.test.support.model.Order" />
     
     <select id="getUserByName" resultMap="baseResult">
         SELECT * from user where name = #{name};

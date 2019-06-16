@@ -1,4 +1,4 @@
-package org.rockyang.mybatis.test.plus;
+package org.rockyang.mybatis.boot.demo.test.plus;
 
 import org.rockyang.mybatis.plus.support.Conditions;
 import org.rockyang.mybatis.plus.support.ext.Restrictions;

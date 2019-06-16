@@ -1,18 +1,18 @@
-package org.rockyang.mybatis.test.plus;
+package org.rockyang.mybatis.boot.demo.test.plus;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.rockyang.mybatis.boot.demo.test.AbstractMybatis;
+import org.rockyang.mybatis.boot.demo.test.support.mapper.OrderMapper;
+import org.rockyang.mybatis.boot.demo.test.support.mapper.UserMapper;
+import org.rockyang.mybatis.boot.demo.test.support.model.User;
 import org.rockyang.mybatis.plus.plugins.page.Page;
 import org.rockyang.mybatis.plus.support.Conditions;
 import org.rockyang.mybatis.plus.support.Order;
 import org.rockyang.mybatis.plus.support.ext.MatchMode;
 import org.rockyang.mybatis.plus.support.ext.Restrictions;
-import org.rockyang.mybatis.boot.demo.test.AbstractMybatis;
-import org.rockyang.mybatis.test.support.mapper.OrderMapper;
-import org.rockyang.mybatis.test.support.mapper.UserMapper;
-import org.rockyang.mybatis.test.support.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
