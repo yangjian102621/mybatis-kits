@@ -91,6 +91,7 @@ public interface BaseMapper<M> {
      * @param map 查询条件 Map
      * @return 返回查询到的记录
      */
+    @Deprecated
     M getByMap(Map<String, Object> map);
 
     /**
