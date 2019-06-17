@@ -70,8 +70,7 @@ public class MappedStatementTest extends AbstractMybatis {
 	@Test
 	public void testGetMapperStatement()
 	{
-		MappedStatement mappedStatement = configuration.getMappedStatement("org.rockyang.mybatis.test.support" +
-				".mapper.UserMapper.getUserByName");
+		MappedStatement mappedStatement = configuration.getMappedStatement("org.rockyang.mybatis.boot.demo.test.support.mapper.UserMapper.getUserByName");
 		System.out.println(mappedStatement);
 		BoundSql boundSql = mappedStatement.getBoundSql("34234234");
 		String sql = boundSql.getSql();
@@ -85,8 +84,7 @@ public class MappedStatementTest extends AbstractMybatis {
 		//conditions.add(Restrictions.eq("name", "名字"));
 		conditions.add(Restrictions.or(Restrictions.like("name", "名字"),Restrictions.and(Restrictions.eq("count", 1),Restrictions.eq("count", 2))));
 
-		org.apache.ibatis.mapping.MappedStatement mappedStatement = configuration.getMappedStatement("org.rockyang.mybatis.test.support" +
-				".mapper.UserMapper.searchByConditions");
+		org.apache.ibatis.mapping.MappedStatement mappedStatement = configuration.getMappedStatement("org.rockyang.mybatis.boot.demo.test.support.mapper.UserMapper.searchByConditions");
 
 		BoundSql boundSql = mappedStatement.getBoundSql(conditions);
 		String sql = boundSql.getSql();
