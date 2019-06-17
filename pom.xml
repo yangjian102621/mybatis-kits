@@ -79,12 +79,12 @@
                 <repository>
                     <id>releases</id>
                     <name>Release Repository</name>
-                    <url>http://nexus.r9it.com/repository/maven-releases</url>
+                    <url>http://localhost:8081/repository/maven-releases</url>
                 </repository>
                 <snapshotRepository>
                     <id>snapshots</id>
                     <name>Snapshot Repository</name>
-                    <url>http://nexus.r9it.com/repository/maven-snapshots/</url>
+                    <url>http://localhost:8081/repository/maven-snapshots/</url>
                 </snapshotRepository>
             </distributionManagement>
             <activation>
