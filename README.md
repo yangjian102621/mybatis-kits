@@ -9,6 +9,25 @@ MyBatis 增强工具包，实现了便捷的单表 CRUD，各种自定义条件�
 * GitHub: https://github.com/yangjian102621/mybatis-kits
 > Note: 会优先在码云更新，GitHub 只有发布版本的时候才会更新
 
+## 最新版本
+
+```xml
+<dependency>
+  <groupId>org.rockyang</groupId>
+  <artifactId>mybatis-kits-core</artifactId>
+  <version>1.5.1</version>
+</dependency>
+```
+
+SpringBoot 项目接入方式
+```xml
+<dependency>
+  <groupId>org.rockyang</groupId>
+  <artifactId>mybatis-kits-spring-boot-starter</artifactId>
+  <version>1.5.1</version>
+</dependency>
+```
+> Note: SpringBoot 项目不需要再引入 mybatis-kits-core 了，只导入 mybatis-kits-spring-boot-starter 一个构件就 OK 了。
 
 ## 为什么使用 Mybatis-Kits?
 1. 无侵入：Mybatis-Kits 在 Mybatis 的基础上进行扩展，只是内置了简单的CRUD, 并增强了查询功能，并未修改原生 API，支持所有 Mybatis 原生的特性，不会影响项目现有的 Mybatis 架构。
@@ -19,3 +38,4 @@ API 来实现当前的功能，体验不用选择的幸福。如果你刚好像�
 
 ## 文档 
 暂时没有来得及编写，后期会补上，不过里面有 demo 项目，以及大量的单元测试，能够很快上手。
+

@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.rockyang</groupId>
-        <artifactId>mybatis-spring-boot</artifactId>
-        <version>1.5.0</version>
+        <artifactId>mybatis-kits-spring-boot</artifactId>
+        <version>1.5.1</version>
     </parent>
-    <artifactId>mybatis-spring-boot-autoconfigure</artifactId>
+    <artifactId>mybatis-kits-spring-boot-autoconfigure</artifactId>
     <name>${project.artifactId}</name>
 
     <dependencies>
