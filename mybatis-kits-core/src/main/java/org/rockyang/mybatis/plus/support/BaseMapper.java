@@ -161,7 +161,7 @@ public interface BaseMapper<M> {
      * @param conditions 查询条件
      * @return 返回符合条件的数据列表
      */
-    List<M> searchByConditions(Conditions conditions);
+        List<M> searchByConditions(Conditions conditions);
 
     /**
      *

@@ -24,12 +24,9 @@ public class ConditionsTest {
         System.out.println(conditions.toSqlString());
 
         Conditions conditions1 = new Conditions();
-        conditions1.eq("count", 2)
-                .eq("name", "名字")
+        conditions1.eq("name", "名字")
                 .ge("age", 18)
                 .lt("age", 30)
-                .ge("num",8)
-                .le("num", 130)
                 .ne("address", "这个地址");
         System.out.println(conditions1.toSqlString());
     }
