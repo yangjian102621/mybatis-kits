@@ -142,7 +142,10 @@ conditions.add(Restrictions.or(Restrictions.eq("count",18),Restrictions.eq("coun
 // output: ((age=18 AND name='zhangsan') AND (count=18 OR count=29))
 ```
 
-更过复杂条件查询请参考单元测试 `org.rockyang.mybatis.boot.demo.test.plus.ConditionTest`
+更多复杂条件查询请参考单元测试 `org.rockyang.mybatis.boot.demo.test.plus.ConditionTest`
+
+上面的所有功能都是不需要创建 Mapper.xml 文档就可以轻松实现的，如果你需要增加联合查询功能，只需增加相应的 UserMapper.xml，在里面实现就好了。
+完全兼容原生 MyBatis 的所有功能。
 
 ## 文档 
 暂时没有来得及编写，后期会补上，不过里面有 demo 项目，以及大量的单元测试，能够很快上手。
