@@ -148,5 +148,6 @@ conditions.add(Restrictions.or(Restrictions.eq("count",18),Restrictions.eq("coun
 完全兼容原生 MyBatis 的所有功能。
 
 ## 文档 
-暂时没有来得及编写，后期会补上，不过里面有 demo 项目，以及大量的单元测试，能够很快上手。
+文档正在编写中，尚未完善，本项目里面有 [demo](https://gitee.com/blackfox/mybatis-kits/tree/master/demos/spring-boot-starter-demo) 项目，以及大量的单元测试，能够很快上手。
 
+文档项目地址：[https://gitee.com/blackfox/mybatis-kits-doc](https://gitee.com/blackfox/mybatis-kits-doc)
