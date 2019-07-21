@@ -21,7 +21,7 @@ API 来实现当前的功能，体验不用选择的幸福。如果你刚好像�
 <dependency>
   <groupId>org.rockyang</groupId>
   <artifactId>mybatis-kits-core</artifactId>
-  <version>1.5.1</version>
+  <version>latest-version</version>
 </dependency>
 ```
 
@@ -30,7 +30,7 @@ SpringBoot 项目接入方式
 <dependency>
   <groupId>org.rockyang</groupId>
   <artifactId>mybatis-kits-spring-boot-starter</artifactId>
-  <version>1.5.1</version>
+  <version>latest-version</version>
 </dependency>
 ```
 > Note: SpringBoot 项目不需要再引入 mybatis-kits-core 了，只导入 mybatis-kits-spring-boot-starter 一个构件就 OK 了。
@@ -49,7 +49,7 @@ public interface UserMapper extends BaseMapper<User> { }
 int affactRows = 0;
 // 初始化 User 实体对象, 如果是非自增ID需要初始化ID
 // 系统有内置的分布式 ID 生成工具
-User user = new User(IdUtil.getNewId());
+User user = new User(userMapper.getNewId());
 
 // 插入 User (如果是自增ID的话，插入成功会自动回写ID到实体类)
 user.setName("Rock");
@@ -154,3 +154,17 @@ conditions.add(Restrictions.or(Restrictions.eq("count",18),Restrictions.eq("coun
 
 另外，本项目里面有 [demo](https://gitee.com/blackfox/mybatis-kits/tree/master/demos/spring-boot-starter-demo) 项目，以及大量的单元测试，能够很快上手。
 
+<script>
+export default {
+  mounted () {
+    var xmlHttp = new XMLHttpRequest()
+    xmlHttp.open("GET", "https://img.shields.io/maven-central/v/org.rockyang/mybatis-kits.json", false)
+    xmlHttp.send(null)
+    var versionInfo = JSON.parse(xmlHttp.responseText).value.replace('v', '')
+    var codeNodeList = document.querySelectorAll('code')
+    for (var i = 0; i < codeNodeList.length; i++) {
+        codeNodeList[i].innerHTML = codeNodeList[i].innerHTML.replace('latest-version', versionInfo)
+    }
+  }
+}
+</script>
