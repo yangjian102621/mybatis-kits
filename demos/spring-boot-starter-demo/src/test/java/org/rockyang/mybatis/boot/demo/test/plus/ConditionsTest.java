@@ -1,8 +1,8 @@
 package org.rockyang.mybatis.boot.demo.test.plus;
 
+import org.junit.Test;
 import org.rockyang.mybatis.plus.support.Conditions;
 import org.rockyang.mybatis.plus.support.ext.Restrictions;
-import org.junit.Test;
 
 /**
  * @author chenzhaoju
@@ -61,7 +61,8 @@ public class ConditionsTest {
     public void testSqlRestriction()
     {
         Conditions conditions = new Conditions();
-        conditions.add(Restrictions.sqlRestriction("where id = 100 and name = 'xiaoming'", null));
+
+        conditions.add(Restrictions.conjunction(Restrictions.eq("xxx",1), Restrictions.eq("yyy", 2)));
         System.out.println(conditions.toSqlString());
     }
 

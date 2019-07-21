@@ -11,10 +11,8 @@ import java.util.Map;
  *
  * Mapper 继承基类，自动提供部分接口功能
  *
- * @param <M> model
- *
  * @author chenzhaoju
- * Modified By : yangjian
+ * @author yangjian
  *
  */
 public interface BaseMapper<M> {
@@ -157,7 +155,7 @@ public interface BaseMapper<M> {
      * @param conditions 查询条件
      * @return 返回符合条件的数据列表
      */
-        List<M> searchByConditions(Conditions conditions);
+    List<M> searchByConditions(Conditions conditions);
 
     /**
      *

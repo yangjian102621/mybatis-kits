@@ -18,17 +18,16 @@ import org.rockyang.mybatis.boot.demo.test.support.model.User;
 import org.rockyang.mybatis.plus.MybatisConfiguration;
 import org.rockyang.mybatis.plus.plugins.page.Page;
 import org.rockyang.mybatis.plus.plugins.page.PaginationInterceptor;
+import org.rockyang.mybatis.plus.support.Conditions;
 import org.rockyang.mybatis.plus.support.MathOptVo;
+import org.rockyang.mybatis.plus.support.ext.Restrictions;
 import org.rockyang.mybatis.plus.util.IdUtil;
 import org.rockyang.mybatis.spring.MybatisSqlSessionFactoryBean;
 import org.springframework.test.context.ContextConfiguration;
 
 import javax.sql.DataSource;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -153,13 +152,14 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatis {
 	public void testUpdate()
 	{
 		UserMapper userMapper = getUserMapper();
-		User user = userMapper.get("0123456-01");
+		String userId = "016526f9a2d50001a0";
+		User user = userMapper.get(userId);
 		_Logger.info("结果：{}", user);
 		user.setName("更新名称");
 		user.setUpdateTime(new Date());
 		userMapper.update(user);
 
-		user = userMapper.get("0123456-01");
+		user = userMapper.get(userId);
 		_Logger.info("结果：{}", user);
 	}
 
@@ -183,8 +183,8 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatis {
 	{
 		UserMapper userMapper = getUserMapper();
 		Page<User> page = new Page<>();
-		page.setPageSize(2);
-		page = userMapper.search(page);
+		page.setPageSize(5);
+		userMapper.search(page);
 
 		for (User user : page.getResults()) {
 			_Logger.info("结果：{}",user);
@@ -213,6 +213,7 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatis {
 
 		UserMapper userMapper = getUserMapper();
 		String id = "0123456-02";
+		// 给用户的余额随机增加 0-10 元
 		MathOptVo<String, BigDecimal> balance = new MathOptVo<>(id, "balance", BigDecimal.valueOf(Math.random() * 10
 				+ 1), MathOptVo.ADD);
 		Integer integer = userMapper.mathOpt(balance);
@@ -236,6 +237,19 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatis {
 	public void testGetAmountSum() {
 		UserMapper userMapper = getUserMapper();
 		System.out.println(userMapper.getAmountSum(new Date()));
+	}
+
+	@Test
+	public void testSqlRestriction() {
+		UserMapper userMapper = getUserMapper();
+		Conditions conditions = new Conditions();
+		conditions.add(Restrictions.conjunction());
+		conditions.add(Restrictions.eq("name","rock"));
+		//conditions.add(Restrictions.sqlRestriction("id >= ", 100));
+		List<User> users = userMapper.searchByConditions(conditions);
+		for (User user : users) {
+			_Logger.info("结果：{}",user);
+		}
 	}
 
 }

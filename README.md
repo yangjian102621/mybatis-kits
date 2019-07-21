@@ -147,7 +147,10 @@ conditions.add(Restrictions.or(Restrictions.eq("count",18),Restrictions.eq("coun
 上面的所有功能都是不需要创建 Mapper.xml 文档就可以轻松实现的，如果你需要增加联合查询功能，只需增加相应的 UserMapper.xml，在里面实现就好了。
 完全兼容原生 MyBatis 的所有功能。
 
-## 文档 
-文档正在编写中，尚未完善，本项目里面有 [demo](https://gitee.com/blackfox/mybatis-kits/tree/master/demos/spring-boot-starter-demo) 项目，以及大量的单元测试，能够很快上手。
+## 文档
 
-文档项目地址：[https://gitee.com/blackfox/mybatis-kits-doc](https://gitee.com/blackfox/mybatis-kits-doc)
+* 文档访问地址：[http://mybatis.r9it.com/](http://mybatis.r9it.com/)
+* 文档项目地址：[https://gitee.com/blackfox/mybatis-kits-doc](https://gitee.com/blackfox/mybatis-kits-doc)
+
+另外，本项目里面有 [demo](https://gitee.com/blackfox/mybatis-kits/tree/master/demos/spring-boot-starter-demo) 项目，以及大量的单元测试，能够很快上手。
+

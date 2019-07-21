@@ -93,7 +93,11 @@ public class Page<T> implements Serializable {
 
     /* 获取上一页 */
     public int getPrevPage() {
-        return pageNo - 1;
+        if (pageNo > 1) {
+            return pageNo - 1;
+        } else {
+            return 1;
+        }
     }
 
     @Override
