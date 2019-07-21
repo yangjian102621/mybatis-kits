@@ -16,7 +16,7 @@
 	<name>spring-boot-starter-demo</name>
 	
 	<properties>
-		<mybatis.kits.version>1.5.1</mybatis.kits.version>
+		<mybatis.kits.version>1.5.2</mybatis.kits.version>
 		<druid.version>1.1.17</druid.version>
 		<skip_maven_deploy>true</skip_maven_deploy>
 	</properties>

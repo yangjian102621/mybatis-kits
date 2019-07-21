@@ -1,14 +1,14 @@
 package org.rockyang.mybatis.boot.autoconfigure;
 
-import org.rockyang.mybatis.plus.MybatisConfiguration;
-import org.rockyang.mybatis.spring.MybatisSqlSessionFactoryBean;
-import org.rockyang.mybatis.plus.plugins.page.PaginationInterceptor;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.rockyang.mybatis.plus.MybatisConfiguration;
+import org.rockyang.mybatis.plus.plugins.page.PaginationInterceptor;
+import org.rockyang.mybatis.spring.MybatisSqlSessionFactoryBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -84,5 +84,4 @@ public class MybatisAutoConfiguration {
             return new SqlSessionTemplate(sqlSessionFactory);
         }
     }
-
 }

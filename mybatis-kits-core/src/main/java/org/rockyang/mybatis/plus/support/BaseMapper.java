@@ -18,11 +18,13 @@ import java.util.Map;
 public interface BaseMapper<M> {
 
     /**
-     * 生成一个新的字符串id
+     * 生成一个分布式 ID
      *
      * @return 返回一个唯一 ID
      */
-    String getNewId();
+    Long getNewId();
+    String getNewIdStr();
+    String getNewIdHex();
 
     /**
      *

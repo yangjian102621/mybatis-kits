@@ -24,6 +24,11 @@ public class HelloController {
 		return "Hello Mybatis-Kits.";
 	}
 
+	@GetMapping("/newId")
+	public Long newId() {
+		return userMapper.getNewId();
+	}
+
 	/**
 	 * 获取用户列表
 	 * @return

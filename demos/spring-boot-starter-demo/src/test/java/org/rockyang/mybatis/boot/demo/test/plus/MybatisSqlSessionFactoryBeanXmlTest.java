@@ -293,29 +293,6 @@ public class MybatisSqlSessionFactoryBeanXmlTest {
 	}
 
 	@Test
-	public void testGetNewId()
-	{
-		for (int i = 0; i < 1000; i++) {
-			UserMapper userMapper = getUserMapper();
-			String id = userMapper.getNewId();
-			_Logger.info("结果：{},{}",userMapper,id);
-		}
-	}
-
-	@Test
-	public void testGetNewIds()
-	{
-		for (int i = 0; i < 1000; i++) {
-			UserMapper userMapper = getUserMapper();
-			String id = userMapper.getNewId();
-			OrderMapper orderMapper = getOrderMapper();
-			String ido = orderMapper.getNewId();
-			_Logger.info("结果：{},{}",userMapper.hashCode(),id);
-			_Logger.info("结果：{},{}",orderMapper.hashCode(),ido);
-		}
-	}
-
-	@Test
 	public void testUserOrderBy()
 	{
 		UserMapper userMapper = getUserMapper();

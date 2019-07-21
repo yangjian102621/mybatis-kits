@@ -1,10 +1,10 @@
 package org.rockyang.mybatis.plus;
 
-import org.rockyang.mybatis.plus.util.IdUtils;
 import org.apache.ibatis.binding.MapperMethod;
 import org.apache.ibatis.binding.MapperProxy;
 import org.apache.ibatis.reflection.ExceptionUtil;
 import org.apache.ibatis.session.SqlSession;
+import org.rockyang.mybatis.plus.util.Snowflake;
 
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -36,7 +36,11 @@ public class MybatisMapperProxy<T> extends MapperProxy<T> {
             }
         }
         if("getNewId".equals(method.getName())){
-            return IdUtils.getNewId(mapperInterface);
+            return Snowflake.getInstance().nextId();
+        } else if("getNewIdStr".equals(method.getName())){
+            return Snowflake.getInstance().nextIdStr();
+        } else if("getNewIdHex".equals(method.getName())){
+            return Snowflake.getInstance().nextIdHex();
         }
         final MapperMethod mapperMethod = cachedMapperMethod(method);
         return mapperMethod.execute(sqlSession, args);

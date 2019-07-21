@@ -6,7 +6,7 @@
     
     <groupId>org.rockyang</groupId>
     <artifactId>mybatis-kits</artifactId>
-    <version>1.5.1</version>
+    <version>1.5.2</version>
     <packaging>pom</packaging>
 
     <name>mybatis-kits</name>

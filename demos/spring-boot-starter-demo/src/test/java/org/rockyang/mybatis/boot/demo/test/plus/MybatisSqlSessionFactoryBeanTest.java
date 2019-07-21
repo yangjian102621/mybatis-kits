@@ -21,7 +21,7 @@ import org.rockyang.mybatis.plus.plugins.page.PaginationInterceptor;
 import org.rockyang.mybatis.plus.support.Conditions;
 import org.rockyang.mybatis.plus.support.MathOptVo;
 import org.rockyang.mybatis.plus.support.ext.Restrictions;
-import org.rockyang.mybatis.plus.util.IdUtil;
+import org.rockyang.mybatis.plus.util.Snowflake;
 import org.rockyang.mybatis.spring.MybatisSqlSessionFactoryBean;
 import org.springframework.test.context.ContextConfiguration;
 
@@ -136,7 +136,7 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatis {
 	{
 		UserMapper userMapper = getUserMapper();
 
-		User user = new User(IdUtil.getInstance().getNewId(), "测试添加", 12, 1);
+		User user = new User(Snowflake.getInstance().nextIdHex(), "测试添加", 12, 1);
 		user.setStatus(1);
 		int add = userMapper.add(user);
 		System.out.println(user);
@@ -242,6 +242,7 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatis {
 	@Test
 	public void testSqlRestriction() {
 		UserMapper userMapper = getUserMapper();
+		System.out.println(userMapper.getNewId());
 		Conditions conditions = new Conditions();
 		conditions.add(Restrictions.conjunction());
 		conditions.add(Restrictions.eq("name","rock"));

@@ -21,10 +21,8 @@ import java.util.Properties;
  * @author chenzhaoju
  * @author yangjian
  */
-@ConfigurationProperties(prefix = MybatisProperties.MYBATIS_PREFIX)
+@ConfigurationProperties(prefix = "mybatis")
 public class MybatisProperties {
-
-  public static final String MYBATIS_PREFIX = "mybatis";
 
   /**
    * Location of MyBatis xml config file.
