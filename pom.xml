@@ -20,7 +20,6 @@
     </modules>
 
     <properties>
-        <repo.host>nexus.r9it.com</repo.host>
         <mybatis.version>3.5.1</mybatis.version>
         <mybatis-spring.version>2.0.1</mybatis-spring.version>
         <slf4j.version>1.7.25</slf4j.version>
