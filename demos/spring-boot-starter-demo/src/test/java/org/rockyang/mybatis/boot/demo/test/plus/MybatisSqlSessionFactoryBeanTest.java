@@ -108,7 +108,7 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatis {
 		UserMapper userMapper = getUserMapper();
 		List<User> userList = userMapper.search();
 		for (User user : userList) {
-			_Logger.info("结果：{}",user);
+			System.out.println(user);
 		}
 	}
 
