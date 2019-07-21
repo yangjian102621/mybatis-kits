@@ -5,15 +5,15 @@
 	<parent>
 		<artifactId>mybatis-kits</artifactId>
 		<groupId>org.rockyang</groupId>
-		<version>1.5.0</version>
+		<version>1.5.1</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<packaging>pom</packaging>
-	<artifactId>mybatis-spring-boot</artifactId>
+	<artifactId>mybatis-kits-spring-boot</artifactId>
 	
 	<modules>
-		<module>mybatis-spring-boot-autoconfigure</module>
-		<module>mybatis-spring-boot-starter</module>
+		<module>mybatis-kits-spring-boot-autoconfigure</module>
+		<module>mybatis-kits-spring-boot-starter</module>
 	</modules>
 	
 	<dependencyManagement>
@@ -30,12 +30,12 @@
 			</dependency>
 			<dependency>
 				<groupId>org.rockyang</groupId>
-				<artifactId>mybatis-spring-boot-autoconfigure</artifactId>
+				<artifactId>mybatis-kits-spring-boot-autoconfigure</artifactId>
 				<version>${project.parent.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.rockyang</groupId>
-				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<artifactId>mybatis-kits-spring-boot-starter</artifactId>
 				<version>${project.parent.version}</version>
 			</dependency>
 			
