@@ -242,7 +242,6 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatis {
 	@Test
 	public void testSqlRestriction() {
 		UserMapper userMapper = getUserMapper();
-		System.out.println(userMapper.getNewId());
 		Conditions conditions = new Conditions();
 		conditions.add(Restrictions.conjunction());
 		conditions.add(Restrictions.eq("name","rock"));
@@ -250,6 +249,15 @@ public class MybatisSqlSessionFactoryBeanTest extends AbstractMybatis {
 		List<User> users = userMapper.searchByConditions(conditions);
 		for (User user : users) {
 			_Logger.info("结果：{}",user);
+		}
+	}
+
+	@Test
+	public void testNewId() {
+
+		UserMapper userMapper = getUserMapper();
+		for (int i = 0; i < 100; i++) {
+			System.out.println(userMapper.getNewId());
 		}
 	}
 

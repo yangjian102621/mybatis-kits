@@ -23,7 +23,6 @@ public class SnowFlakeTest {
 	@Test
 	public void snowflakeTest2() {
 		HashSet<Long> hashSet = new HashSet<>();
-
 		Snowflake idWorker = Snowflake.getInstance();
 		for (int i = 0; i < 1000; i++) {
 			Long id = idWorker.nextId();
@@ -33,11 +32,18 @@ public class SnowFlakeTest {
 		Assert.assertEquals(1000L, hashSet.size());
 	}
 
+	/**
+	 * 测试生成 100w ID 所需要的时间
+	 */
 	@Test
 	public void snowflakeTest3(){
 		Snowflake idWorker = new Snowflake(1, 2);
-		for (int i = 0; i < 1000; i++) {
-			System.out.println(idWorker.nextIdHex());
+		long t1 = System.currentTimeMillis();
+		for (int i = 0; i < 1000000; i++) {
+			idWorker.nextIdHex();
 		}
+		System.out.println(System.currentTimeMillis() - t1);
 	}
+
+
 }
