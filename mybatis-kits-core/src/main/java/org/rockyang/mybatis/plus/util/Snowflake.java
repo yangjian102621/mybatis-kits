@@ -72,7 +72,7 @@ public class Snowflake {
 	 * @param workerId 工作ID (0~31)
 	 * @param dataCenterId 数据中心ID (0~31)
 	 */
-	public Snowflake(long workerId, long dataCenterId) {
+	private Snowflake(long workerId, long dataCenterId) {
 		if (workerId > maxWorkerId || workerId < 0) {
 			throw new IllegalArgumentException(String.format("worker Id can't be greater than %d or less than 0", maxWorkerId));
 		}
@@ -84,6 +84,10 @@ public class Snowflake {
 		this.dataCenterId = dataCenterId;
 	}
 
+	/**
+	 * 获取 {@link Snowflake} 单例
+	 * @return
+	 */
 	public static synchronized Snowflake getInstance() {
 		if (null == instance) {
 			long workerId = 0;
