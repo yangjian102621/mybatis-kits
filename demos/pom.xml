@@ -15,6 +15,7 @@
 	<description>Mybatis-Kit demo projects</description>
 	<modules>
 		<module>spring-boot-starter-demo</module>
+		<module>sharding-jdbc-demo</module>
 	</modules>
 	
 	<properties>

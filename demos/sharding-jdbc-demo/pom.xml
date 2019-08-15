@@ -12,8 +12,8 @@
 	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	
-	<artifactId>spring-boot-starter-demo</artifactId>
-	<name>spring-boot-starter-demo</name>
+	<artifactId>sharding-jdbc-demo</artifactId>
+	<name>sharding-jdbc-demo</name>
 	
 	<properties>
 		<mybatis.kits.version>1.5.2</mybatis.kits.version>
@@ -30,20 +30,14 @@
 		
 		<dependency>
 			<groupId>org.rockyang</groupId>
-			<artifactId>mybatis-kits-spring-boot-starter</artifactId>
+			<artifactId>mybatis-kits-sharding-jdbc-starter</artifactId>
 			<version>${mybatis.kits.version}</version>
-		</dependency>
-		<!-- database connection pool, not required -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid-spring-boot-starter</artifactId>
-			<version>${druid.version}</version>
 		</dependency>
 		
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-			<version>2.1.5.RELEASE</version>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.1.6</version>
 		</dependency>
 		
 		<dependency>

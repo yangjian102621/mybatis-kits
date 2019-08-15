@@ -12,9 +12,14 @@
 	<artifactId>mybatis-kits-spring-boot</artifactId>
 	
 	<modules>
-		<module>mybatis-kits-spring-boot-autoconfigure</module>
+		<module>mybatis-kits-sharding-jdbc-starter</module>
 		<module>mybatis-kits-spring-boot-starter</module>
+		<module>mybatis-kits-starter-common</module>
 	</modules>
+	
+	<properties>
+		<skip_maven_deploy>true</skip_maven_deploy>
+	</properties>
 	
 	<dependencyManagement>
 		<dependencies>
@@ -42,6 +47,12 @@
 			<dependency>
 				<groupId>org.rockyang</groupId>
 				<artifactId>mybatis-kits-core</artifactId>
+				<version>${project.parent.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.rockyang</groupId>
+				<artifactId>mybatis-kits-starter-common</artifactId>
 				<version>${project.parent.version}</version>
 			</dependency>
 			

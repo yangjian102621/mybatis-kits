@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.rockyang.mybatis.sharingjdbc.starter.MybatisAutoConfiguration,\
+  org.rockyang.mybatis.sharingjdbc.starter.ShardingAutoConfiguration
