@@ -13,7 +13,7 @@ public class SnowFlakeTest {
 
 	@Test
 	public void snowflakeTest1(){
-		Snowflake idWorker = new Snowflake(1, 2);
+		Snowflake idWorker = Snowflake.getInstance();
 		for (int i = 0; i < 1000; i++) {
 			long id = idWorker.nextId();
 			System.out.println(id);
@@ -37,7 +37,7 @@ public class SnowFlakeTest {
 	 */
 	@Test
 	public void snowflakeTest3(){
-		Snowflake idWorker = new Snowflake(1, 2);
+		Snowflake idWorker = Snowflake.getInstance();
 		long t1 = System.currentTimeMillis();
 		for (int i = 0; i < 1000000; i++) {
 			idWorker.nextIdHex();
